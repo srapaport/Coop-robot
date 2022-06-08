@@ -1,5 +1,6 @@
 from z3 import *
 from utilZ3v5 import *
+#comentaire
 
 taille_anneau = 5
 nb_robots = 3
