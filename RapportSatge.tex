@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Rapport de Stage}
+\author{Solal Rapaport }
+\date{June 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Configuration with single multiplicity}
+
+On a $k$ robots, et le robot $r$ applique la stratégie suivante :
+\begin{center}
+$phiSM(d_0, ..., d_{k-1}):=$\\
+$(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} d_j > 0))\land$\\
+$(d_{k-1} \not= 0) \land $\\
+$((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_k) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
+\end{center}
+
+\section{Gathering rigid configurations}
+
+On a $k$ robots et donc $k$ valeurs par vecteur de vue, et le robot $r$ applique la stratégie suivante :
+\begin{center}
+$phiR(d_{00}, ...,d_{k-1k-1}):=$\\
+$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\
+$(\land_{i=0}^{k-1}($
+%$\land_{l=0\ l\not=i}^{k-1}(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})$ \\
+$\land_{l=0\ l\not=i}^{k-1}(
+(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
+\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{ij} \not= d_{lm})
+\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lj})
+\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lm}) 
+) ))\land$\\
+%on doit faire les codes de vues et élire une vue
+$()$
+\end{center}
+
+\end{document}
