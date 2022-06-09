@@ -110,27 +110,27 @@ def ConfigView(taille_anneau, nb_robots, indice_robot, list_positions, distances
         return Exists(distances_prime, And(tabAnd))
 
 ############################ TEST CONFIGVIEW ############################
-# taille_anneau = 5       # Taille de l'anneau 
-# nb_robots = 3           # Nombre de robot sur l'anneau
-# robot_photo = 1         # Position du robot exécutant ConfigView
+taille_anneau = 5       # Taille de l'anneau 
+nb_robots = 3           # Nombre de robot sur l'anneau
+robot_photo = 1         # Position du robot exécutant ConfigView
 
-# distances = [ Int('d%s' % i) for i in range(nb_robots) ]
-# p = [ Int('p%s' % i) for i in range(nb_robots) ]
-# s = [ Int('s%s' % i) for i in range(nb_robots) ]
-# t = [ Int('t%s' % i) for i in range(nb_robots) ]
+distances = [ Int('d%s' % i) for i in range(nb_robots) ]
+p = [ Int('p%s' % i) for i in range(nb_robots) ]
+s = [ Int('s%s' % i) for i in range(nb_robots) ]
+t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
-# sol = Solver()
+sol = Solver()
 
-# tabInit = Init(p, s, t, taille_anneau)
-# print("Init : \n", tabInit)
-# tabTest = ConfigView(taille_anneau, nb_robots, robot_photo, p, distances)
-# print("ConfigView : \n", tabTest)
+tabInit = Init(p, s, t, taille_anneau)
+print("Init : \n", tabInit)
+tabTest = ConfigView(taille_anneau, nb_robots, robot_photo, p, distances)
+print("ConfigView : \n", tabTest)
 
-# sol.add(tabInit)
-# sol.add(tabTest)
-# print("Solveur : \n", sol.check())
-# if(sol.check() == sat):
-#         print(sol.model().sexpr())
+sol.add(tabInit)
+sol.add(tabTest)
+print("Solveur : \n", sol.check())
+if(sol.check() == sat):
+        print(sol.model().sexpr())
 
 ############################ TEST CONFIGVIEW FIN #########################
 
@@ -192,8 +192,6 @@ def phi(distances):
         Le robot se déplace vers le robot le plus proche, si les robots sont à équidistances
         alors le robot reste sur place
         """
-
-        ## Pas sûr que cela fonctionne
         tabAnd = []
         tabOr = []
         for i in range(1, len(distances)):
