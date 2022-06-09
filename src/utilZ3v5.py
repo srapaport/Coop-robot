@@ -130,7 +130,8 @@ sol.add(tabInit)
 sol.add(tabTest)
 print("Solveur : \n", sol.check())
 if(sol.check() == sat):
-        print(sol.model().sexpr())
+        print(sol.model()) # patch sans Exception sur ModelRef
+        # print(sol.model().sexpr()) # patch avec Exception sur ModelRef 
 
 ############################ TEST CONFIGVIEW FIN #########################
 
