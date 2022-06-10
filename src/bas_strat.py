@@ -195,12 +195,12 @@ def InitSM(p, s, t, taille_anneau):
 # t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
 # tabTest6 = InitSM(p, s, t, taille_anneau)
-# print(tabTest6)
+# print("tabTest6 :\n", tabTest6)
 
 # s6.add(tabTest6)
 # print(s6.check())
 # if(s6.check() == sat):
-#         print(s6.model())
+#         print("model :\n",s6.model())
 
 ############################ TEST INIT FIN #########################
 
