@@ -26,14 +26,31 @@ $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_k) \lor (d_1 = 0 \land d_{k-2} \no
 On a $k$ robots et donc $k$ valeurs par vecteur de vue, et le robot $r$ applique la stratégie suivante :
 \begin{center}
 $phiR(d_{00}, ...,d_{k-1k-1}):=$\\
+$\exists Max, M, N, ((a_{00}, a_{01}), ..., (a_{k0}, a_{k1}))$\\
 $(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\
-$(\land_{i=0}^{k-1}($
-%$\land_{l=0\ l\not=i}^{k-1}(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})$ \\
+$( \land_{i=0}^{k-1}($
 $\land_{l=0\ l\not=i}^{k-1}(
 (\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
 \land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{ij} \not= d_{lm})
 \land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lj})
 \land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lm}) 
+) ))\land$\\
+%on doit faire les codes de vues et élire une vue
+$()$
+\end{center}
+
+Soit $d_{ij}$ la valeur $j$ du vecteur de vue du robot $i$, et $ds_{ij}$ la valeur $j$ du vecteur de vue symétrique du robot $i$.
+
+\begin{center}
+$phiR(d_{00}, ...,d_{k-1k-1},ds_{00}, ...,ds_{k-1k-1}):=$\\
+$\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})$\\
+$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\%pas de multiplicité
+$( \land_{i=0}^{k-1}(
+\land_{l=0\ l\not=i}^{k-1}(
+(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
+\land (\lor_{j=0}^{k}d_{ij} \not= ds_{lj})
+\land (\lor_{j=0}^{k}ds_{ij} \not= d_{lj})
+\land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj}) 
 ) ))\land$\\
 %on doit faire les codes de vues et élire une vue
 $()$
