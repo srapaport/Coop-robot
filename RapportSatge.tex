@@ -1,7 +1,11 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{geometry}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{listings}
+
+\geometry{hmargin=4cm,vmargin=1.5cm}
 
 \title{Rapport de Stage}
 \author{Solal Rapaport }
@@ -13,7 +17,7 @@
 
 \section{Configuration with single multiplicity}
 
-On a $k$ robots, et le robot $r$ applique la stratégie suivante :
+We have $k$ robots, robot $r$ is calling the strategy below :
 \begin{center}
 $phiSM(d_0, ..., d_{k-1}):=$\\
 $(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} d_j > 0))\land$\\
@@ -21,28 +25,117 @@ $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_k) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
 
+In order to test our strategy we need a function that will initialize our first configuration. Here is its implementation in python :
+
+\begin{lstlisting}[language=Python]
+
+def InitSM(p, s, t, taille_anneau):
+    tmpOr = []
+    tmpAnd = []
+    for i in range(len(p) - 1):
+        tmpOr.append(p[i] != p[i+1])
+    tmpAnd.append(Or(tmpOr))
+    # we make sure there is no winning configuration
+    # as a result of this function
+    tmpOr = []
+    for i in range(len(s)):
+        tmpAnd.append(p[i] >= 0)
+        tmpAnd.append(p[i] < taille_anneau)
+        tmpAnd.append(s[i] == -1)
+        tmpAnd.append(t[i] == 0)
+    
+    for i in range(len(p)-1):
+        tmpAndbis = []
+        tmpAndbis.append(p[i] == p[i+1])
+        tmpOrbis = []
+        for j in range(len(p)):
+            if((j != i) and (j != (i+1))):
+                tmpOrbis.append(p[j] == p[i])
+                tmpAndter=[]
+                for h in range(len(p)):
+                    if h !=j:
+                        tmpAndter.append(p[h] != p[j])
+                tmpOrbis.append(And(tmpAndter))
+        tmpAndbis.append(Or(tmpOrbis))
+        tmpOr.append(And(tmpAndbis))
+    tmpAnd.append(Or(tmpOr))
+    return And(tmpAnd)
+\end{lstlisting}
+
+We use the parameters below as an input :
+\begin{lstlisting}[language=Python]
+
+taille_anneau = 5       # Taille de l'anneau 
+nb_robots = 3           # Nombre de robot sur l'anneau
+s6 = Solver()
+
+p = [ Int('p%s' % i) for i in range(nb_robots) ]
+s = [ Int('s%s' % i) for i in range(nb_robots) ]
+t = [ Int('t%s' % i) for i in range(nb_robots) ]
+
+tabTest6 = InitSM(p, s, t, taille_anneau)
+print("tabTest6 :\n", tabTest6)
+
+s6.add(tabTest6)
+print(s6.check())
+if(s6.check() == sat):
+    print("model :\n",s6.model())
+\end{lstlisting}
+The code above produces the following output : 
+\begin{lstlisting}
+tabTest6 :
+ And(Or(p0 != p1, p1 != p2),
+    p0 >= 0,
+    p0 < 5,
+    s0 == -1,
+    t0 == 0,
+    p1 >= 0,
+    p1 < 5,
+    s1 == -1,
+    t1 == 0,
+    p2 >= 0,
+    p2 < 5,
+    s2 == -1,
+    t2 == 0,
+    Or(And(p0 == p1, Or(p2 == p0, And(p0 != p2, p1 != p2))),
+       And(p1 == p2, Or(p0 == p1, And(p1 != p0, p2 != p0)))))
+sat
+model :
+ [p1 = 1,
+ p0 = 0,
+ p2 = 1,
+ t2 = 0,
+ s2 = -1,
+ t1 = 0,
+ s1 = -1,
+ t0 = 0,
+ s0 = -1]
+\end{lstlisting}
+
 \section{Gathering rigid configurations}
 
-On a $k$ robots et donc $k$ valeurs par vecteur de vue, et le robot $r$ applique la stratégie suivante :
-\begin{center}
-$phiR(d_{00}, ...,d_{k-1k-1}):=$\\
-$\exists Max, M, N, ((a_{00}, a_{01}), ..., (a_{k0}, a_{k1}))$\\
-$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\
-$( \land_{i=0}^{k-1}($
-$\land_{l=0\ l\not=i}^{k-1}(
-(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
-\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{ij} \not= d_{lm})
-\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lj})
-\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lm}) 
-) ))\land$\\
+%On a $k$ robots et donc $k$ valeurs par vecteur de vue, et le robot $r$ applique la stratégie suivante :
+%\begin{center}
+%$phiR(d_{00}, ...,d_{k-1k-1}):=$\\
+%$\exists Max, M, N, ((a_{00}, a_{01}), ..., (a_{k0}, a_{k1}))$\\
+%$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\
+%$( \land_{i=0}^{k-1}($
+%$\land_{l=0\ l\not=i}^{k-1}(
+%(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
+%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{ij} \not= d_{lm})
+%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lj})
+%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lm}) 
+%) ))\land$\\
 %on doit faire les codes de vues et élire une vue
-$()$
-\end{center}
+%$()$
+%\end{center}
 
-Soit $d_{ij}$ la valeur $j$ du vecteur de vue du robot $i$, et $ds_{ij}$ la valeur $j$ du vecteur de vue symétrique du robot $i$.
+Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$ the value $j$ of the symmetrical view of the
+robot $i$.
+Robot $r$ is calling the strategy below :
 
 \begin{center}
-$phiR(d_{00}, ...,d_{k-1k-1},ds_{00}, ...,ds_{k-1k-1}):=$\\
+$phiR(d_{00}, ...,d_{k-1k-1},ds_{00}, ...,ds_{k-1k-1}, r):=$\\
 $\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})$\\
 $(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\%pas de multiplicité
 $( \land_{i=0}^{k-1}(
@@ -50,13 +143,18 @@ $( \land_{i=0}^{k-1}(
 (\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
 \land (\lor_{j=0}^{k}d_{ij} \not= ds_{lj})
 \land (\lor_{j=0}^{k}ds_{ij} \not= d_{lj})
-\land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj}) 
-) ))\land$\\
-%on doit faire les codes de vues et élire une vue
-$(\exists y,z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land a_{x} > a_{y} \land $\\
-$(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) \land $\\
+\land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj})
+) ))\land$\\%Toutes les vues sont distinctes
+%on fait les codes de vues
+$(\exists y_{0}, ..., y_{k-1},z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land
+(\land_{h=y_{0}}^{y_{k-1}}(a_{x} > a_{h}) \land $\\
+$(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) )\land $\\
 $(a_{y} > a_{z} \land (\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{yq} = d_{zq}) \land d_{yp} > d_{zp} ) ))
-)$
+)\land$\\
+%On initialise Max, M et N
+$(\land_{j=0}^{k-1} Max \geq d_{rj})\land$\\
+%Initialiser M et N
+$(\lor_{i=0}^{k-1}(\lor_{j=0}^{k-1}())$
 \end{center}
 
 \end{document}
