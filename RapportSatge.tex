@@ -53,7 +53,10 @@ $( \land_{i=0}^{k-1}(
 \land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj}) 
 ) ))\land$\\
 %on doit faire les codes de vues et élire une vue
-$()$
+$(\exists y,z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land a_{x} > a_{y} \land $\\
+$(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) \land $\\
+$(a_{y} > a_{z} \land (\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{yq} = d_{zq}) \land d_{yp} > d_{zp} ) ))
+)$
 \end{center}
 
 \end{document}
