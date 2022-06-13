@@ -154,14 +154,25 @@ def phiSM(distances):
 %$()$
 %\end{center}
 
-Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$ the value $j$ of the symmetrical view of the
-robot $i$.
-The robot is calling the strategy below :
+Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$ the value $j$ of the symmetrical 
+view of the robot $i$.
+The robot is calling the strategy $phiR$, here are all the logic formulas used in order to build $phiR$:
+
+$AllView$ is $true$ if $d_{00}, ...,d_{k-1k-1}$ are all the views you can obtain from a single view vector $dist_{0}, ...,dist_{k-1}$ :
 
 \begin{center}
-$phiR(d_{00}, ...,d_{k-1k-1}):=$\\
-$(\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1})))\land$\\
-$\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}),$\\
+    
+$AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1}):=$\\
+$(\land_{i=0}^{k-1} (\land_{j=0}^{k-1} (d_{ij} = dist_{(j+i) \mod{k}}) ) )$
+\end{center}
+
+$IsRigid$ is $true$ if the given configuration is a rigid configuration. Meaning, all the views are distinct, and so there is no multiplicity, the configuration isn't symmetric or periodic.
+
+\begin{center}
+
+$IsRigid(dist_{0}, ...,dist_{k-1}):=$\\
+$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
+$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
 $(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\%pas de multiplicité
 $( \land_{i=0}^{k-1}(
 \land_{l=0\ l\not=i}^{k-1}(
@@ -169,25 +180,50 @@ $( \land_{i=0}^{k-1}(
 \land (\lor_{j=0}^{k}d_{ij} \not= ds_{lj})$\\
 $\land (\lor_{j=0}^{k}ds_{ij} \not= d_{lj})
 \land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj})
-) ))\land$\\%Toutes les vues sont distinctes
-%on fait les codes de vues
+) ))$\\%Toutes les vues sont distinctes
+\end{center}
+
+$CodeMaker$ is $true$ if the configuration is rigid and if $(a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})$ are each code of each view passed as a parameter :
+
+\begin{center}
+
+$CodeMaker(dist_{0}, ...,dist_{k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}):=$\\
+$IsRigid(dist_{0}, ...,dist_{k-1})$\\
+$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
+$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
 $(\exists y_{0}, ..., y_{k-1},z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land
 (\land_{h=y_{0}}^{y_{k-1}}(a_{x} > a_{h}) \land $\\
 $(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) )\land $\\
 $(a_{y} > a_{z} \land (\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{yq} = d_{zq}) \land d_{yp} > d_{zp} ) ))
-)\land$\\
-%On initialise Max, M et N
-$(\land_{j=0}^{k-1} (Max \geq d_{0j}) \land (\lor_{j=0}^{k-1} (Max = d_{0j})))\land$\\
-%Initialiser M et N
-%M
-$(\exists r_1, r_1 \in [0; k-1], (d_{r_10} = Max \lor d_{r_1k-1} = Max) \land $\\
-$((\land_{i=0}^{k-1} ((a_{r_1} \geq a_i \land a_{r_1} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
+)$\\
+\end{center}
+
+$FindMax$ is $true$ if $Max$ is the highest value of the view vector passed as a parameter :
+
+\begin{center}
+
+$FindMax(dist_{0}, ...,dist_{k-1}, Max):=$\\
+$(\land_{i=0}^{k-1} (Max \geq dist_{i}) \land (\lor_{i=0}^{k-1} (Max = dist_{i})))$
+\end{center}
+
+$FindM$ is $true$ if $M$ is the index of the robot (index in the view vector) which has the largest code of view and a neighboring robot at distance $Max$ :
+
+\begin{center}
+
+$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M):=$\\
+$\exists r \in [0; k-1], (d_{r0} = Max \lor d_{rk-1} = Max) \land $\\
+$((\land_{i=0}^{k-1} ((a_{r} \geq a_i \land a_{r} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
 $\lor (d_{i0} < Max \land d_{ik-1} < Max))) \lor$\\
-$(\land_{i=0}^{k-1} ((as_{r_1} \geq a_i \land as_{r_1} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
-$\lor (d_{i0} < Max \land d_{ik-1} < Max)))) \land M = r_1) \land $\\
-%N
-%d' et d" sont les vecteurs de vues voisins à M, calculés en déplaçant les valeurs de 1 à droite ou à gauche
-$(\exists (d'_{0}, ..., d'_{k-1}), (d"_{0}, ..., d"_{k-1}),$\\
+$(\land_{i=0}^{k-1} ((as_{r} \geq a_i \land as_{r} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
+$\lor (d_{i0} < Max \land d_{ik-1} < Max)))) \land M = r $
+\end{center}
+
+$FindN$ is $true$ if $N$ is the index of the robot (index in the view vector) with the largest code of view and $M$ as a neighboring robot at distance $Max$ :
+
+\begin{center}
+
+$FindN(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M, N):=$\\
+$\exists (d'_{0}, ..., d'_{k-1}), (d"_{0}, ..., d"_{k-1}),$\\
 %On trouve à quels vecteurs correspondent d' et d"
 $(\land_{i=0}^{k-1} ((d'_{i} = d_{M((i+1)\mod{k})}) \land (d"_{i} = d_{M((i-1)\mod{k})}))) \land$\\
 $\exists r_{\alpha}, r_{\beta} \in [0; k-1], \lor_{i=0}^{k-1}(((\land_{j=0}^{k-1}(d'_{j} = d_{ij})) \lor
@@ -195,15 +231,35 @@ $\exists r_{\alpha}, r_{\beta} \in [0; k-1], \lor_{i=0}^{k-1}(((\land_{j=0}^{k-1
 \land r_{\alpha} = i )\land$\\
 $(\lor_{i=0}^{k-1}(((\land_{j=0}^{k-1}(d"_{j} = d_{ij})) \lor
 (\land_{j=0}^{k-1}(d"_{j} = ds_{ij}) ))
-\land r_{\beta} = i )) ) \land$\\
-%On intialise N en fonction du plus grand code de vue des voisins de M, le voisin doit aussi être à distance M
+\land r_{\beta} = i )) \land$\\
+%On intialise N en fonction du plus grand code de vue des voisins de M, le voisin doit aussi être à distance Max
 $((a_{r_\alpha} > as_{r_\alpha} \land a_{r_\alpha} > a_{r_\beta} \land a_{r_\alpha} > as_{r_\beta}
-\land d_{r_{\alpha}k-1} = Max
+\land d_{r_{\alpha}k-1} = Max \land d_{r_{\beta}0} = Max
 \land N = r_{\alpha}) \lor$\\
 $(a_{r_\beta} > as_{r_\beta} \land a_{r_\beta} > a_{r_\alpha} \land a_{r_\beta} > as_{r_\alpha} 
-\land d_{r_{\beta}0} = Max
-\land N = r_{\beta})
-)$
+\land d_{r_{\beta}0} = Max \land d_{r_{\alpha}k-1} = Max
+\land N = r_{\beta}) \lor$\\
+$(d_{r_{\alpha}k-1} = Max \land d_{r_{\beta}0} \not= Max \land N = r_{\alpha}) \lor$\\
+$(d_{r_{\alpha}k-1} \not= Max \land d_{r_{\beta}0} = Max \land N = r_{\beta}))$
+\end{center}
+
+$phiR$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
+
+\begin{center}
+$phiR(dist_{0}, ...,dist_{k-1}):=$\\
+$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
+$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
+$\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}),$\\
+%on fait les codes de vues
+$CodeMaker(d_{00}, ...,d_{k-1k-1}, ds_{00}, ...,ds_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})\land$\\
+%On initialise Max, M et N
+$FindMax(dist_{0}, ...,dist_{k-1}, Max) \land$\\
+%Initialiser M et N
+%M
+$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M) \land $\\
+%N
+$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M, N) \land $\\
+$()$%On entre dans la boucle, à construire
 
 \end{center}
 
