@@ -184,7 +184,7 @@ def InitSM(p, s, t, taille_anneau):
         tmpAnd.append(Or(tmpOr))
         return And(tmpAnd)
 
-############################ TEST INIT ############################
+############################ TEST INITSM ############################
 
 # taille_anneau = 5       # Taille de l'anneau 
 # nb_robots = 3           # Nombre de robot sur l'anneau
@@ -202,7 +202,7 @@ def InitSM(p, s, t, taille_anneau):
 # if(s6.check() == sat):
 #         print("model :\n",s6.model())
 
-############################ TEST INIT FIN #########################
+############################ TEST INITSM FIN #########################
 
 def phi(distances):
         """
@@ -218,3 +218,48 @@ def phi(distances):
         tabAnd.append(distances[0] < distances[-1])
 
         return And(tabAnd)
+
+def phiSM(distances):
+        tabAnd = []
+        tabOr = []
+        for i in range(len(distances)):
+                tabAndBis = []
+                tabAndBis.append(distances[i] == 0)
+                for j in range(len(distances)):
+                        if j != i:
+                                tabAndBis.append(distances[j] > 0)
+                tabOr.append(And(tabAndBis))
+        tabAnd.append(Or(tabOr))
+        tabAnd.append(distances[-1] != 0)
+        tabOr = []
+        tabOr.append(And(distances[1] == 0, distances[-2] == 0, distances[0] <= distances[-1]))
+        tabOr.append(And(distances[1] == 0, distances[-2] != 0))
+        tabAnd.append(Or(tabOr))
+        return And(tabAnd)
+
+############################ TEST phiSM ############################
+
+taille_anneau = 5       # Taille de l'anneau 
+nb_robots = 3           # Nombre de robot sur l'anneau
+s6 = Solver()
+
+p = [ Int('p%s' % i) for i in range(nb_robots) ]
+s = [ Int('s%s' % i) for i in range(nb_robots) ]
+t = [ Int('t%s' % i) for i in range(nb_robots) ]
+
+d = [ Int('d%s' % i) for i in range(nb_robots) ]
+
+tabTest6 = InitSM(p, s, t, taille_anneau)
+tabTest7 = ConfigView(taille_anneau, nb_robots, 1, p, d)
+tabTest8 = phiSM(d)
+print(tabTest8)
+
+s6.add(tabTest6)
+s6.add(tabTest7)
+s6.add(tabTest8)
+
+print(s6.check())
+if(s6.check() == sat):
+        print("model :\n",s6.model())
+
+############################ TEST phiSM FIN #########################
