@@ -65,12 +65,3 @@ while True:
                 
                 print("Stratégie gagnante\n")
                 exit()
-################
-"""
-Note :
-
-algov3 l59 --> Renvoie unsat alors que dans utilZ3v3 renvoie sat pour taille_anneau = 4, nb_robot = 2
-
-Boucle perdante --> trop long de créer les taille_boucle boucle et de les concaténer dans un Or
-
-"""
