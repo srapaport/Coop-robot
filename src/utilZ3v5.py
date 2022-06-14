@@ -175,7 +175,6 @@ def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
 
         tabAnd.append(distances[0] != 0)
         tabAnd.append(distances_prime[0] != 0)
-
         tmpAddition = Sum([i for i in distances])
         tabAnd.append(tmpAddition == taille_anneau)
 
@@ -184,8 +183,8 @@ def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
 
         ######## Ajout suite au résultat ci-dessous
         for i in range(len(distances)):
-                tabAnd.append(distances[i] > 0)
-                tabAnd.append(distances_prime[i] > 0)
+                tabAnd.append(And(distances[i] >= 0, distances[i] < taille_anneau))
+                tabAnd.append(And(distances_prime[i] >= 0, distances_prime[i] < taille_anneau))
         ########
         
         tmpOr = []
@@ -446,7 +445,7 @@ c1 :
 
 ############################ TEST ASYNCPOST FIN #########################
 
-def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, phi):
+def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         #taille_boucle = 10
         #TODO
         ## On fixe les tailles des tableaux pour enlever les append
@@ -462,19 +461,20 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, phi):
                 cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
                 cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
                 ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
-        
+
         for x in range(taille_boucle):
-                print("Construction de la boucle de taille : ", x)
+                print("Construction de la boucle de taille : ", x+1)
         
                 tmpAnd = []
                 tmpAndbis = []
                 tmpOr = []
                 tmpOrbis = []
 
-                tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], phi))
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
                 for i in range(x - 1):
-                        tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], phi))
-                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, phi))
+                        print("youhou")
+                        tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
                 ############################
                 for j in range(len(pk) - 1):
                         tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
@@ -501,8 +501,8 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, phi):
                 ############ Partie avec une config avec tous les t à 0
                 ###########################
                 mainTmpOr.append(And(tmpAnd))
-        #return And(Or(mainTmpOr))
-        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(Or(mainTmpOr)))))
+        return And(Or(mainTmpOr))
+        # return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(Or(mainTmpOr)))))
 
 ############################ TEST BOUCLEPERDANTE ############################
 
@@ -549,3 +549,52 @@ Avec notre configuration on a :
 11 480
 
 """
+
+def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
+
+        cp = [None] * taille_boucle
+        cs = [None] * taille_boucle
+        ct = [None] * taille_boucle
+        for i in range(taille_boucle):
+                cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
+                cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
+                ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
+        
+        tmpAnd = []
+        tmpAndbis = []
+        tmpOr = []
+        tmpOrbis = []
+
+        print("Construction de la boucle de taille : ", 1)
+        tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
+        for i in range(taille_boucle - 1):
+                print("Construction de la boucle de taille : ", i+2)
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
+        tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
+        ############################
+        for j in range(len(pk)):
+                tmpOr.append(pk[j] != pk[(j+1)%len(pk)]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+        tmpAnd.append(Or(tmpOr))
+
+        for i in range(taille_boucle):
+                tmpOr = []
+                for j in range(len(pk) - 1):
+                        tmpOr.append(cp[i][j] != cp[i][j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+                tmpAnd.append(Or(tmpOr))
+        ############ Partie avec aucune config gagnante longue mais ok
+
+        for j in range(len(pk)):
+                tmpAndbis.append(tk[j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+        tmpOrbis.append(And(tmpAndbis))
+
+        for i in range(taille_boucle):
+                tmpAndbis = []
+                for j in range(len(pk)):
+                        tmpAndbis.append(ct[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+                tmpOrbis.append(And(tmpAndbis))
+        
+        tmpAnd.append(Or(tmpOrbis))
+        ############ Partie avec une config avec tous les t à 0
+        ###########################
+        return And(tmpAnd)
+        # return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(Or(mainTmpOr)))))

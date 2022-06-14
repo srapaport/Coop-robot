@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  14 JUN 2022 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  14 JUN 2022 18:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/solal/Documents/Stage_lip6/Coop-robot/RapportSatge.tex
-(/home/solal/Documents/Stage_lip6/Coop-robot/RapportSatge.tex
+**/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.tex
+(/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -138,7 +138,7 @@ Package: listings 2019/09/10 1.8c (Carsten Heinz)
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count198
 \l__pdf_internal_box=\box49
-) (/home/solal/Documents/Stage_lip6/Coop-robot/RapportSatge.aux)
+) (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.aux)
 \openout1 = `RapportSatge.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -216,17 +216,17 @@ File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 81.
- [2] [3] [4] [5] [6] (/home/solal/Documents/Stage_lip6/Coop-robot/RapportSatge.aux) ) 
+ [2] [3] [4] [5] [6] (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.aux) ) 
 Here is how much of TeX's memory you used:
  3937 strings out of 481239
- 51387 string characters out of 5920378
+ 51459 string characters out of 5920378
  510972 words of memory out of 5000000
  19196 multiletter control sequences out of 15000+600000
  540240 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,6n,42p,375b,1595s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,42p,383b,1595s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/solal/Documents/Stage_lip6/Coop-robot/RapportSatge.pdf (6 pages, 174407 bytes).
+Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.pdf (6 pages, 174755 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream
