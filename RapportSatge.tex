@@ -19,7 +19,7 @@
 
 We have $k$ robots, robot $r$ is calling the strategy below :
 \begin{center}
-$phiSM(d_0, ..., d_{k-1}):=$\\
+$\phi_SM(d_0, ..., d_{k-1}):=$\\
 $(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} d_j > 0))\land$\\
 $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
@@ -112,7 +112,7 @@ model :
  s0 = -1]
 \end{lstlisting}
 
-Now we implement in python the $phiSM$ strategy : (code doesn't work right know, it needs to be fixed)
+Now we implement in python the $\phi_SM$ strategy : (code doesn't work right know, it needs to be fixed)
 
 \begin{lstlisting}[language=Python]
 
@@ -138,25 +138,9 @@ def phiSM(distances):
 
 \section{Gathering rigid configurations}
 
-%On a $k$ robots et donc $k$ valeurs par vecteur de vue, et le robot $r$ applique la stratégie suivante :
-%\begin{center}
-%$phiR(d_{00}, ...,d_{k-1k-1}):=$\\
-%$\exists Max, M, N, ((a_{00}, a_{01}), ..., (a_{k0}, a_{k1}))$\\
-%$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\
-%$( \land_{i=0}^{k-1}($
-%$\land_{l=0\ l\not=i}^{k-1}(
-%(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
-%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{ij} \not= d_{lm})
-%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lj})
-%\land (\lor_{j=0}^{k}_{m=k-1}^{0}d_{im} \not= d_{lm}) 
-%) ))\land$\\
-%on doit faire les codes de vues et élire une vue
-%$()$
-%\end{center}
-
 Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$ the value $j$ of the symmetrical 
 view of the robot $i$.
-The robot is calling the strategy $phiR$, here are all the logic formulas used in order to build $phiR$:
+The robot is calling the strategy $\phi_R$, here are all the logic formulas used in order to build $\phi_R$:
 
 $AllView$ is $true$ if $d_{00}, ...,d_{k-1k-1}$ are all the views you can obtain from a single view vector $dist_{0}, ...,dist_{k-1}$ :
 
@@ -243,10 +227,10 @@ $(d_{r_{\alpha}k-1} = Max \land d_{r_{\beta}0} \not= Max \land N = r_{\alpha}) \
 $(d_{r_{\alpha}k-1} \not= Max \land d_{r_{\beta}0} = Max \land N = r_{\beta}))$
 \end{center}
 
-$phiR$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
+$\phi_R$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
 
 \begin{center}
-$phiR(dist_{0}, ...,dist_{k-1}):=$\\
+$\phi_R(dist_{0}, ...,dist_{k-1}):=$\\
 $\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
 $\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
 $\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}),$\\
@@ -259,8 +243,11 @@ $FindMax(dist_{0}, ...,dist_{k-1}, Max) \land$\\
 $FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M) \land $\\
 %N
 $FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M, N) \land $\\
-$()$%On entre dans la boucle, à construire
-
+%On initialise toutes les distances possibles par rapport à M et N
+$\exists dm_{0}, ..., dm_{k-1}, dn_{0}, ..., dn_{k-1}, \land_{j=0}^{k-1}(dm_{j} = (\sum_{l=0}^j d_{Ml})\ 
+\land dn_{j} = (\sum_{l=0}^j d_{Nl}) ) \land $\\
+$((\lor_{j=0}^{k-1} (dn_{j} < dm_{j} \land (\land_{i=0}^{k-1} d_{Ni} = dist_{i}) ) ) \lor 
+(\lor_{j=0}^{k-1} (dm_{j} < dn_{j} \land (\land_{i=0}^{k-1} d_{Mi} = dist_{i}) ) ) )$
 \end{center}
 
 \end{document}
