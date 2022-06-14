@@ -19,8 +19,8 @@
 
 We have $k$ robots, robot $r$ is calling the strategy below :
 \begin{center}
-$\phi_SM(d_0, ..., d_{k-1}):=$\\
-$(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} d_j > 0))\land$\\
+$\phi_SM(d_0, \ldots , d_{k-1}):=$\\
+$(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} (d_j > 0 \lor (d_j = 0 \land d_{j-1} = 0) ) ))\land$\\
 $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
@@ -135,7 +135,10 @@ def phiSM(distances):
         tabAndBis.append(distances[i] == 0)
         for j in range(len(distances)):
             if j != i:
-                tabAndBis.append(distances[j] > 0)
+                tabOrBis.append(distances[j] > 0)
+                tabOrBis.append(And(distances[j] == 0,
+                    distances[j-1] == 0))
+                tabAndBis.append(Or(tabOrBis))
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
     tabAnd.append(distances[-1] != 0)
@@ -251,11 +254,11 @@ Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$
 view of the robot $i$.
 The robot is calling the strategy $\phi_R$, here are all the logic formulas used in order to build $\phi_R$:
 
-$AllView$ is $true$ if $d_{00}, ...,d_{k-1k-1}$ are all the views you can obtain from a single view vector $dist_{0}, ...,dist_{k-1}$ :
+$AllView$ is $true$ if $d_{00}, \ldots ,d_{k-1k-1}$ are all the views you can obtain from a single view vector $dist_{0}, \ldots ,dist_{k-1}$ :
 
 \begin{center}
     
-$AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1}):=$\\
+$AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1}):=$\\
 $(\land_{i=0}^{k-1} (\land_{j=0}^{k-1} (d_{ij} = dist_{(j+i) \mod{k}}) ) )$
 \end{center}
 
@@ -263,9 +266,9 @@ $IsRigid$ is $true$ if the given configuration is a rigid configuration. Meaning
 
 \begin{center}
 
-$IsRigid(dist_{0}, ...,dist_{k-1}):=$\\
-$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
-$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
+$IsRigid(dist_{0}, \ldots ,dist_{k-1}):=$\\
+$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
+$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
 $(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\%pas de multiplicité
 $( \land_{i=0}^{k-1}(
 \land_{l=0\ l\not=i}^{k-1}(
@@ -276,15 +279,15 @@ $\land (\lor_{j=0}^{k}ds_{ij} \not= d_{lj})
 ) ))$\\%Toutes les vues sont distinctes
 \end{center}
 
-$CodeMaker$ is $true$ if the configuration is rigid and if $(a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})$ are each code of each view passed as a parameter :
+$CodeMaker$ is $true$ if the configuration is rigid and if $(a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1})$ are each code of each view passed as a parameter :
 
 \begin{center}
 
-$CodeMaker(dist_{0}, ...,dist_{k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}):=$\\
-$IsRigid(dist_{0}, ...,dist_{k-1})$\\
-$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
-$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
-$(\exists y_{0}, ..., y_{k-1},z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land
+$CodeMaker(dist_{0}, \ldots ,dist_{k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}):=$\\
+$IsRigid(dist_{0}, \ldots ,dist_{k-1})$\\
+$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
+$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
+$(\exists y_{0}, \ldots , y_{k-1},z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land
 (\land_{h=y_{0}}^{y_{k-1}}(a_{x} > a_{h}) \land $\\
 $(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) )\land $\\
 $(a_{y} > a_{z} \land (\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{yq} = d_{zq}) \land d_{yp} > d_{zp} ) ))
@@ -295,7 +298,7 @@ $FindMax$ is $true$ if $Max$ is the highest value of the view vector passed as a
 
 \begin{center}
 
-$FindMax(dist_{0}, ...,dist_{k-1}, Max):=$\\
+$FindMax(dist_{0}, \ldots ,dist_{k-1}, Max):=$\\
 $(\land_{i=0}^{k-1} (Max \geq dist_{i}) \land (\lor_{i=0}^{k-1} (Max = dist_{i})))$
 \end{center}
 
@@ -303,7 +306,7 @@ $FindM$ is $true$ if $M$ is the index of the robot (index in the view vector) wh
 
 \begin{center}
 
-$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M):=$\\
+$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M):=$\\
 $\exists r \in [0; k-1], (d_{r0} = Max \lor d_{rk-1} = Max) \land $\\
 $((\land_{i=0}^{k-1} ((a_{r} \geq a_i \land a_{r} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
 $\lor (d_{i0} < Max \land d_{ik-1} < Max))) \lor$\\
@@ -315,8 +318,8 @@ $FindN$ is $true$ if $N$ is the index of the robot (index in the view vector) wi
 
 \begin{center}
 
-$FindN(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M, N):=$\\
-$\exists (d'_{0}, ..., d'_{k-1}), (d"_{0}, ..., d"_{k-1}),$\\
+$FindN(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M, N):=$\\
+$\exists (d'_{0}, \ldots , d'_{k-1}), (d"_{0}, \ldots , d"_{k-1}),$\\
 %On trouve à quels vecteurs correspondent d' et d"
 $(\land_{i=0}^{k-1} ((d'_{i} = d_{M((i+1)\mod{k})}) \land (d"_{i} = d_{M((i-1)\mod{k})}))) \land$\\
 $\exists r_{\alpha}, r_{\beta} \in [0; k-1], \lor_{i=0}^{k-1}(((\land_{j=0}^{k-1}(d'_{j} = d_{ij})) \lor
@@ -339,24 +342,48 @@ $(d_{r_{\alpha}k-1} \not= Max \land d_{r_{\beta}0} = Max \land N = r_{\beta}))$
 $\phi_R$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
 
 \begin{center}
-$\phi_R(dist_{0}, ...,dist_{k-1}):=$\\
-$\exists d_{00}, ...,d_{k-1k-1},\ AllView(dist_{0}, ...,dist_{k-1}, d_{00}, ...,d_{k-1k-1})\land$\\
-$\exists ds_{00}, ...,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, ..., d_{ik-1}, ds_{i0}, ..., ds_{ik-1}))\land$\\
-$\exists Max, M, N, (a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}),$\\
+$\phi_R(dist_{0}, \ldots ,dist_{k-1}):=$\\
+$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
+$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
+$\exists Max, M, N, (a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}),$\\
 %on fait les codes de vues
-$CodeMaker(d_{00}, ...,d_{k-1k-1}, ds_{00}, ...,ds_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1})\land$\\
+$CodeMaker(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1})\land$\\
 %On initialise Max, M et N
-$FindMax(dist_{0}, ...,dist_{k-1}, Max) \land$\\
+$FindMax(dist_{0}, \ldots ,dist_{k-1}, Max) \land$\\
 %Initialiser M et N
 %M
-$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M) \land $\\
+$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M) \land $\\
 %N
-$FindM(d_{00}, ...,d_{k-1k-1}, a_{0}, ..., a_{k-1}, as_{0}, ..., as_{k-1}, Max, M, N) \land $\\
+$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M, N) \land $\\
 %On initialise toutes les distances possibles par rapport à M et N
-$\exists dm_{0}, ..., dm_{k-1}, dn_{0}, ..., dn_{k-1}, \land_{j=0}^{k-1}(dm_{j} = (\sum_{l=0}^j d_{Ml})\ 
+$\exists dm_{0}, \ldots , dm_{k-1}, dn_{0}, \ldots , dn_{k-1}, \land_{j=0}^{k-1}(dm_{j} = (\sum_{l=0}^j d_{Ml})\ 
 \land dn_{j} = (\sum_{l=0}^j d_{Nl}) ) \land $\\
 $((\lor_{j=0}^{k-1} (dn_{j} < dm_{j} \land (\land_{i=0}^{k-1} d_{Ni} = dist_{i}) ) ) \lor 
 (\lor_{j=0}^{k-1} (dm_{j} < dn_{j} \land (\land_{i=0}^{k-1} d_{Mi} = dist_{i}) ) ) )$
+\end{center}
+
+\section{Gathering an odd number of robots}
+
+We are now building a strategy, $\phi_{ON}$, that will gather an odd number of robots on a non-periodic configuration. It is the strategy with the lowest priority, it means that the configuration won't be rigid and won't have any multiplicity.
+
+First we build the formula, $IsOddNonPeriodic$, that will return $true$ if the number of robots is odd and if the configuration is non-periodic :
+
+\begin{center}
+    
+$IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}):=$\\
+$((k+1) \mod{2} = 0) \land $\\
+$\exists p \in [0; \frac{k-1}{2}]$\\
+$\exists d'_{0}, \ldots , d'_{p-1}, \land_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i}) \land dist_{k-1} \not= d'_{p-1}$
+\end{center}
+
+Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configuration is non-rigid, non-periodic, has no multiplicity and has an odd number of robots. The robot just move in order to create a multiplicity or a rigid configuration that will lead to a rigid configuration or one with a multiplicity.
+
+\begin{center}
+    
+$\phi_{ON}(dist_{0}, \ldots , dist_{k-1}):=$\\
+$\lnot IsRigid(dist_{0}, \ldots ,dist_{k-1}) \land $\\
+$IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
+$(\land_{i=0}^{k-1} dist_{i} \not= 0)$
 \end{center}
 
 \end{document}

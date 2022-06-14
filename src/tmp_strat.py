@@ -226,8 +226,11 @@ def phiSM(distances):
                 tabAndBis = []
                 tabAndBis.append(distances[i] == 0)
                 for j in range(len(distances)):
+                        tabOrBis = []
                         if j != i:
-                                tabAndBis.append(distances[j] > 0)
+                                tabOrBis.append(distances[j] > 0)
+                                tabOrBis.append(And(distances[j] == 0, distances[j-1] == 0))
+                                tabAndBis.append(Or(tabOrBis))
                 tabOr.append(And(tabAndBis))
         tabAnd.append(Or(tabOr))
         tabAnd.append(distances[-1] != 0)
