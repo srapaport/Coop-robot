@@ -157,8 +157,8 @@ def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
 def InitSM(p, s, t, taille_anneau):
         tmpOr = []
         tmpAnd = []
-        for i in range(len(p) - 1):
-                tmpOr.append(p[i] != p[i+1])
+        for i in range(len(p)):
+                tmpOr.append(p[i] != p[(i+1)%len(p)])
         tmpAnd.append(Or(tmpOr)) # pas de configuration gagnante initialement
         tmpOr = []
         for i in range(len(s)):
@@ -167,9 +167,9 @@ def InitSM(p, s, t, taille_anneau):
                 tmpAnd.append(s[i] == -1)
                 tmpAnd.append(t[i] == 0)
         
-        for i in range(len(p)-1):
+        for i in range(len(p)):
                 tmpAndbis = []
-                tmpAndbis.append(p[i] == p[i+1])
+                tmpAndbis.append(p[i] == p[(i+1)%len(p)])
                 tmpOrbis = []
                 for j in range(len(p)):
                         if((j != i) and (j != (i+1))):
@@ -241,25 +241,48 @@ def phiSM(distances):
 
 taille_anneau = 5       # Taille de l'anneau 
 nb_robots = 3           # Nombre de robot sur l'anneau
-s6 = Solver()
 
 p = [ Int('p%s' % i) for i in range(nb_robots) ]
 s = [ Int('s%s' % i) for i in range(nb_robots) ]
 t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
-d = [ Int('d%s' % i) for i in range(nb_robots) ]
+d0 = [ Int('d%s' % i) for i in range(nb_robots) ]
+d1 = [ Int('d%s' % i) for i in range(nb_robots) ]
+d2 = [ Int('d%s' % i) for i in range(nb_robots) ]
 
-tabTest6 = InitSM(p, s, t, taille_anneau)
-tabTest7 = ConfigView(taille_anneau, nb_robots, 1, p, d)
-tabTest8 = phiSM(d)
-print(tabTest8)
+tabInit = InitSM(p, s, t, taille_anneau)
+tabConfig1 = ConfigView(taille_anneau, nb_robots, 0, p, d0)
+tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)
+tabConfig3 = ConfigView(taille_anneau, nb_robots, 2, p, d2)
+tabPhiSM1 = phiSM(d0)
+tabPhiSM2 = phiSM(d1)
+tabPhiSM3 = phiSM(d2)
 
-s6.add(tabTest6)
-s6.add(tabTest7)
-s6.add(tabTest8)
+solv1 = Solver()
+solv1.add(tabInit)
+solv1.add(tabConfig1)
+solv1.add(tabPhiSM1)
 
-print(s6.check())
-if(s6.check() == sat):
-        print("model :\n",s6.model())
+print("solv1 : ",solv1.check())
+if(solv1.check() == sat):
+        print("model :\n",solv1.model())
+
+solv2 = Solver()
+solv2.add(tabInit)
+solv2.add(tabConfig2)
+solv2.add(tabPhiSM2)
+
+print("solv2 : ",solv2.check())
+if(solv2.check() == sat):
+        print("model :\n",solv2.model())
+
+solv3 = Solver()
+solv3.add(tabInit)
+solv3.add(tabConfig3)
+solv3.add(tabPhiSM3)
+
+print("solv3 : ",solv3.check())
+if(solv3.check() == sat):
+        print("model :\n",solv3.model())
 
 ############################ TEST phiSM FIN #########################

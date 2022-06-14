@@ -59,6 +59,40 @@ def Init(p, s, t, taille_anneau):
 
 ############################ TEST INIT FIN #########################
 
+def InitSM(p, s, t, taille_anneau):
+        """
+        Initialise la configuration passé en paramètre
+        La configuration comportera une multiplicité et ne sera pas gagnante
+        """
+        tmpOr = []
+        tmpAnd = []
+        for i in range(len(p)):
+                tmpOr.append(p[i] != p[(i+1)%len(p)])
+        tmpAnd.append(Or(tmpOr)) # pas de configuration gagnante initialement
+        tmpOr = []
+        for i in range(len(s)):
+                tmpAnd.append(p[i] >= 0)
+                tmpAnd.append(p[i] < taille_anneau)
+                tmpAnd.append(s[i] == -1)
+                tmpAnd.append(t[i] == 0)
+        
+        for i in range(len(p)):
+                tmpAndbis = []
+                tmpAndbis.append(p[i] == p[(i+1)%len(p)])
+                tmpOrbis = []
+                for j in range(len(p)):
+                        if((j != i) and (j != (i+1))):
+                                tmpOrbis.append(p[j] == p[i])
+                                tmpAndter=[]
+                                for h in range(len(p)):
+                                        if h !=j:
+                                                tmpAndter.append(p[h] != p[j])
+                                tmpOrbis.append(And(tmpAndter))
+                tmpAndbis.append(Or(tmpOrbis))
+                tmpOr.append(And(tmpAndbis))
+        tmpAnd.append(Or(tmpOr))
+        return And(tmpAnd)
+
 def ConfigView(taille_anneau, nb_robots, indice_robot, list_positions, distances):
         
         distances_prime = [ Int('dp%s' % i) for i in range(len(distances) - 1) ]
@@ -203,8 +237,27 @@ def phi(distances):
 
         return And(tabAnd)
 
-# def phi(distances):
-#         return False
+def phiSM(distances):
+        """
+        Strategie est vrai s'il n'y a qu'une seule multiplicité, 
+        le robot se déplace vers cette dernière
+        """
+        tabAnd = []
+        tabOr = []
+        for i in range(len(distances)):
+                tabAndBis = []
+                tabAndBis.append(distances[i] == 0)
+                for j in range(len(distances)):
+                        if j != i:
+                                tabAndBis.append(distances[j] > 0)
+                tabOr.append(And(tabAndBis))
+        tabAnd.append(Or(tabOr))
+        tabAnd.append(distances[-1] != 0)
+        tabOr = []
+        tabOr.append(And(distances[1] == 0, distances[-2] == 0, distances[0] <= distances[-1]))
+        tabOr.append(And(distances[1] == 0, distances[-2] != 0))
+        tabAnd.append(Or(tabOr))
+        return And(tabAnd)
 
 def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         distances = [ Int('d%s' % i) for i in range(nb_robots) ]
