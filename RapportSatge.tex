@@ -30,10 +30,15 @@ In order to test our strategy we need a function that will initialize our first 
 \begin{lstlisting}[language=Python]
 
 def InitSM(p, s, t, taille_anneau):
+    """
+    Initialize the given configuration
+    The configuration will have no multiplicity
+    and won't be a winning one
+    """
     tmpOr = []
     tmpAnd = []
-    for i in range(len(p) - 1):
-        tmpOr.append(p[i] != p[i+1])
+    for i in range(len(p)):
+        tmpOr.append(p[i] != p[(i+1)%len(p)])
     tmpAnd.append(Or(tmpOr))
     # we make sure there is no winning configuration
     # as a result of this function
@@ -44,9 +49,9 @@ def InitSM(p, s, t, taille_anneau):
         tmpAnd.append(s[i] == -1)
         tmpAnd.append(t[i] == 0)
     
-    for i in range(len(p)-1):
+    for i in range(len(p)):
         tmpAndbis = []
-        tmpAndbis.append(p[i] == p[i+1])
+        tmpAndbis.append(p[i] == p[(i+1)%len(p)])
         tmpOrbis = []
         for j in range(len(p)):
             if((j != i) and (j != (i+1))):
@@ -67,24 +72,25 @@ We use the parameters below as an input :
 
 taille_anneau = 5       # Taille de l'anneau 
 nb_robots = 3           # Nombre de robot sur l'anneau
-s6 = Solver()
 
 p = [ Int('p%s' % i) for i in range(nb_robots) ]
 s = [ Int('s%s' % i) for i in range(nb_robots) ]
 t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
-tabTest6 = InitSM(p, s, t, taille_anneau)
-print("tabTest6 :\n", tabTest6)
+tabInit = InitSM(p, s, t, taille_anneau)
+print("tabInit :\n", tabInit)
 
-s6.add(tabTest6)
-print(s6.check())
-if(s6.check() == sat):
-    print("model :\n",s6.model())
+solv1 = Solver()
+solv1.add(tabInit)
+
+print("solv1 : ",solv1.check())
+if(solv1.check() == sat):
+    print("model :\n",solv1.model())
 \end{lstlisting}
 The code above produces the following output : 
 \begin{lstlisting}
-tabTest6 :
- And(Or(p0 != p1, p1 != p2),
+tabInit :
+ And(Or(p0 != p1, p1 != p2, p2 != p0),
     p0 >= 0,
     p0 < 5,
     s0 == -1,
@@ -98,12 +104,17 @@ tabTest6 :
     s2 == -1,
     t2 == 0,
     Or(And(p0 == p1, Or(p2 == p0, And(p0 != p2, p1 != p2))),
-       And(p1 == p2, Or(p0 == p1, And(p1 != p0, p2 != p0)))))
-sat
+       And(p1 == p2, Or(p0 == p1, And(p1 != p0, p2 != p0))),
+       And(p2 == p0,
+           Or(p0 == p2,
+              And(p1 != p0, p2 != p0),
+              p1 == p2,
+              And(p0 != p1, p2 != p1)))))
+solv1 :  sat
 model :
  [p1 = 1,
  p0 = 0,
- p2 = 1,
+ p2 = 0,
  t2 = 0,
  s2 = -1,
  t1 = 0,
@@ -112,7 +123,7 @@ model :
  s0 = -1]
 \end{lstlisting}
 
-Now we implement in python the $\phi_SM$ strategy : (code doesn't work right know, it needs to be fixed)
+Now we implement in python the $\phi_SM$ strategy :
 
 \begin{lstlisting}[language=Python]
 
@@ -134,6 +145,104 @@ def phiSM(distances):
     tabOr.append(And(distances[1] == 0, distances[-2] != 0))
     tabAnd.append(Or(tabOr))
     return And(tabAnd)
+\end{lstlisting}
+
+We test this function with the following input :
+
+\begin{lstlisting}[language=Python]
+
+taille_anneau = 5       # Taille de l'anneau 
+nb_robots = 3           # Nombre de robot sur l'anneau
+
+p = [ Int('p%s' % i) for i in range(nb_robots) ]
+s = [ Int('s%s' % i) for i in range(nb_robots) ]
+t = [ Int('t%s' % i) for i in range(nb_robots) ]
+
+d0 = [ Int('d%s' % i) for i in range(nb_robots) ]
+d1 = [ Int('d%s' % i) for i in range(nb_robots) ]
+d2 = [ Int('d%s' % i) for i in range(nb_robots) ]
+
+tabInit = InitSM(p, s, t, taille_anneau)
+tabConfig1 = ConfigView(taille_anneau, nb_robots, 0, p, d0)
+tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)
+tabConfig3 = ConfigView(taille_anneau, nb_robots, 2, p, d2)
+tabPhiSM1 = phiSM(d0)
+tabPhiSM2 = phiSM(d1)
+tabPhiSM3 = phiSM(d2)
+
+solv1 = Solver()
+solv1.add(tabInit)
+solv1.add(tabConfig1)
+solv1.add(tabPhiSM1)
+
+print("solv1 : ",solv1.check())
+if(solv1.check() == sat):
+        print("model :\n",solv1.model())
+
+solv2 = Solver()
+solv2.add(tabInit)
+solv2.add(tabConfig2)
+solv2.add(tabPhiSM2)
+
+print("solv2 : ",solv2.check())
+if(solv2.check() == sat):
+        print("model :\n",solv2.model())
+
+solv3 = Solver()
+solv3.add(tabInit)
+solv3.add(tabConfig3)
+solv3.add(tabPhiSM3)
+
+print("solv3 : ",solv3.check())
+if(solv3.check() == sat):
+        print("model :\n",solv3.model())
+\end{lstlisting}
+
+It produces the following output :
+
+\begin{lstlisting}
+solv1 :  sat
+model :
+ [d0 = 1,
+ d2 = 4,
+ p1 = 1,
+ p0 = 0,
+ p2 = 1,
+ d1 = 0,
+ t2 = 0,
+ s2 = -1,
+ t1 = 0,
+ s1 = -1,
+ t0 = 0,
+ s0 = -1]
+solv2 :  sat
+model :
+ [d0 = 1,
+ d2 = 4,
+ p1 = 0,
+ p0 = 1,
+ p2 = 1,
+ d1 = 0,
+ t2 = 0,
+ s2 = -1,
+ t1 = 0,
+ s1 = -1,
+ t0 = 0,
+ s0 = -1]
+solv3 :  sat
+model :
+ [d0 = 1,
+ d2 = 4,
+ p1 = 0,
+ p0 = 0,
+ p2 = 4,
+ d1 = 0,
+ t2 = 0,
+ s2 = -1,
+ t1 = 0,
+ s1 = -1,
+ t0 = 0,
+ s0 = -1]
 \end{lstlisting}
 
 \section{Gathering rigid configurations}
