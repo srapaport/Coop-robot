@@ -36,44 +36,35 @@ while True:
                 print("boucle pour k = %s\n" % k)
                 tmpAndInterpolant = []
                 tmpAndContext = []
-
+                ########### Pas d'interpolant !!!!
                 tmpAndInterpolant.append(I)
                 tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSM))
-
-                if k > 1:
-                        for i in range(1, k):
-                                print("Pass before %s" % i)
-                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiSM))
-                                print("Pass after %s" % i)
-
                 while (not satisfiable) or (taille_boucle < taille_boucle_max):
                         tmpAndContextBis = []
                         taille_boucle = taille_boucle + 1
                         tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSM))
                         tmpAndContext.append(And(tmpAndContextBis))
                         print("Test pour taille_boucle = ", taille_boucle)
-                        try:
-                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
-                                print("Interpolant est unsat pour taille_boucle = ", taille_boucle)
+                        sol = Solver()
+                        sol.add(And(tmpAndInterpolant))
+                        sol.add(And(tmpAndContext))
+                        if sol.check() != sat:
+                                print("Solver est unsat pour taille_boucle = ", taille_boucle)
                                 if taille_boucle < taille_boucle_max:
                                         print("On augmente taille_boucle\nTaille tmpAndContext --> ", len(tmpAndContext))
                                         del tmpAndContext[-1] # On retire tmpAndContextBis
-                        except ModelRef as m:
-                                print("Interpolant est satisfiable --> Boucle perdante pour taille_boucle = ", taille_boucle)
+                                        sol = Solver()
+                        else:
+                                print("Solver est satisfiable --> Boucle perdante pour taille_boucle = ", taille_boucle)
                                 satisfiable = True
                                 if I == constI:
                                         print("Stratégie perdante\nk = ", k, " | taille_boucle = ", taille_boucle)
-                                        # print(m.sexpr())
                                         exit()
                                 k = k + 1
                                 continuer = False
-                sol = Solver()
-                sol.add(Implies(And(Ip), I))
-                if sol.check() == sat:
-                        print("Stratégie gagnante\n")
-                        exit()
-                else:
-                        I = Or(I, Ip)
+                
+                print("Stratégie gagnante\n")
+                exit()
 ################
 """
 Note :
