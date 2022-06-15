@@ -354,7 +354,7 @@ def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
 
 ############################ TEST MOVE FIN #########################
 
-def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, phi):
+def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, function_phi):
         
         tabAnd = []
         tmpOr_i1k = []
@@ -374,7 +374,7 @@ def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, phi)
                                 # Ligne 1 AsyncPost
                                 tmpAnd.append(And(p_prime[j] == p[j], s_prime[j] == s[j]))
                 # Ligne 2 AsyncPost
-                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], phi), p_prime[i] == p[i]))
+                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], function_phi), p_prime[i] == p[i]))
                 # Ligne 3 AsyncPost
                 tmpOr.append(And(s[i] != -1, p_prime[i] == s[i], s_prime[i] == -1))
                 tmpAnd.append(Or(tmpOr))
@@ -502,11 +502,14 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         ## On stocke toutes les tailles de boucle perdante et on les test dans l'interpolant
         ## On Test les configurations symétriques pour limiter les tailles de boucles perdantes
         #TODO
-        #mainTmpOr = [[] for i in range(300)]
         mainTmpOr = []
         cp = [None] * taille_boucle
         cs = [None] * taille_boucle
         ct = [None] * taille_boucle
+
+        p_final = [ Int('pfinal%s' % i) for i in range(len(pk)) ]
+        s_final = [ Int('sfinal%s' % i) for i in range(len(pk)) ]
+        t_final = [ Int('tfinal%s' % i) for i in range(len(pk)) ]
         for i in range(taille_boucle):
                 cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
                 cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
@@ -521,9 +524,14 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 tmpOrbis = []
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
+                print("1er Post : ", cp[0])
                 for i in range(x - 1):
+                        print("youhou")
                         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
-                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], p_final, s_final, t_final, function_phi))
+                for i in range(len(pk)):
+                        tmpAnd.append(And(p_final[i] == pk[i], s_final[i] == sk[i], t_final[i] == tk[i]))
+                print("Dernier Post : ", cp[-1])
                 ############################
                 for j in range(len(pk) - 1):
                         tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
