@@ -5,6 +5,9 @@
 \usepackage{amsmath}
 \usepackage{listings}
 
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{ref.bib} %Import the bibliography file
+
 \geometry{hmargin=4cm,vmargin=1.5cm}
 
 \title{Rapport de Stage}
@@ -14,6 +17,12 @@
 \begin{document}
 
 \maketitle
+
+\section{Introduction}
+
+The goal is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be a interpretation of the pseudo-code given in the research report \cite{gathering}.
+
+The formulas we are building, will be used with formulas given in an other research report \cite{algo}, and then will be tested in the acceleration algorithm using an interpolant \cite{algo}
 
 \section{Configuration with single multiplicity}
 
@@ -389,5 +398,5 @@ $(\land_{i=0}^{k-1} dist_{i} \not= 0)$
 \section{Issues encountered}
 
 
-
+\printbibliography %Prints bibliography
 \end{document}

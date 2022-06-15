@@ -49,7 +49,7 @@ while True:
                 while (not satisfiable) or (taille_boucle < taille_boucle_max):
                         tmpAndContextBis = []
                         taille_boucle = taille_boucle + 1
-                        tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSM))
+                        tmpAndContextBis.append(BouclePerdante_v2(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSM))
                         tmpAndContext.append(And(tmpAndContextBis))
                         print("Test pour taille_boucle = ", taille_boucle)
                         try:

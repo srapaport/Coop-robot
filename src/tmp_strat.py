@@ -204,7 +204,7 @@ def InitSM(p, s, t, taille_anneau):
 
 ############################ TEST INITSM FIN #########################
 
-def phi(distances):
+def phiSimple(distances):
         """
         Le robot se déplace vers le robot le plus proche, si les robots sont à équidistances
         alors le robot reste sur place

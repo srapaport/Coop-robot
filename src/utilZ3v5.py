@@ -221,7 +221,7 @@ def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
 
 #         return And(tabAnd)
 
-def phi(distances):
+def phiSimple(distances):
         """
         Le robot se déplace vers le robot le plus proche, si les robots sont à équidistances
         alors le robot reste sur place
@@ -472,7 +472,6 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
                 for i in range(x - 1):
-                        print("youhou")
                         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
                 ############################
