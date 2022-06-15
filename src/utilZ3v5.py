@@ -183,8 +183,8 @@ def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
 
         ######## Ajout suite au résultat ci-dessous
         for i in range(len(distances)):
-                tabAnd.append(And(distances[i] >= 0, distances[i] < taille_anneau))
-                tabAnd.append(And(distances_prime[i] >= 0, distances_prime[i] < taille_anneau))
+                tabAnd.append(And(distances[i] >= 0, distances[i] <= taille_anneau))
+                tabAnd.append(And(distances_prime[i] >= 0, distances_prime[i] <= taille_anneau))
         ########
         
         tmpOr = []
@@ -257,6 +257,56 @@ def phiSM(distances):
         tabOr.append(And(distances[1] == 0, distances[-2] != 0))
         tabAnd.append(Or(tabOr))
         return And(tabAnd)
+
+############################ TEST phiSM ############################
+
+# taille_anneau = 5       # Taille de l'anneau 
+# nb_robots = 3           # Nombre de robot sur l'anneau
+
+# p = [ Int('p%s' % i) for i in range(nb_robots) ]
+# s = [ Int('s%s' % i) for i in range(nb_robots) ]
+# t = [ Int('t%s' % i) for i in range(nb_robots) ]
+
+# d0 = [ Int('d%s' % i) for i in range(nb_robots) ]
+# d1 = [ Int('d%s' % i) for i in range(nb_robots) ]
+# d2 = [ Int('d%s' % i) for i in range(nb_robots) ]
+
+# tabInit = InitSM(p, s, t, taille_anneau)
+# tabConfig1 = ConfigView(taille_anneau, nb_robots, 0, p, d0)
+# tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)
+# tabConfig3 = ConfigView(taille_anneau, nb_robots, 2, p, d2)
+# tabPhiSM1 = phiSM(d0)
+# tabPhiSM2 = phiSM(d1)
+# tabPhiSM3 = phiSM(d2)
+
+# solv1 = Solver()
+# solv1.add(tabInit)
+# solv1.add(tabConfig1)
+# solv1.add(tabPhiSM1)
+
+# print("solv1 : ",solv1.check())
+# if(solv1.check() == sat):
+#         print("model :\n",solv1.model())
+
+# solv2 = Solver()
+# solv2.add(tabInit)
+# solv2.add(tabConfig2)
+# solv2.add(tabPhiSM2)
+
+# print("solv2 : ",solv2.check())
+# if(solv2.check() == sat):
+#         print("model :\n",solv2.model())
+
+# solv3 = Solver()
+# solv3.add(tabInit)
+# solv3.add(tabConfig3)
+# solv3.add(tabPhiSM3)
+
+# print("solv3 : ",solv3.check())
+# if(solv3.check() == sat):
+#         print("model :\n",solv3.model())
+
+############################ TEST phiSM FIN #########################
 
 def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         distances = [ Int('d%s' % i) for i in range(nb_robots) ]
