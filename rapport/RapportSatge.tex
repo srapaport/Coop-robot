@@ -5,6 +5,8 @@
 \usepackage{amsmath}
 \usepackage{listings}
 
+\usepackage{tikz}
+
 \usepackage{biblatex} %Imports biblatex package
 \addbibresource{ref.bib} %Import the bibliography file
 
@@ -26,15 +28,15 @@ The formulas we are building, will be used with formulas given in an other resea
 
 \section{Configuration with single multiplicity}
 
-We have $k$ robots, robot $r$ is calling the strategy below :
+The strategy $\phi_{SM}$ is $true$ if the given configuration has a single multiplicity and that the robot calling the strategy should move toward the robot at distance $d_{0}$ :
 \begin{center}
-$\phi_SM(d_0, \ldots , d_{k-1}):=$\\
+$\phi_{SM}(d_0, \ldots , d_{k-1}):=$\\
 $(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} (d_j > 0 \lor (d_j = 0 \land d_{j-1} = 0) ) ))\land$\\
 $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
 
-In order to test our strategy we need a function that will initialize our first configuration. Here is its implementation in python :
+In order to test our strategy we need a function that will initialize our first configuration and make it one with a single multiplicity without being already a winning one. Here is its implementation in python :
 
 \begin{lstlisting}[language=Python]
 
@@ -76,7 +78,7 @@ def InitSM(p, s, t, taille_anneau):
     return And(tmpAnd)
 \end{lstlisting}
 
-We use the parameters below as an input :
+We want to test this function, we choose a configuration with a ring of size 5 and 3 robots. We use the parameters below as an input :
 \begin{lstlisting}[language=Python]
 
 taille_anneau = 5       # Taille de l'anneau 
@@ -132,6 +134,8 @@ model :
  s0 = -1]
 \end{lstlisting}
 
+What the model shows us is a configuration where robots 0 and 2 are in position 0 and robot 1 is in position 1.
+
 Now we implement in python the $\phi_SM$ strategy :
 
 \begin{lstlisting}[language=Python]
@@ -159,7 +163,7 @@ def phiSM(distances):
     return And(tabAnd)
 \end{lstlisting}
 
-We test this function with the following input :
+We test this function in the same configuration than given before with the following input :
 
 \begin{lstlisting}[language=Python]
 
@@ -256,6 +260,8 @@ model :
  t0 = 0,
  s0 = -1]
 \end{lstlisting}
+
+What it shows us is that every robot can move in this kind of configuration. The solver find a way to place the robot calling the strategy outside of the multiplicity and then allow the strategy to be true, meaning, the robot moves toward the multiplicity.
 
 \section{Gathering rigid configurations}
 
@@ -395,7 +401,7 @@ $IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
 $(\land_{i=0}^{k-1} dist_{i} \not= 0)$
 \end{center}
 
-\section{Issues encountered}
+%\section{Issues encountered}
 
 
 \printbibliography %Prints bibliography
