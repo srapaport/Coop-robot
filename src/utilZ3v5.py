@@ -507,16 +507,13 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         cs = [None] * taille_boucle
         ct = [None] * taille_boucle
 
-        p_final = [ Int('pfinal%s' % i) for i in range(len(pk)) ]
-        s_final = [ Int('sfinal%s' % i) for i in range(len(pk)) ]
-        t_final = [ Int('tfinal%s' % i) for i in range(len(pk)) ]
         for i in range(taille_boucle):
                 cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
                 cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
                 ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
 
         for x in range(taille_boucle):
-                print("Construction de la boucle de taille : ", x+1)
+                print("Construction de la boucle de taille : ", x+1,"\n")
         
                 tmpAnd = []
                 tmpAndbis = []
@@ -524,14 +521,14 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 tmpOrbis = []
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
-                print("1er Post : ", cp[0])
-                for i in range(x - 1):
-                        print("youhou")
+                print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
+                for i in range(x):
+                        if i == 0 :
+                                print("Entrée dans la boucle des AsyncPost")
                         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
-                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], p_final, s_final, t_final, function_phi))
-                for i in range(len(pk)):
-                        tmpAnd.append(And(p_final[i] == pk[i], s_final[i] == sk[i], t_final[i] == tk[i]))
-                print("Dernier Post : ", cp[-1])
+                        print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
+                print("Dernier Post : cp départ : ", cp[-1], " | cp arrivé : ", pk,"\n")
                 ############################
                 for j in range(len(pk) - 1):
                         tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
@@ -622,10 +619,10 @@ def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         tmpOr = []
         tmpOrbis = []
 
-        print("Construction de la boucle de taille : ", 1)
+        print("Construction de la boucle de taille : ", taille_boucle)
         tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
         for i in range(taille_boucle - 1):
-                print("Construction de la boucle de taille : ", i+2)
+                #print("Construction de la boucle de taille : ", i+2)
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
         ############################
@@ -653,5 +650,5 @@ def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         tmpAnd.append(Or(tmpOrbis))
         ############ Partie avec une config avec tous les t à 0
         ###########################
-        return And(tmpAnd)
-        # return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(Or(mainTmpOr)))))
+        #return And(tmpAnd)
+        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(tmpAnd))))

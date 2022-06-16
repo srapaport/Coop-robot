@@ -57,15 +57,16 @@ tabInit = InitSM(p, s, t, taille_anneau)
 # tabBP1 = BouclePerdante_v2(taille_anneau, p, s, t, 4, phiSM)
 # solv1.add(tabBP1)
 
-for i in range(1, 5):
+for i in range(2, 3):
         solv1 = Solver()
+        print("Main appelle BouclePerdante de taille : ", i, "\n")
         tabBP1 = BouclePerdante(taille_anneau, p, s, t, i, phiSM)
         solv1.add(tabInit)
         solv1.add(tabBP1)
         c = solv1.check()
         print("solv1 : ", c)
         if(c == sat):
-                #print("model :\n",solv1.model().sexpr())
+                print("model :\n",solv1.model().sexpr())
                 break;
 
 
