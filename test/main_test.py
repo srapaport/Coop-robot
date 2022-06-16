@@ -1,7 +1,9 @@
 from z3 import *
+import sys
+sys.path.insert(0, '../src')
 from utilZ3v5 import *
 
-taille_anneau = 3       # Taille de l'anneau 
+taille_anneau = 2       # Taille de l'anneau 
 nb_robots = 2           # Nombre de robot sur l'anneau
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
