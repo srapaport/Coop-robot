@@ -3,8 +3,15 @@ import sys
 sys.path.insert(0, '../src')
 from utilZ3v5 import *
 
-taille_anneau = 2       # Taille de l'anneau 
-nb_robots = 2           # Nombre de robot sur l'anneau
+if len(sys.argv) > 2:
+        taille_anneau = int(sys.argv[1])
+        nb_robots = int(sys.argv[2])
+else:
+        taille_anneau = 5       # Taille de l'anneau 
+        nb_robots = 3           # Nombre de robot sur l'anneau
+
+print("taille anneau = ", taille_anneau)
+print("nb_robots : ", nb_robots)
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
 print("borne supérieur de la taille du graphe : ", taille_boucle_max, "\n")
@@ -74,11 +81,22 @@ solv1.add(tabInit)
 #                 print("model :\n",solv1.model().sexpr())
 #                 break;
 
-
-c = solv1.check()
-print("solv1 : ", c)
-if(c == sat):
-        print("model :\n",solv1.model().sexpr())
+for taille in range(2, 7):
+        for nb in range(2, 7):
+                print("taille_anneau : ", taille, " | nb_robots : ", nb)
+                pnb = [ Int('p%s' % i) for i in range(nb) ]
+                snb = [ Int('s%s' % i) for i in range(nb) ]
+                tnb = [ Int('t%s' % i) for i in range(nb) ]
+                solv1bis = Solver()
+                tabInitbis = InitSM(pnb, snb, tnb, taille)
+                solv1bis.add(tabInitbis)
+                cbis = solv1bis.check()
+                print("solv1bis : ", cbis)
+                
+# c = solv1.check()
+# print("solv1 : ", c)
+# if(c == sat):
+#         print("model :\n",solv1.model().sexpr())
 
 # tabPhiSM2 = phiSM(d1)
 # tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)

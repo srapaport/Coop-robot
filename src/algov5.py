@@ -1,7 +1,7 @@
 from z3 import *
 from utilZ3v5 import *
 
-taille_anneau = 5
+taille_anneau = 2
 nb_robots = 3
 cpt = 0
 
