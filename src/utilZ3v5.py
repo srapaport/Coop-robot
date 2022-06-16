@@ -502,6 +502,7 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         ## On stocke toutes les tailles de boucle perdante et on les test dans l'interpolant
         ## On Test les configurations symétriques pour limiter les tailles de boucles perdantes
         #TODO
+        superAnd = []
         mainTmpOr = []
         cp = [None] * taille_boucle
         cs = [None] * taille_boucle
@@ -513,7 +514,7 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
 
         for x in range(taille_boucle):
-                print("Construction de la boucle de taille : ", x+1,"\n")
+                print("Construction de la boucle de taille : ", x+1," | pour une taille totale de : ", taille_boucle)
         
                 tmpAnd = []
                 tmpAndbis = []
@@ -521,14 +522,15 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 tmpOrbis = []
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
-                print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
+                #print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
                 for i in range(x):
-                        if i == 0 :
-                                print("Entrée dans la boucle des AsyncPost")
+                        # if i == 0 :
+                        #         print("Entrée dans la boucle des AsyncPost")
                         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
-                        print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
-                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
-                print("Dernier Post : cp départ : ", cp[-1], " | cp arrivé : ", pk,"\n")
+                        #print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
+                
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[x], cs[x], ct[x], pk, sk, tk, function_phi))
+                #print("Dernier Post : cp départ : ", cp[-1], " | cp arrivé : ", pk,"\n")
                 ############################
                 for j in range(len(pk) - 1):
                         tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
@@ -555,8 +557,9 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 ############ Partie avec une config avec tous les t à 0
                 ###########################
                 mainTmpOr.append(And(tmpAnd))
-        return And(Or(mainTmpOr))
-        # return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(Or(mainTmpOr)))))
+        superAnd.append(Or(mainTmpOr))
+        #return And(superAnd)
+        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(superAnd))))
 
 ############################ TEST BOUCLEPERDANTE ############################
 
