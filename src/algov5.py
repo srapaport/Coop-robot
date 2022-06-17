@@ -1,8 +1,8 @@
 from z3 import *
 from utilZ3v5 import *
 
-taille_anneau = 2
-nb_robots = 3
+taille_anneau = 3
+nb_robots = 4
 cpt = 0
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
@@ -28,9 +28,9 @@ while True:
         sk = []
         tk = []
         for i in range(k):
-                pk.append([ Int('fp%s%s' % (i, j)) for j in range(nb_robots) ])
-                sk.append([ Int('fs%s%s' % (i, j)) for j in range(nb_robots) ])
-                tk.append([ Int('ft%s%s' % (i, j)) for j in range(nb_robots) ])
+                pk.append([ Int('kp%s%s' % (i, j)) for j in range(nb_robots) ])
+                sk.append([ Int('ks%s%s' % (i, j)) for j in range(nb_robots) ])
+                tk.append([ Int('kt%s%s' % (i, j)) for j in range(nb_robots) ])
 
         while continuer:
                 print("boucle pour k = %s\n" % k)
@@ -56,7 +56,6 @@ while True:
                                 Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
                                 print("Interpolant est unsat pour taille_boucle = ", taille_boucle)
                                 if taille_boucle < taille_boucle_max:
-                                        print("On augmente taille_boucle\nTaille tmpAndContext --> ", len(tmpAndContext))
                                         del tmpAndContext[-1] # On retire tmpAndContextBis
                         except ModelRef as m:
                                 print("Interpolant est satisfiable --> Boucle perdante pour taille_boucle = ", taille_boucle)

@@ -81,7 +81,7 @@ def InitSM(p, s, t, taille_anneau):
                 tmpAndbis.append(p[i] == p[(i+1)%len(p)])
                 tmpOrbis = []
                 for j in range(len(p)):
-                        if((j != i) and (j != (i+1))):
+                        if((j != i) and (j != ((i+1)%len(p)))):
                                 tmpOrbis.append(p[j] == p[i])
                                 tmpAndter=[]
                                 for h in range(len(p)):
@@ -95,7 +95,7 @@ def InitSM(p, s, t, taille_anneau):
 
 def ConfigView(taille_anneau, nb_robots, indice_robot, list_positions, distances):
         
-        distances_prime = [ Int('dp%s' % i) for i in range(len(distances) - 1) ]
+        distances_prime = [ Int('cvdp%s' % i) for i in range(len(distances) - 1) ]
         
         tabAnd = []
         
@@ -248,7 +248,7 @@ def phiSM(distances):
                 tabAndBis.append(distances[i] == 0)
                 for j in range(len(distances)):
                         if j != i:
-                                tabAndBis.append(distances[j] > 0)
+                                tabAndBis.append(Or(distances[j] > 0, And(distances[j] == 0, distances[j-1] == 0)))
                 tabOr.append(And(tabAndBis))
         tabAnd.append(Or(tabOr))
         tabAnd.append(distances[-1] != 0)
@@ -309,8 +309,8 @@ def phiSM(distances):
 ############################ TEST phiSM FIN #########################
 
 def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
-        distances = [ Int('d%s' % i) for i in range(nb_robots) ]
-        distances_prime = [ Int('dp%s' % i) for i in range(nb_robots) ]
+        distances = [ Int('md%s' % i) for i in range(nb_robots) ]
+        distances_prime = [ Int('mdp%s' % i) for i in range(nb_robots) ]
         
         tabAnd = []
         
@@ -509,9 +509,9 @@ def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         ct = [None] * taille_boucle
 
         for i in range(taille_boucle):
-                cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
-                cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
-                ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
+                cp[i] = [ Int('bpp%s%s' % (i, j)) for j in range(len(pk)) ]
+                cs[i] = [ Int('bps%s%s' % (i, j)) for j in range(len(sk)) ]
+                ct[i] = [ Int('bpt%s%s' % (i, j)) for j in range(len(tk)) ]
 
         for x in range(taille_boucle):
                 print("Construction de la boucle de taille : ", x+1," | pour une taille totale de : ", taille_boucle)
@@ -613,16 +613,16 @@ def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         cs = [None] * taille_boucle
         ct = [None] * taille_boucle
         for i in range(taille_boucle):
-                cp[i] = [ Int('p%s%s' % (i, j)) for j in range(len(pk)) ]
-                cs[i] = [ Int('s%s%s' % (i, j)) for j in range(len(sk)) ]
-                ct[i] = [ Int('t%s%s' % (i, j)) for j in range(len(tk)) ]
+                cp[i] = [ Int('bpp%s%s' % (i, j)) for j in range(len(pk)) ]
+                cs[i] = [ Int('bps%s%s' % (i, j)) for j in range(len(sk)) ]
+                ct[i] = [ Int('bpt%s%s' % (i, j)) for j in range(len(tk)) ]
         
         tmpAnd = []
         tmpAndbis = []
         tmpOr = []
         tmpOrbis = []
 
-        print("Construction de la boucle de taille : ", taille_boucle)
+        print("Construction de la boucle de taille : ", taille_boucle, " | BouclePerdante_v2")
         tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
         for i in range(taille_boucle - 1):
                 #print("Construction de la boucle de taille : ", i+2)
@@ -653,5 +653,5 @@ def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         tmpAnd.append(Or(tmpOrbis))
         ############ Partie avec une config avec tous les t à 0
         ###########################
-        #return And(tmpAnd)
-        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(tmpAnd))))
+        return And(tmpAnd)
+        #return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(tmpAnd))))

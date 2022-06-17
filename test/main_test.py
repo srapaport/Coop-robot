@@ -7,8 +7,8 @@ if len(sys.argv) > 2:
         taille_anneau = int(sys.argv[1])
         nb_robots = int(sys.argv[2])
 else:
-        taille_anneau = 5       # Taille de l'anneau 
-        nb_robots = 3           # Nombre de robot sur l'anneau
+        taille_anneau = 2       # Taille de l'anneau 
+        nb_robots = 4           # Nombre de robot sur l'anneau
 
 print("taille anneau = ", taille_anneau)
 print("nb_robots : ", nb_robots)
@@ -69,34 +69,24 @@ solv1.add(tabInit)
 # tabBP1 = BouclePerdante_v2(taille_anneau, p, s, t, 4, phiSM)
 # solv1.add(tabBP1)
 
-# for i in range(1, taille_boucle_max):
+# for i in range(3, 4):
 #         solv1 = Solver()
 #         print("Main appelle BouclePerdante de taille : ", i, "\n")
-#         tabBP1 = BouclePerdante(taille_anneau, p, s, t, i, phiSM)
+#         tabAnd= []
+#         tabAnd.append(BouclePerdante_v2(taille_anneau, p, s, t, i, phiSM))
 #         solv1.add(tabInit)
-#         solv1.add(tabBP1)
+#         solv1.add(And(tabAnd))
 #         c = solv1.check()
 #         print("solv1 : ", c, "\n")
 #         if(c == sat):
 #                 print("model :\n",solv1.model().sexpr())
 #                 break;
-
-for taille in range(2, 7):
-        for nb in range(2, 7):
-                print("taille_anneau : ", taille, " | nb_robots : ", nb)
-                pnb = [ Int('p%s' % i) for i in range(nb) ]
-                snb = [ Int('s%s' % i) for i in range(nb) ]
-                tnb = [ Int('t%s' % i) for i in range(nb) ]
-                solv1bis = Solver()
-                tabInitbis = InitSM(pnb, snb, tnb, taille)
-                solv1bis.add(tabInitbis)
-                cbis = solv1bis.check()
-                print("solv1bis : ", cbis)
                 
-# c = solv1.check()
-# print("solv1 : ", c)
-# if(c == sat):
-#         print("model :\n",solv1.model().sexpr())
+solv1.add(And(p[0] == 0, p[1] == 1, p[2] == 1, p[3] == 0))
+c = solv1.check()
+print("solv1 : ", c)
+if(c == sat):
+        print("model :\n",solv1.model().sexpr())
 
 # tabPhiSM2 = phiSM(d1)
 # tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)
