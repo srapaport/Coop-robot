@@ -4,6 +4,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{array}
 
 \usepackage{tikz}
 
@@ -401,8 +402,81 @@ $IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
 $(\land_{i=0}^{k-1} dist_{i} \not= 0)$
 \end{center}
 
-%\section{Issues encountered}
+\section{Tests}
 
+In order to test the algorithm \cite{algo} we will use the python code we show you at the beginning : $InitSM$ and $phiSM$.
+
+We will use the SAT-solver to test different configurations. We will change the number of robots and the size of the ring from a test to an other.
+
+\subsection{Test $InitSM$}
+
+First, we test the function $InitSM$ alone : can we have an initial configuration with a single multiplicity with those parameters ?\\
+
+\begin{tabular}{|r|c|c|c|c|c|}
+  \hline
+  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
+  \hline
+  2 & Unsat & Unsat & Unsat & Unsat & Unsat \\
+  \hline
+  3 & Sat & Sat & Sat & Sat & Sat \\
+  \hline
+  4 & Sat & Sat & Sat & Sat & Sat \\
+  \hline
+  5 & Sat & Sat & Sat & Sat & Sat \\
+  \hline
+  6 & Sat & Sat & Sat & Sat & Sat \\
+  \hline
+\end{tabular}
+\\
+
+The results make sense : we can't create a multiplicity with 2 robots which is not a winning configuration. Else, even on a ring size of 2 we can have a multiplicity on one spot and only one robot on the other spot.
+
+\subsection{Test $\phi_{SM}$}
+
+Now we test $\phi_{SM}$ through the algorithm \cite{algo} with the function $BouclePerdante$ that keeps in memory, all the possibility explored in order to help the interpolant.\\
+
+\begin{tabular}{|r|c|c|c|c|c|}
+  \hline
+  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
+  \hline
+  3 & Timeout & Timeout & Timeout & ... & ... \\
+  \hline
+  4 & Timeout & ... & ... & ... & ... \\
+  \hline
+  5 & ... & ... & ... & ... & ... \\
+  \hline
+  6 & ... & ... & ... & ... & ... \\
+  \hline
+\end{tabular}
+\\
+
+For $nb_{robot} = 4$ and $size_{ring} = 2$ we should find Unsat, if we do not, it's because the algorithm calls the interpolant in the first place and so there are simplification and one $AsyncPost$ \cite{algo} is done wrong.
+
+For $nb_{robot} = 3$ and $size_{ring} = 2$ we face this problem :
+\begin{lstlisting}
+Traceback (most recent call last):
+
+  File "algov5.py", line 56, in <module>
+  
+    Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), 
+    And(tmpAndContext)))
+    
+  File "/usr/lib/python3.8/site-packages/z3/z3.py", line 8297, 
+  in tree_interpolant
+  
+    res = Z3_compute_interpolant(ctx.ref(),f.as_ast(),p.params,ptr,mptr)
+    
+  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 4074, 
+  in Z3_compute_interpolant
+  
+    _elems.Check(a0)
+    
+  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 1336, in Check
+  
+    raise self.Exception(self.get_error_message(ctx, err))
+    
+z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
+\end{lstlisting}
 
 \printbibliography %Prints bibliography
 \end{document}
