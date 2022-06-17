@@ -1,0 +1,271 @@
+taille_anneau =  2
+nb_robots =  4
+taille_boucle_max =  3876
+Boucle pour k = 1
+
+Construction de la boucle de taille :  1  | pour une taille totale de :  1
+Construction de la boucle de taille :  1  | BouclePerdante_v2
+Test pour taille_boucle =  1
+BouclePerdante est unsat pour taille_boucle =  1
+Construction de la boucle de taille :  1  | pour une taille totale de :  2
+Construction de la boucle de taille :  2  | pour une taille totale de :  2
+Construction de la boucle de taille :  2  | BouclePerdante_v2
+Test pour taille_boucle =  2
+BouclePerdante est unsat pour taille_boucle =  2
+Construction de la boucle de taille :  1  | pour une taille totale de :  3
+Construction de la boucle de taille :  2  | pour une taille totale de :  3
+Construction de la boucle de taille :  3  | pour une taille totale de :  3
+Construction de la boucle de taille :  3  | BouclePerdante_v2
+Test pour taille_boucle =  3
+BouclePerdante est unsat pour taille_boucle =  3
+Construction de la boucle de taille :  1  | pour une taille totale de :  4
+Construction de la boucle de taille :  2  | pour une taille totale de :  4
+Construction de la boucle de taille :  3  | pour une taille totale de :  4
+Construction de la boucle de taille :  4  | pour une taille totale de :  4
+Construction de la boucle de taille :  4  | BouclePerdante_v2
+Test pour taille_boucle =  4
+BouclePerdante est unsat pour taille_boucle =  4
+Construction de la boucle de taille :  1  | pour une taille totale de :  5
+Construction de la boucle de taille :  2  | pour une taille totale de :  5
+Construction de la boucle de taille :  3  | pour une taille totale de :  5
+Construction de la boucle de taille :  4  | pour une taille totale de :  5
+Construction de la boucle de taille :  5  | pour une taille totale de :  5
+Construction de la boucle de taille :  5  | BouclePerdante_v2
+Test pour taille_boucle =  5
+BouclePerdante est unsat pour taille_boucle =  5
+Construction de la boucle de taille :  1  | pour une taille totale de :  6
+Construction de la boucle de taille :  2  | pour une taille totale de :  6
+Construction de la boucle de taille :  3  | pour une taille totale de :  6
+Construction de la boucle de taille :  4  | pour une taille totale de :  6
+Construction de la boucle de taille :  5  | pour une taille totale de :  6
+Construction de la boucle de taille :  6  | pour une taille totale de :  6
+Construction de la boucle de taille :  6  | BouclePerdante_v2
+Test pour taille_boucle =  6
+BouclePerdante est unsat pour taille_boucle =  6
+Construction de la boucle de taille :  1  | pour une taille totale de :  7
+Construction de la boucle de taille :  2  | pour une taille totale de :  7
+Construction de la boucle de taille :  3  | pour une taille totale de :  7
+Construction de la boucle de taille :  4  | pour une taille totale de :  7
+Construction de la boucle de taille :  5  | pour une taille totale de :  7
+Construction de la boucle de taille :  6  | pour une taille totale de :  7
+Construction de la boucle de taille :  7  | pour une taille totale de :  7
+Construction de la boucle de taille :  7  | BouclePerdante_v2
+Test pour taille_boucle =  7
+BouclePerdante est satisfiable -->  7
+Stratégie perdante
+(define-fun bpt42 () Int
+  0)
+(define-fun bpt23 () Int
+  0)
+(define-fun bpp01 () Int
+  1)
+(define-fun bps43 () Int
+  (- 1))
+(define-fun bpt53 () Int
+  1)
+(define-fun bps42 () Int
+  1)
+(define-fun bpp43 () Int
+  0)
+(define-fun bps10 () Int
+  0)
+(define-fun bpp31 () Int
+  1)
+(define-fun bps11 () Int
+  1)
+(define-fun bpp30 () Int
+  0)
+(define-fun bpp33 () Int
+  0)
+(define-fun bps03 () Int
+  0)
+(define-fun bps40 () Int
+  0)
+(define-fun bpp40 () Int
+  0)
+(define-fun bpt10 () Int
+  1)
+(define-fun kt02 () Int
+  0)
+(define-fun bps50 () Int
+  0)
+(define-fun ks00 () Int
+  (- 1))
+(define-fun bps32 () Int
+  1)
+(define-fun bps20 () Int
+  0)
+(define-fun bpp52 () Int
+  1)
+(define-fun bpp53 () Int
+  0)
+(define-fun bpp03 () Int
+  0)
+(define-fun bps62 () Int
+  (- 1))
+(define-fun bpt01 () Int
+  1)
+(define-fun bpp62 () Int
+  1)
+(define-fun bpp22 () Int
+  1)
+(define-fun bpt63 () Int
+  0)
+(define-fun kt00 () Int
+  0)
+(define-fun ks02 () Int
+  (- 1))
+(define-fun bpp21 () Int
+  1)
+(define-fun bpp10 () Int
+  0)
+(define-fun bpp13 () Int
+  0)
+(define-fun bpt62 () Int
+  0)
+(define-fun bps12 () Int
+  (- 1))
+(define-fun bpt61 () Int
+  0)
+(define-fun bpp51 () Int
+  1)
+(define-fun bpp00 () Int
+  0)
+(define-fun bpt20 () Int
+  0)
+(define-fun bpp32 () Int
+  1)
+(define-fun kt01 () Int
+  0)
+(define-fun bpt13 () Int
+  1)
+(define-fun bps31 () Int
+  1)
+(define-fun bps51 () Int
+  (- 1))
+(define-fun bpt12 () Int
+  0)
+(define-fun bpt40 () Int
+  0)
+(define-fun bpt03 () Int
+  1)
+(define-fun bpt22 () Int
+  0)
+(define-fun bps63 () Int
+  (- 1))
+(define-fun bpp63 () Int
+  0)
+(define-fun bpp02 () Int
+  1)
+(define-fun bps02 () Int
+  (- 1))
+(define-fun bpt02 () Int
+  0)
+(define-fun kt03 () Int
+  1)
+(define-fun bpt21 () Int
+  0)
+(define-fun bps21 () Int
+  1)
+(define-fun bpt50 () Int
+  0)
+(define-fun bpt11 () Int
+  1)
+(define-fun bpp60 () Int
+  0)
+(define-fun bpt00 () Int
+  0)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun bpp12 () Int
+  1)
+(define-fun bpp41 () Int
+  1)
+(define-fun bps30 () Int
+  0)
+(define-fun bps61 () Int
+  (- 1))
+(define-fun bps53 () Int
+  (- 1))
+(define-fun bps33 () Int
+  (- 1))
+(define-fun ks03 () Int
+  0)
+(define-fun bps41 () Int
+  (- 1))
+(define-fun bpt51 () Int
+  1)
+(define-fun bpt33 () Int
+  1)
+(define-fun bps52 () Int
+  (- 1))
+(define-fun kp03 () Int
+  0)
+(define-fun kp01 () Int
+  1)
+(define-fun bpt43 () Int
+  1)
+(define-fun bpt30 () Int
+  0)
+(define-fun bpp42 () Int
+  1)
+(define-fun bpp23 () Int
+  0)
+(define-fun bpp20 () Int
+  0)
+(define-fun bps22 () Int
+  1)
+(define-fun bpp50 () Int
+  0)
+(define-fun p1 () Int
+  1)
+(define-fun bpp11 () Int
+  1)
+(define-fun kp00 () Int
+  0)
+(define-fun bpt32 () Int
+  0)
+(define-fun bpt60 () Int
+  0)
+(define-fun bpt52 () Int
+  1)
+(define-fun bpt31 () Int
+  0)
+(define-fun bpp61 () Int
+  1)
+(define-fun kp02 () Int
+  1)
+(define-fun bps23 () Int
+  0)
+(define-fun bps00 () Int
+  (- 1))
+(define-fun bpt41 () Int
+  1)
+(define-fun p3 () Int
+  0)
+(define-fun p0 () Int
+  0)
+(define-fun p2 () Int
+  1)
+(define-fun bps13 () Int
+  0)
+(define-fun bps01 () Int
+  1)
+(define-fun bps60 () Int
+  (- 1))
+(define-fun t3 () Int
+  0)
+(define-fun s3 () Int
+  (- 1))
+(define-fun t2 () Int
+  0)
+(define-fun s2 () Int
+  (- 1))
+(define-fun t1 () Int
+  0)
+(define-fun s1 () Int
+  (- 1))
+(define-fun t0 () Int
+  0)
+(define-fun s0 () Int
+  (- 1))
