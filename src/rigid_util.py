@@ -108,24 +108,35 @@ def CodeMaker(taille_anneau, distances, codes, codesSym):
     return Exists([ad[i][j] for i in range(len(distances)) for j in range(len(distances))], Exists([vs[i][j] for i in range(len(distances)) for j in range(len(distances))], And(tabAnd)))
 
 ###################### Rigid configuration
-taille_anneau = 6
-distance = [ Int('d%s' % (i)) for i in range(3) ]
-codes = [ Int('a%s' % (i)) for i in range(3) ]
-codesSym = [ Int('as%s' % (i)) for i in range(3) ]
-p = [ Int('p%s' % (i)) for i in range(3) ]
-s = [ Int('s%s' % (i)) for i in range(3) ]
-t = [ Int('t%s' % (i)) for i in range(3) ]
-tab0 = Init(p, s, t, taille_anneau)
-tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
-tab2 = IsRigid(taille_anneau, distance)
-tab3 = CodeMaker(taille_anneau, distance, codes, codesSym)
-s = Solver()
-s.add(tab0)
-s.add(tab1)
-s.add(tab2)
-s.add(tab3)
-c = s.check()
-print("solver : ", c)
-if c == sat:
-    print(s.model().sexpr())
+# taille_anneau = 6
+# distance = [ Int('d%s' % (i)) for i in range(3) ]
+# codes = [ Int('a%s' % (i)) for i in range(3) ]
+# codesSym = [ Int('as%s' % (i)) for i in range(3) ]
+# p = [ Int('p%s' % (i)) for i in range(3) ]
+# s = [ Int('s%s' % (i)) for i in range(3) ]
+# t = [ Int('t%s' % (i)) for i in range(3) ]
+# tab0 = Init(p, s, t, taille_anneau)
+# tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
+# tab2 = IsRigid(taille_anneau, distance)
+# tab3 = CodeMaker(taille_anneau, distance, codes, codesSym)
+# s = Solver()
+# s.add(tab0)
+# s.add(tab1)
+# s.add(tab2)
+# s.add(tab3)
+# c = s.check()
+# print("solver : ", c)
+# if c == sat:
+#     print(s.model().sexpr())
 ######################
+
+def FindMax(distances, Max):
+    tabAnd = []
+    for i in range(len(distances)):
+        tabAnd.append(Max >= distances[i])
+    tabOr = []
+    for i in range(len(distances)):
+        tabOr.append(Max == distances[i])
+    tabAnd.append(Or(tabOr))
+    return And(tabAnd)
+
