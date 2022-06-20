@@ -169,7 +169,7 @@ def ConfigView(taille_anneau, nb_robots, indice_robot, list_positions, distances
 
 ############################ TEST CONFIGVIEW FIN #########################
 
-def ViewSym(taille_anneau, nb_robots, distances, distances_prime):
+def ViewSym(taille_anneau, distances, distances_prime):
 
         tabAnd = []
 
@@ -319,7 +319,7 @@ def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         tabAnd.append(tmp)
 
         # Appel de ViewSym              ## Ligne 3 Move
-        tmp = ViewSym(taille_anneau, nb_robots, distances, distances_prime)
+        tmp = ViewSym(taille_anneau, distances, distances_prime)
         tabAnd.append(tmp)
         tmpOr = []
 

@@ -1,7 +1,7 @@
 from z3 import *
 from utilZ3v5 import *
 
-taille_anneau = 2
+taille_anneau = 5
 nb_robots = 3
 cpt = 0
 
@@ -20,9 +20,9 @@ while True:
         taille_boucle = 0
         satisfiable = False
 
-        I = InitSM(p, s, t, taille_anneau)
+        I = Init(p, s, t, taille_anneau)
 
-        constI = InitSM(p, s, t, taille_anneau)
+        constI = Init(p, s, t, taille_anneau)
         continuer = True
         pk = []
         sk = []
@@ -90,7 +90,7 @@ while True:
                                 satisfiable = True
                                 if I == constI:
                                         print("Stratégie perdante")
-                                        print(solvBP.model().sexpr())
+                                        #print(solvBP.model().sexpr())
                                         exit()
                                 else:
                                         k = k + 1
