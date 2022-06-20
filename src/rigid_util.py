@@ -107,7 +107,7 @@ def CodeMaker(taille_anneau, distances, codes, codesSym):
     #return And(tabAnd)
     return Exists([ad[i][j] for i in range(len(distances)) for j in range(len(distances))], Exists([vs[i][j] for i in range(len(distances)) for j in range(len(distances))], And(tabAnd)))
 
-###################### Rigid configuration
+###################### CodeMaker
 # taille_anneau = 6
 # distance = [ Int('d%s' % (i)) for i in range(3) ]
 # codes = [ Int('a%s' % (i)) for i in range(3) ]
@@ -140,3 +140,49 @@ def FindMax(distances, Max):
     tabAnd.append(Or(tabOr))
     return And(tabAnd)
 
+###################### FindMax
+# taille_anneau = 6
+# distance = [ Int('d%s' % (i)) for i in range(3) ]
+# codes = [ Int('a%s' % (i)) for i in range(3) ]
+# codesSym = [ Int('as%s' % (i)) for i in range(3) ]
+# p = [ Int('p%s' % (i)) for i in range(3) ]
+# s = [ Int('s%s' % (i)) for i in range(3) ]
+# t = [ Int('t%s' % (i)) for i in range(3) ]
+# tab0 = Init(p, s, t, taille_anneau)
+# tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
+# tab2 = IsRigid(taille_anneau, distance)
+# max = Int('Max')
+# tab3 = FindMax(distance, max)
+# s = Solver()
+# s.add(tab0)
+# s.add(tab1)
+# s.add(tab2)
+# s.add(tab3)
+# c = s.check()
+# print("solver : ", c)
+# if c == sat:
+#     print(s.model().sexpr())
+######################
+
+def FindM(ad, vs, codes, codesSym, Max, M):
+    dico = dict()
+    for i in range(2*len(codes)):
+        if i < len(codes):
+            dico[codes[i]] = ad[i]
+        else:
+            dico[codesSym[i-len(codes)]] = vs[i-len(codes)]
+    
+    tabAnd = []
+    for i in range(len(ad)):
+        tabAnd.append(Or(ad[i][0] == Max, ad[i][-1] == Max))
+    return And(tabAnd)
+
+distance = [ Int('d%s' % (i)) for i in range(3) ]
+ad = []
+vs = []
+for i in range(len(distance)):
+    ad.append([ Int('cmd%s%s' % (i,j)) for j in range(len(distance)) ])
+    vs.append([ Int('cmds%s%s' % (i,j)) for j in range(len(distance)) ])
+max = Int('Max')
+m = Int('M')
+tab0 = FindM(ad, vs, [], [], max, m)
