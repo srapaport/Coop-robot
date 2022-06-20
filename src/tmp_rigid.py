@@ -35,8 +35,8 @@ def IsRigid(taille_anneau, distances):
                     tmpOr3.append(vs[i][j] != ad[l][j])
                     tmpOr4.append(vs[i][j] != vs[l][j])
                 tabAnd.append(And(Or(tmpOr1), Or(tmpOr2), Or(tmpOr3), Or(tmpOr4)))
-    return And(tabAnd)
-    #return Exists(ad, Exists(vs, And(tabAnd)))
+    #return And(tabAnd)
+    return Exists([ad[i][j] for i in range(len(distances)) for j in range(len(distances))], Exists([vs[i][j] for i in range(len(distances)) for j in range(len(distances))], And(tabAnd)))
 
 ###################### Rigid configuration
 # taille_anneau = 12
@@ -49,9 +49,22 @@ def IsRigid(taille_anneau, distances):
 # s.add(tab)
 # c = s.check()
 # print("solver : ", c)
-# if c == sat:
-#     s.model().sexpr()
+# # if c == sat:
+# #     print(s.model().sexpr())
 ######################
+
+def recur(prefix, tab, res):
+    if len(tab) == 1:
+        res.append(prefix + tab)
+        return 0
+    else:
+        for i in range(len(tab)):
+            tmp = prefix + [tab[i]]
+            tabBis = []
+            for j in range(len(tab)):
+                tabBis.append(tab[j])
+            del tabBis[i]
+            recur(tmp, tabBis, res)
 
 def CodeMaker(taille_anneau, distances, codes, codesSym):
     tabAnd = []
@@ -65,81 +78,54 @@ def CodeMaker(taille_anneau, distances, codes, codesSym):
     tabAnd.append(AllView(distances, ad))
     for i in range(len(distances)):
         tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
+
+    dico = dict()
+    for i in range(2*len(codes)):
+        if i < len(codes):
+            dico[codes[i]] = ad[i]
+        else:
+            dico[codesSym[i-len(codes)]] = vs[i-len(codes)]
+
+    combi = []
+    recur([], codes+codesSym, combi)
+
     tabOr = []
-    tabAndBis = []
-    for x in range(2*len(distances)):
-        for y in range(2*len(distances)):
-            if x != y:
-                if x < len(distances):
-                    if y < len(distances):
-                        tabAndBis.append(codes[x] > codes[y])
-                    else:
-                        tabAndBis.append(codes[x] > codesSym[y-len(distances)])
-                else:
-                    if y < len(distances):
-                        tabAndBis.append(codesSym[x-len(distances)] > codes[y])
-                    else:
-                        tabAndBis.append(codesSym[x-len(distances)] > codesSym[y-len(distances)])
-                tabOrBis = []
-                for p in range(len(distances)):
-                    tabAndTer = []
-                    for q in range(p):
-                        if x < len(distances):
-                            if y < len(distances):
-                                tabAndTer.append(ad[x][q] == ad[y][q])
-                            else:
-                                tabAndTer.append(ad[x][q] == vs[y-len(distances)][q])
-                        else:
-                            if y < len(distances):
-                                tabAndTer.append(vs[x-len(distances)][q] == ad[y][q])
-                            else:
-                                tabAndTer.append(vs[x-len(distances)][q] == vs[y-len(distances)][q])
-                    if x < len(distances):
-                        if y < len(distances):
-                            tabAndTer.append(ad[x][p] == ad[y][p])
-                        else:
-                            tabAndTer.append(ad[x][p] == vs[y-len(distances)][p])
-                    else:
-                        if y < len(distances):
-                            tabAndTer.append(vs[x-len(distances)][p] == ad[y][p])
-                        else:
-                            tabAndTer.append(vs[x-len(distances)][p] == vs[y-len(distances)][p])
-                    tabOrBis.append(And(tabAndTer))
-                tabAndBis.append(Or(tabOrBis))
+    for o in combi:
+        tabAndBis = []
+        for i in range(len(o)-1):
+            tabAndBis.append(o[i] > o[i+1])
+            tabOrBis = []
+            for p in range(len(distances)):
+                tabAndTer = []
+                for q in range(p):
+                    tabAndTer.append(dico.get(o[i])[q] == dico.get(o[i+1])[q])
+                tabAndTer.append(dico.get(o[i])[p] > dico.get(o[i+1])[p])
+                tabOrBis.append(And(tabAndTer))
+            tabAndBis.append(Or(tabOrBis))
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
-    return And(tabAnd)
-                
+    #return And(tabAnd)
+    return Exists([ad[i][j] for i in range(len(distances)) for j in range(len(distances))], Exists([vs[i][j] for i in range(len(distances)) for j in range(len(distances))], And(tabAnd)))
 
-
-
-
-
-# taille_anneau = 12
-# distance = [ Int('d%s' % (i)) for i in range(5) ]
-# codes = [ Int('a%s' % (i)) for i in range(5) ]
-# codesSym = [ Int('as%s' % (i)) for i in range(5) ]
-# tab = CodeMaker(taille_anneau, distance, codes, codesSym)
-
-tab1 = ['a0', 'a1', 'a2', 'a3']
-tab2 = ([ Int('A%s' % (j)) for j in range(4) ])
-def recur(prefix, tab):
-    if len(tab) == 1:
-        print(prefix + tab)
-        return 0
-    else:
-        for i in range(len(tab)):
-            # print("i = ", i,"\ntab = ", tab)
-            tmp = prefix + [tab[i]]
-            tabBis = []
-            for j in range(len(tab)):
-                tabBis.append(tab[j])
-            del tabBis[i]
-            # print("tab après del tabBis : ", tab)
-            # print("tmp = ", tmp," | tabBis = ", tabBis)
-            recur(tmp, tabBis)
-recur([], tab2)
-
-# tmp = (combinations(tab, len(tab)))
-# for i in list(tmp):
-#     print(i)
+###################### Rigid configuration
+taille_anneau = 6
+distance = [ Int('d%s' % (i)) for i in range(3) ]
+codes = [ Int('a%s' % (i)) for i in range(3) ]
+codesSym = [ Int('as%s' % (i)) for i in range(3) ]
+p = [ Int('p%s' % (i)) for i in range(3) ]
+s = [ Int('s%s' % (i)) for i in range(3) ]
+t = [ Int('t%s' % (i)) for i in range(3) ]
+tab0 = Init(p, s, t, taille_anneau)
+tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
+tab2 = IsRigid(taille_anneau, distance)
+tab3 = CodeMaker(taille_anneau, distance, codes, codesSym)
+s = Solver()
+s.add(tab0)
+s.add(tab1)
+s.add(tab2)
+s.add(tab3)
+c = s.check()
+print("solver : ", c)
+if c == sat:
+    print(s.model().sexpr())
+######################

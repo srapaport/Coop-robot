@@ -1,6 +1,6 @@
-taille_anneau =  2
+taille_anneau =  4
 nb_robots =  3
-taille_boucle_max =  816
+taille_boucle_max =  5984
 Boucle pour k = 1
 
 Construction de la boucle de taille :  1  | pour une taille totale de :  1
@@ -32,95 +32,5 @@ Construction de la boucle de taille :  4  | pour une taille totale de :  5
 Construction de la boucle de taille :  5  | pour une taille totale de :  5
 Construction de la boucle de taille :  5  | BouclePerdante_v2
 Test pour taille_boucle =  5
-BouclePerdante est unsat pour taille_boucle =  5
-Construction de la boucle de taille :  1  | pour une taille totale de :  6
-Construction de la boucle de taille :  2  | pour une taille totale de :  6
-Construction de la boucle de taille :  3  | pour une taille totale de :  6
-Construction de la boucle de taille :  4  | pour une taille totale de :  6
-Construction de la boucle de taille :  5  | pour une taille totale de :  6
-Construction de la boucle de taille :  6  | pour une taille totale de :  6
-Construction de la boucle de taille :  6  | BouclePerdante_v2
-Test pour taille_boucle =  6
-BouclePerdante est unsat pour taille_boucle =  6
-Construction de la boucle de taille :  1  | pour une taille totale de :  7
-Construction de la boucle de taille :  2  | pour une taille totale de :  7
-Construction de la boucle de taille :  3  | pour une taille totale de :  7
-Construction de la boucle de taille :  4  | pour une taille totale de :  7
-Construction de la boucle de taille :  5  | pour une taille totale de :  7
-Construction de la boucle de taille :  6  | pour une taille totale de :  7
-Construction de la boucle de taille :  7  | pour une taille totale de :  7
-Construction de la boucle de taille :  7  | BouclePerdante_v2
-Test pour taille_boucle =  7
-BouclePerdante est unsat pour taille_boucle =  7
-Construction de la boucle de taille :  1  | pour une taille totale de :  8
-Construction de la boucle de taille :  2  | pour une taille totale de :  8
-Construction de la boucle de taille :  3  | pour une taille totale de :  8
-Construction de la boucle de taille :  4  | pour une taille totale de :  8
-Construction de la boucle de taille :  5  | pour une taille totale de :  8
-Construction de la boucle de taille :  6  | pour une taille totale de :  8
-Construction de la boucle de taille :  7  | pour une taille totale de :  8
-Construction de la boucle de taille :  8  | pour une taille totale de :  8
-Construction de la boucle de taille :  8  | BouclePerdante_v2
-Test pour taille_boucle =  8
-BouclePerdante est unsat pour taille_boucle =  8
-Construction de la boucle de taille :  1  | pour une taille totale de :  9
-Construction de la boucle de taille :  2  | pour une taille totale de :  9
-Construction de la boucle de taille :  3  | pour une taille totale de :  9
-Construction de la boucle de taille :  4  | pour une taille totale de :  9
-Construction de la boucle de taille :  5  | pour une taille totale de :  9
-Construction de la boucle de taille :  6  | pour une taille totale de :  9
-Construction de la boucle de taille :  7  | pour une taille totale de :  9
-Construction de la boucle de taille :  8  | pour une taille totale de :  9
-Construction de la boucle de taille :  9  | pour une taille totale de :  9
-Construction de la boucle de taille :  9  | BouclePerdante_v2
-Test pour taille_boucle =  9
-BouclePerdante est unsat pour taille_boucle =  9
-Construction de la boucle de taille :  1  | pour une taille totale de :  10
-Construction de la boucle de taille :  2  | pour une taille totale de :  10
-Construction de la boucle de taille :  3  | pour une taille totale de :  10
-Construction de la boucle de taille :  4  | pour une taille totale de :  10
-Construction de la boucle de taille :  5  | pour une taille totale de :  10
-Construction de la boucle de taille :  6  | pour une taille totale de :  10
-Construction de la boucle de taille :  7  | pour une taille totale de :  10
-Construction de la boucle de taille :  8  | pour une taille totale de :  10
-Construction de la boucle de taille :  9  | pour une taille totale de :  10
-Construction de la boucle de taille :  10  | pour une taille totale de :  10
-Construction de la boucle de taille :  10  | BouclePerdante_v2
-Test pour taille_boucle =  10
-BouclePerdante est unsat pour taille_boucle =  10
-Construction de la boucle de taille :  1  | pour une taille totale de :  11
-Construction de la boucle de taille :  2  | pour une taille totale de :  11
-Construction de la boucle de taille :  3  | pour une taille totale de :  11
-Construction de la boucle de taille :  4  | pour une taille totale de :  11
-Construction de la boucle de taille :  5  | pour une taille totale de :  11
-Construction de la boucle de taille :  6  | pour une taille totale de :  11
-Construction de la boucle de taille :  7  | pour une taille totale de :  11
-Construction de la boucle de taille :  8  | pour une taille totale de :  11
-Construction de la boucle de taille :  9  | pour une taille totale de :  11
-Construction de la boucle de taille :  10  | pour une taille totale de :  11
-Construction de la boucle de taille :  11  | pour une taille totale de :  11
-Construction de la boucle de taille :  11  | BouclePerdante_v2
-Test pour taille_boucle =  11
-BouclePerdante est unsat pour taille_boucle =  11
-Construction de la boucle de taille :  1  | pour une taille totale de :  12
-Construction de la boucle de taille :  2  | pour une taille totale de :  12
-Construction de la boucle de taille :  3  | pour une taille totale de :  12
-Construction de la boucle de taille :  4  | pour une taille totale de :  12
-Construction de la boucle de taille :  5  | pour une taille totale de :  12
-Construction de la boucle de taille :  6  | pour une taille totale de :  12
-Construction de la boucle de taille :  7  | pour une taille totale de :  12
-Construction de la boucle de taille :  8  | pour une taille totale de :  12
-Construction de la boucle de taille :  9  | pour une taille totale de :  12
-Construction de la boucle de taille :  10  | pour une taille totale de :  12
-Construction de la boucle de taille :  11  | pour une taille totale de :  12
-Construction de la boucle de taille :  12  | pour une taille totale de :  12
-Construction de la boucle de taille :  12  | BouclePerdante_v2
-Test pour taille_boucle =  12
-BouclePerdante est unsat pour taille_boucle =  12
-Construction de la boucle de taille :  1  | pour une taille totale de :  13
-Construction de la boucle de taille :  2  | pour une taille totale de :  13
-Construction de la boucle de taille :  3  | pour une taille totale de :  13
-Construction de la boucle de taille :  4  | pour une taille totale de :  13
-Construction de la boucle de taille :  5  | pour une taille totale de :  13
-Construction de la boucle de taille :  6  | pour une taille totale de :  13
-Construction de la boucle de taille :  7  | pour une taille totale de :  13
+BouclePerdante est satisfiable -->  5
+Stratégie perdante
