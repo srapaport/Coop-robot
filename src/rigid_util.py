@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 from z3 import *
 from utilZ3v5 import *
 from itertools import *
@@ -88,6 +102,8 @@ def CodeMaker(taille_anneau, distances, codes, codesSym):
 
     combi = []
     recur([], codes+codesSym, combi)
+    print(codes + codesSym)
+    print(combi)
 
     tabOr = []
     for o in combi:
@@ -108,17 +124,17 @@ def CodeMaker(taille_anneau, distances, codes, codesSym):
     return Exists([ad[i][j] for i in range(len(distances)) for j in range(len(distances))], Exists([vs[i][j] for i in range(len(distances)) for j in range(len(distances))], And(tabAnd)))
 
 ###################### CodeMaker
-# taille_anneau = 6
-# distance = [ Int('d%s' % (i)) for i in range(3) ]
-# codes = [ Int('a%s' % (i)) for i in range(3) ]
-# codesSym = [ Int('as%s' % (i)) for i in range(3) ]
-# p = [ Int('p%s' % (i)) for i in range(3) ]
-# s = [ Int('s%s' % (i)) for i in range(3) ]
-# t = [ Int('t%s' % (i)) for i in range(3) ]
-# tab0 = Init(p, s, t, taille_anneau)
-# tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
-# tab2 = IsRigid(taille_anneau, distance)
-# tab3 = CodeMaker(taille_anneau, distance, codes, codesSym)
+taille_anneau = 6
+distance = [ Int('d%s' % (i)) for i in range(3) ]
+codes = [ Int('a%s' % (i)) for i in range(3) ]
+codesSym = [ Int('as%s' % (i)) for i in range(3) ]
+p = [ Int('p%s' % (i)) for i in range(3) ]
+s = [ Int('s%s' % (i)) for i in range(3) ]
+t = [ Int('t%s' % (i)) for i in range(3) ]
+tab0 = Init(p, s, t, taille_anneau)
+tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
+tab2 = IsRigid(taille_anneau, distance)
+tab3 = CodeMaker(taille_anneau, distance, codes, codesSym)
 # s = Solver()
 # s.add(tab0)
 # s.add(tab1)
@@ -171,7 +187,8 @@ def FindM(ad, vs, codes, codesSym, Max, M):
             dico[codes[i]] = ad[i]
         else:
             dico[codesSym[i-len(codes)]] = vs[i-len(codes)]
-    
+    # ou a_r == a_i pour tout i --> a_r parmi a_i
+    # 
     tabAnd = []
     for i in range(len(ad)):
         tabAnd.append(Or(ad[i][0] == Max, ad[i][-1] == Max))

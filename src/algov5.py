@@ -1,7 +1,7 @@
 from z3 import *
 from utilZ3v5 import *
 
-taille_anneau = 3
+taille_anneau = 2
 nb_robots = 4
 cpt = 0
 
@@ -75,10 +75,14 @@ while True:
                         I = Or(I, Ip)
 ################
 """
-Note :
-
-algov3 l59 --> Renvoie unsat alors que dans utilZ3v3 renvoie sat pour taille_anneau = 4, nb_robot = 2
-
-Boucle perdante --> trop long de créer les taille_boucle boucle et de les concaténer dans un Or
-
+Traceback (most recent call last):
+  File "algov5.py", line 56, in <module>
+    Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
+  File "/usr/lib/python3.8/site-packages/z3/z3.py", line 8297, in tree_interpolant
+    res = Z3_compute_interpolant(ctx.ref(),f.as_ast(),p.params,ptr,mptr)
+  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 4074, in Z3_compute_interpolant
+    _elems.Check(a0)
+  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 1336, in Check
+    raise self.Exception(self.get_error_message(ctx, err))
+z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
 """
