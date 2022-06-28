@@ -11,9 +11,11 @@
 \usepackage{biblatex} %Imports biblatex package
 \addbibresource{ref.bib} %Import the bibliography file
 
+\usepackage[linesnumbered]{algorithm2e}
+
 \geometry{hmargin=4cm,vmargin=1.5cm}
 
-\title{Rapport de Stage}
+\title{Internship Report}
 \author{Solal Rapaport }
 \date{June 2022}
 
@@ -23,7 +25,7 @@
 
 \section{Introduction}
 
-The goal is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be a interpretation of the pseudo-code given in the research report \cite{gathering}.
+The goal is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be an interpretation of the pseudo-code given in the research report \cite{gathering}.
 
 The formulas we are building, will be used with formulas given in an other research report \cite{algo}, and then will be tested in the acceleration algorithm using an interpolant \cite{algo}
 
@@ -32,7 +34,7 @@ The formulas we are building, will be used with formulas given in an other resea
 The strategy $\phi_{SM}$ is $true$ if the given configuration has a single multiplicity and that the robot calling the strategy should move toward the robot at distance $d_{0}$ :
 \begin{center}
 $\phi_{SM}(d_0, \ldots , d_{k-1}):=$\\
-$(\lor_{i=0}^{k-1}(d_i = 0\land_{j=0\ j\not=i}^{k-1} (d_j > 0 \lor (d_j = 0 \land d_{j-1} = 0) ) ))\land$\\
+$(\bigvee_{i=0}^{k-1}(d_i = 0\bigwedge_{j=0\ j\not=i}^{k-1} (d_j > 0 \lor (d_j = 0 \land d_{j-1} = 0) ) ))\land$\\
 $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
@@ -275,39 +277,52 @@ $AllView$ is $true$ if $d_{00}, \ldots ,d_{k-1k-1}$ are all the views you can ob
 \begin{center}
     
 $AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1}):=$\\
-$(\land_{i=0}^{k-1} (\land_{j=0}^{k-1} (d_{ij} = dist_{(j+i) \mod{k}}) ) )$
+$(\bigwedge_{i=0}^{k-1} (\bigwedge_{j=0}^{k-1} (d_{ij} = dist_{(j+i) \mod{k}}) ) )$
 \end{center}
 
 $IsRigid$ is $true$ if the given configuration is a rigid configuration. Meaning, all the views are distinct, and so there is no multiplicity, the configuration isn't symmetric or periodic.
 
 \begin{center}
 
-$IsRigid(dist_{0}, \ldots ,dist_{k-1}):=$\\
-$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
-$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
-$(\land_{i=0}^{k-1}(\land_{j=0}^{k-1}d_{ij}\not=0))\land $\\%pas de multiplicité
-$( \land_{i=0}^{k-1}(
-\land_{l=0\ l\not=i}^{k-1}(
-(\lor_{j=0}^{k-1}d_{ij} \not= d_{lj})
-\land (\lor_{j=0}^{k}d_{ij} \not= ds_{lj})$\\
-$\land (\lor_{j=0}^{k}ds_{ij} \not= d_{lj})
-\land (\lor_{j=0}^{k}ds_{ij} \not= ds_{lj})
-) ))$\\%Toutes les vues sont distinctes
+$IsRigid(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}):=$\\
+$\bigwedge_{i=0}^{k-1}(\bigwedge_{j=0}^{k-1}d_{ij}\not=0)\land $\\%pas de multiplicité
+$\bigwedge_{i=0}^{k-1}(
+\bigwedge_{l=0\ l\not=i}^{k-1}(
+(\bigvee_{j=0}^{k-1}d_{ij} \not= d_{lj})
+\land (\bigvee_{j=0}^{k-1}d_{ij} \not= ds_{lj})$\\
+$\land (\bigvee_{j=0}^{k-1}ds_{ij} \not= d_{lj})
+\land (\bigvee_{j=0}^{k-1}ds_{ij} \not= ds_{lj})
+) )$\\%Toutes les vues sont distinctes
+\end{center}
+
+$AllCode$ is $true$ if $(\alpha'_{r}, \beta'_{r})$ is the set of two natural numbers of the robot $r$ such as $\alpha'_r$ and $\beta'_r$ are codes of $r$'s views, with $\alpha'_{r} < \beta'_{r}$. 
+
+\begin{center}
+$AllCode(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, \alpha_{0}, \dots, \alpha_{k-1}, \beta_{0}, \dots, \beta_{k-1},$\\
+$\alpha'_{0}, \dots, \alpha'_{k-1}, \beta'_{0}, \dots, \beta'_{k-1}) :=$\\
+$\bigwedge_{i = 0}^{k-1} \left( \alpha'_{i} < \beta'_{i} \land (\alpha'_{i} = \alpha_{i} \lor \alpha'_{i} = \beta_{i}) \land (\beta'_{i} = \alpha_{i} \lor \beta'_{i} = \beta_{i}) \right) \land $\\
+$($
+$(\alpha_{0} < \alpha_{1} < \dots < \alpha_{k-1} < \beta_{0} < \dots < \beta_{k-1}) \land $\\
+$(\bigvee_{p=0}^{k-1}(\bigwedge_{q=0}^{p-1}(d_{0q} = d_{1q}) \land d_{0p} > d_{1p} ) )\land \dots \land $\\
+$(\bigvee_{p=0}^{k-1}(\bigwedge_{q=0}^{p-1}(ds_{(k-2)q} = ds_{(k-1)q}) \land ds_{(k-2)p} > ds_{(k-1)p} ) )$\\
+$\lor $\\
+$((\alpha_{0} < \alpha_{2} < \alpha_{1} < \dots < \alpha_{k-1} < \beta_{0} < \dots < \beta_{k-1}) \land \dots) \lor \dots$
+$)$
 \end{center}
 
 $CodeMaker$ is $true$ if the configuration is rigid and if $(a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1})$ are each code of each view passed as a parameter :
 
 \begin{center}
-
-$CodeMaker(dist_{0}, \ldots ,dist_{k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}):=$\\
-$IsRigid(dist_{0}, \ldots ,dist_{k-1})$\\
-$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
-$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
-$(\exists y_{0}, \ldots , y_{k-1},z \in [0;k-1], \forall x \in [0;k-1] \setminus [z], y\not=x \land
-(\land_{h=y_{0}}^{y_{k-1}}(a_{x} > a_{h}) \land $\\
-$(\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{xq} = d_{yq}) \land d_{xp} > d_{yp} ) ) )\land $\\
-$(a_{y} > a_{z} \land (\lor_{p=0}^{k-1}(\land_{q=0}^{p-1}(d_{yq} = d_{zq}) \land d_{yp} > d_{zp} ) ))
-)$\\
+$CodeMaker(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, a_{0}, \ldots , a_{k-1}):=$\\
+$IsRigid(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}) \land $\\
+%   le couple (alpha', beta') le premier ordre lexicographique, couple d'entier ordonné
+%   alpha code vue, beta code de vue symétrique
+$\exists \alpha_{0}, \dots, \alpha_{k-1}, \beta_{0}, \dots, \beta_{k-1},$
+$\alpha'_{0}, \dots, \alpha'_{k-1}, \beta'_{0}, \dots, \beta'_{k-1},$\\
+$AllCode(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, \alpha_{0}, \dots, \alpha_{k-1}, \beta_{0}, \dots, \beta_{k-1}, $\\
+$\alpha'_{0}, \dots, \alpha'_{k-1}, \beta'_{0}, \dots, \beta'_{k-1})$\\
+$(\bigwedge_{i = 0}^{k-1} (\bigwedge_{j = 0, j\not=i}^{k-1} ((a_{i} > a_{j} \land \alpha'_{j} > \alpha'_{i}) \lor (a_{i} < a_{j} \land \alpha'_{j} < \alpha'_{i}) ) ) )$\\
+$\bigwedge_{i=0}^{k-1} (\bigwedge_{j=0, j \not= i}^{k-1} a_{i} \not= a_{j})$
 \end{center}
 
 $FindMax$ is $true$ if $Max$ is the highest value of the view vector passed as a parameter :
@@ -315,19 +330,17 @@ $FindMax$ is $true$ if $Max$ is the highest value of the view vector passed as a
 \begin{center}
 
 $FindMax(dist_{0}, \ldots ,dist_{k-1}, Max):=$\\
-$(\land_{i=0}^{k-1} (Max \geq dist_{i}) \land (\lor_{i=0}^{k-1} (Max = dist_{i})))$
+$(\bigwedge_{i=0}^{k-1} (Max \geq dist_{i}) \land (\bigvee_{i=0}^{k-1} (Max = dist_{i})))$
 \end{center}
 
 $FindM$ is $true$ if $M$ is the index of the robot (index in the view vector) which has the largest code of view and a neighboring robot at distance $Max$ :
 
 \begin{center}
 
-$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M):=$\\
+$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, Max, M):=$\\
 $\exists r \in [0; k-1], (d_{r0} = Max \lor d_{rk-1} = Max) \land $\\
-$((\land_{i=0}^{k-1} ((a_{r} \geq a_i \land a_{r} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
-$\lor (d_{i0} < Max \land d_{ik-1} < Max))) \lor$\\
-$(\land_{i=0}^{k-1} ((as_{r} \geq a_i \land as_{r} \geq as_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
-$\lor (d_{i0} < Max \land d_{ik-1} < Max)))) \land M = r $
+$(\bigwedge_{i=0}^{k-1} ((a_{r} \geq a_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
+$\lor (d_{i0} < Max \land d_{ik-1} < Max))) \land M = r $
 \end{center}
 
 $FindN$ is $true$ if $N$ is the index of the robot (index in the view vector) with the largest code of view and $M$ as a neighboring robot at distance $Max$ :
@@ -337,12 +350,12 @@ $FindN$ is $true$ if $N$ is the index of the robot (index in the view vector) wi
 $FindN(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M, N):=$\\
 $\exists (d'_{0}, \ldots , d'_{k-1}), (d"_{0}, \ldots , d"_{k-1}),$\\
 %On trouve à quels vecteurs correspondent d' et d"
-$(\land_{i=0}^{k-1} ((d'_{i} = d_{M((i+1)\mod{k})}) \land (d"_{i} = d_{M((i-1)\mod{k})}))) \land$\\
-$\exists r_{\alpha}, r_{\beta} \in [0; k-1], \lor_{i=0}^{k-1}(((\land_{j=0}^{k-1}(d'_{j} = d_{ij})) \lor
-(\land_{j=0}^{k-1}(d'_{j} = ds_{ij}) ))
+$(\bigwedge_{i=0}^{k-1} ((d'_{i} = d_{M((i+1)\mod{k})}) \land (d"_{i} = d_{M((i-1)\mod{k})}))) \land$\\
+$\exists r_{\alpha}, r_{\beta} \in [0; k-1], \bigvee_{i=0}^{k-1}(((\bigwedge_{j=0}^{k-1}(d'_{j} = d_{ij})) \lor
+(\bigwedge_{j=0}^{k-1}(d'_{j} = ds_{ij}) ))
 \land r_{\alpha} = i )\land$\\
-$(\lor_{i=0}^{k-1}(((\land_{j=0}^{k-1}(d"_{j} = d_{ij})) \lor
-(\land_{j=0}^{k-1}(d"_{j} = ds_{ij}) ))
+$(\bigvee_{i=0}^{k-1}(((\bigwedge_{j=0}^{k-1}(d"_{j} = d_{ij})) \lor
+(\bigwedge_{j=0}^{k-1}(d"_{j} = ds_{ij}) ))
 \land r_{\beta} = i )) \land$\\
 %On intialise N en fonction du plus grand code de vue des voisins de M, le voisin doit aussi être à distance Max
 $((a_{r_\alpha} > as_{r_\alpha} \land a_{r_\alpha} > a_{r_\beta} \land a_{r_\alpha} > as_{r_\beta}
@@ -360,22 +373,22 @@ $\phi_R$ is $true$ if the robot can move toward a multiplicity. There must be on
 \begin{center}
 $\phi_R(dist_{0}, \ldots ,dist_{k-1}):=$\\
 $\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
-$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \land_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
-$\exists Max, M, N, (a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}),$\\
+$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \bigwedge_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
+$\exists Max, M, N, (a_{0}, \ldots , a_{k-1}),$\\
 %on fait les codes de vues
-$CodeMaker(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1})\land$\\
+$CodeMaker(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, a_{0}, \ldots , a_{k-1})\land$\\
 %On initialise Max, M et N
 $FindMax(dist_{0}, \ldots ,dist_{k-1}, Max) \land$\\
 %Initialiser M et N
 %M
-$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M) \land $\\
+$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, Max, M) \land $\\
 %N
-$FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M, N) \land $\\
+$FindN(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, Max, M, N) \land $\\
 %On initialise toutes les distances possibles par rapport à M et N
-$\exists dm_{0}, \ldots , dm_{k-1}, dn_{0}, \ldots , dn_{k-1}, \land_{j=0}^{k-1}(dm_{j} = (\sum_{l=0}^j d_{Ml})\ 
+$\exists dm_{0}, \ldots , dm_{k-1}, dn_{0}, \ldots , dn_{k-1}, \bigwedge_{j=0}^{k-1}(dm_{j} = (\sum_{l=0}^j d_{Ml})\ 
 \land dn_{j} = (\sum_{l=0}^j d_{Nl}) ) \land $\\
-$((\lor_{j=0}^{k-1} (dn_{j} < dm_{j} \land (\land_{i=0}^{k-1} d_{Ni} = dist_{i}) ) ) \lor 
-(\lor_{j=0}^{k-1} (dm_{j} < dn_{j} \land (\land_{i=0}^{k-1} d_{Mi} = dist_{i}) ) ) )$
+$((\bigvee_{j=0}^{k-1} (dn_{j} < dm_{j} \land (\bigwedge_{i=0}^{k-1} d_{Ni} = dist_{i}) ) ) \lor 
+(\bigvee_{j=0}^{k-1} (dm_{j} < dn_{j} \land (\bigwedge_{i=0}^{k-1} d_{Mi} = dist_{i}) ) ) )$
 \end{center}
 
 \section{Gathering an odd number of robots}
@@ -389,7 +402,7 @@ First we build the formula, $IsOddNonPeriodic$, that will return $true$ if the n
 $IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}):=$\\
 $((k+1) \mod{2} = 0) \land $\\
 $\exists p \in [0; \frac{k-1}{2}]$\\
-$\exists d'_{0}, \ldots , d'_{p-1}, \land_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i}) \land dist_{k-1} \not= d'_{p-1}$
+$\exists d'_{0}, \ldots , d'_{p-1}, \bigwedge_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i}) \land dist_{k-1} \not= d'_{p-1}$
 \end{center}
 
 Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configuration is non-rigid, non-periodic, has no multiplicity and has an odd number of robots. The robot just move in order to create a multiplicity or a rigid configuration that will lead to a rigid configuration or one with a multiplicity.
@@ -399,7 +412,7 @@ Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configura
 $\phi_{ON}(dist_{0}, \ldots , dist_{k-1}):=$\\
 $\lnot IsRigid(dist_{0}, \ldots ,dist_{k-1}) \land $\\
 $IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
-$(\land_{i=0}^{k-1} dist_{i} \not= 0)$
+$(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0)$
 \end{center}
 
 \section{Tests}
@@ -433,7 +446,7 @@ The results make sense : we can't create a multiplicity with 2 robots which is n
 
 \subsection{Test $\phi_{SM}$}
 
-Now we test $\phi_{SM}$ through the algorithm \cite{algo} with the function $BouclePerdante$ that keeps in memory, all the possibility explored in order to help the interpolant.\\
+Now we test $\phi_{SM}$ through the algorithm \cite{algo}, we also use the function $InitSM$ that makes sure we have a single multiplicity at the beginning.\\
 
 \begin{tabular}{|r|c|c|c|c|c|}
   \hline
@@ -450,7 +463,21 @@ Now we test $\phi_{SM}$ through the algorithm \cite{algo} with the function $Bou
 \end{tabular}
 \\
 
-For $nb_{robot} = 4$ and $size_{ring} = 2$ we should find Unsat, if we do not, it's because the algorithm calls the interpolant in the first place and so there are simplification and one $AsyncPost$ \cite{algo} is done wrong.
+Same test but with the function $Init$ instead.\\
+
+\begin{tabular}{|r|c|c|c|c|c|}
+  \hline
+  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
+  \hline
+  3 & Timeout & Loose & Loose & Loose & ... \\
+  \hline
+  4 &  & ... & ... & ... & ... \\
+  \hline
+  5 & ... & ... & ... & ... & ... \\
+  \hline
+  6 & ... & ... & ... & ... & ... \\
+  \hline
+\end{tabular}
 
 For $nb_{robot} = 3$ and $size_{ring} = 2$ we face this problem :
 \begin{lstlisting}
@@ -477,6 +504,36 @@ Traceback (most recent call last):
     
 z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
 \end{lstlisting}
+
+\newpage
+
+\SetKwComment{Comment}{/* }{ */}
+\begin{algorithm}
+\ForEach{synchronous winning strategy $f$}{
+    $k = 1$\;
+    \While{$true$}{
+        $I(c) = Init(c)$\;
+        $continue = true$\;
+        \While{continue}{
+            $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k))$\;
+            \eIf{$I' = SAT$}{
+                \eIf{$I = Init$}{
+                    $exit$\Comment*[r]{Loosing Strategy}
+                }{
+                    $k = k + 1$\;
+                    $continue = false$\;
+                }
+            }{
+                \eIf{$I' \implies I$}{
+                    $exit$\Comment*[r]{Winning Strategy}
+                }{
+                    $I = I \lor I'$\;
+                }
+            }
+        }
+    }
+}
+\end{algorithm}
 
 \printbibliography %Prints bibliography
 \end{document}
