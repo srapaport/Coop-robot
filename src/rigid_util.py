@@ -34,7 +34,7 @@ def IsRigid(ad, vs):
 # taille_anneau = 12
 # distance = [ Int('d%s' % (i)) for i in range(5) ]
 # tmpInit = []
-# tmpInit.append(And(distance[0] == 3, distance[1] == 3, distance[2] ==  2, distance[3] == 1, distance[4] == 3))
+# tmpInit.append(And(distance[0] == 3, distance[1] == 3, distance[2] ==  3, distance[3] == 2, distance[4] == 1))
 # s = Solver()
 # ad = []
 # vs = []
@@ -201,39 +201,116 @@ def FindM(ad, codes, Max, M):
     for i in range(len(ad)):
         tabAndBis = []
         for j in range(len(ad)):
-            tabAndBis.append(Or(And(codes[i] >= codes[j], Or(ad[i][0] == Max, ad[i][-1] == Max)), And(ad[i][0] < Max, ad[i][-1] < Max)))
+            tabAndBis.append(Or(And(codes[i] >= codes[j], Or(ad[j][0] == Max, ad[j][-1] == Max)), And(ad[j][0] < Max, ad[j][-1] < Max)))
         tabAndBis.append(M == i)
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
     return And(tabAnd)
 
 ###################### FindM
-taille_anneau = 6
-distance = [ Int('d%s' % (i)) for i in range(3) ]
-codes = [ Int('a%s' % (i)) for i in range(3) ]
+# taille_anneau = 6
+# nb_robot = 3
+# distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
+# codes = [ Int('a%s' % (i)) for i in range(nb_robot) ]
 
-p = [ Int('p%s' % (i)) for i in range(3) ]
-s = [ Int('s%s' % (i)) for i in range(3) ]
-t = [ Int('t%s' % (i)) for i in range(3) ]
+# p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
+# s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
+# t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
 
+# tab0 = Init(p, s, t, taille_anneau)
+# tab1 = ConfigView(taille_anneau, nb_robot, 0, p, distance)
+# print("ok1")
+# sol = Solver()
+# ad = []
+# vs = []
+# for i in range(len(distance)):
+#     ad.append([ Int('testd%s%s' % (i,j)) for j in range(len(distance)) ])
+#     vs.append([ Int('testds%s%s' % (i,j)) for j in range(len(distance)) ])
+# sol.add(AllView(distance, ad))
+# for i in range(len(distance)):
+#     sol.add(ViewSym(taille_anneau, ad[i], vs[i]))
+# print("ok2")
+# max = Int('Max')
+# tab3 = FindMax(distance, max)
+# print("CA VA")
+# tab2 = CodeMaker(ad, vs, codes)
+# print("C est chaud")
+# m = Int('M')
+# tab4 = FindM(ad, codes, max, m)
+# print("on va check")
+# sol.add(tab0)
+# sol.add(tab1)
+# sol.add(tab2)
+# sol.add(tab3)
+# sol.add(tab4)
+# c = sol.check()
+# print("solver : ", c)
+# if c == sat:
+#     print(sol.model().sexpr())
+######################
+
+def FindN(ad, codes, Max, M, N):
+    tabAnd = []
+    tabOrN = []
+    tabOrN.append(And(ad[M][0] == Max, ad[M][-1] == Max,
+        Or(And(N == (M+1)%len(codes), codes[(M+1)%len(codes)] > codes[(M-1)%len(codes)] ),
+            And(N == (M-1)%len(codes), codes[(M-1)%len(codes)] > codes[(M+1)%len(codes)] ) )) )
+    tabOrN.append(And(ad[M][0] == Max, ad[M][-1] != Max, N == (M+1)%len(codes)))
+    tabOrN.append(And(ad[M][0] != Max, ad[M][-1] == Max, N == (M-1)%len(codes)))
+    tabAnd.append(Or(tabOrN))
+    return And(tabAnd)
+
+def FindMN(ad, codes, Max, M, N):
+    tabAnd = []
+    tabOr = []
+    for i in range(len(ad)):
+        tabAndBis = []
+        for j in range(len(ad)):
+            tabAndBis.append(Or(And(codes[i] >= codes[j], Or(ad[j][0] == Max, ad[j][-1] == Max)), And(ad[j][0] < Max, ad[j][-1] < Max)))
+        tabAndBis.append(M == i)
+        tabOrN = []
+        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] == Max,
+            Or(And(N == (i+1)%len(codes), codes[(i+1)%len(codes)] > codes[(i-1)%len(codes)] ),
+                And(N == (i-1)%len(codes), codes[(i-1)%len(codes)] > codes[(i+1)%len(codes)] ) )) )
+        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] != Max, N == (i+1)%len(codes)))
+        tabOrN.append(And(ad[i][0] != Max, ad[i][-1] == Max, N == (i-1)%len(codes)))
+        tabAndBis.append(Or(tabOrN))
+        tabOr.append(And(tabAndBis))
+    tabAnd.append(Or(tabOr))
+    return And(tabAnd)
+
+###################### FindN
+taille_anneau = 7
+nb_robot = 4
+distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
+codes = [ Int('a%s' % (i)) for i in range(nb_robot) ]
+
+p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
+s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
+t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
+
+tab0 = Init(p, s, t, taille_anneau)
+tab1 = ConfigView(taille_anneau, nb_robot, 0, p, distance)
+print("ok1")
 sol = Solver()
 ad = []
 vs = []
 for i in range(len(distance)):
-    ad.append([ Int('ird%s%s' % (i,j)) for j in range(len(distance)) ])
-    vs.append([ Int('irds%s%s' % (i,j)) for j in range(len(distance)) ])
+    ad.append([ Int('testd%s%s' % (i,j)) for j in range(len(distance)) ])
+    vs.append([ Int('testds%s%s' % (i,j)) for j in range(len(distance)) ])
 sol.add(AllView(distance, ad))
 for i in range(len(distance)):
     sol.add(ViewSym(taille_anneau, ad[i], vs[i]))
-
-tab0 = Init(p, s, t, taille_anneau)
-tab1 = ConfigView(taille_anneau, 3, 0, p, distance)
+print("ok2")
 max = Int('Max')
 tab3 = FindMax(distance, max)
-m = Int('M')
+print("CA VA")
 tab2 = CodeMaker(ad, vs, codes)
-tab4 = FindM(ad, codes, max, m)
-
+print("C est chaud")
+m = Int('M')
+n = Int('N')
+tab4 = FindMN(ad, codes, max, m, n)
+print("on va check")
 sol.add(tab0)
 sol.add(tab1)
 sol.add(tab2)
