@@ -338,34 +338,22 @@ $FindM$ is $true$ if $M$ is the index of the robot (index in the view vector) wh
 \begin{center}
 
 $FindM(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, Max, M):=$\\
-$\exists r \in [0; k-1], (d_{r0} = Max \lor d_{rk-1} = Max) \land $\\
-$(\bigwedge_{i=0}^{k-1} ((a_{r} \geq a_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
-$\lor (d_{i0} < Max \land d_{ik-1} < Max))) \land M = r $
+$\bigvee_{m=0}^{k-1}((\bigwedge_{i=0}^{k-1} ((a_{m} \geq a_i \land (d_{i0} = Max \lor d_{ik-1} = Max))$\\
+$\lor (d_{i0} < Max \land d_{ik-1} < Max))) \land M = m )$
 \end{center}
 
 $FindN$ is $true$ if $N$ is the index of the robot (index in the view vector) with the largest code of view and $M$ as a neighboring robot at distance $Max$ :
 
 \begin{center}
 
-$FindN(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, as_{0}, \ldots , as_{k-1}, Max, M, N):=$\\
-$\exists (d'_{0}, \ldots , d'_{k-1}), (d"_{0}, \ldots , d"_{k-1}),$\\
-%On trouve à quels vecteurs correspondent d' et d"
-$(\bigwedge_{i=0}^{k-1} ((d'_{i} = d_{M((i+1)\mod{k})}) \land (d"_{i} = d_{M((i-1)\mod{k})}))) \land$\\
-$\exists r_{\alpha}, r_{\beta} \in [0; k-1], \bigvee_{i=0}^{k-1}(((\bigwedge_{j=0}^{k-1}(d'_{j} = d_{ij})) \lor
-(\bigwedge_{j=0}^{k-1}(d'_{j} = ds_{ij}) ))
-\land r_{\alpha} = i )\land$\\
-$(\bigvee_{i=0}^{k-1}(((\bigwedge_{j=0}^{k-1}(d"_{j} = d_{ij})) \lor
-(\bigwedge_{j=0}^{k-1}(d"_{j} = ds_{ij}) ))
-\land r_{\beta} = i )) \land$\\
-%On intialise N en fonction du plus grand code de vue des voisins de M, le voisin doit aussi être à distance Max
-$((a_{r_\alpha} > as_{r_\alpha} \land a_{r_\alpha} > a_{r_\beta} \land a_{r_\alpha} > as_{r_\beta}
-\land d_{r_{\alpha}k-1} = Max \land d_{r_{\beta}0} = Max
-\land N = r_{\alpha}) \lor$\\
-$(a_{r_\beta} > as_{r_\beta} \land a_{r_\beta} > a_{r_\alpha} \land a_{r_\beta} > as_{r_\alpha} 
-\land d_{r_{\beta}0} = Max \land d_{r_{\alpha}k-1} = Max
-\land N = r_{\beta}) \lor$\\
-$(d_{r_{\alpha}k-1} = Max \land d_{r_{\beta}0} \not= Max \land N = r_{\alpha}) \lor$\\
-$(d_{r_{\alpha}k-1} \not= Max \land d_{r_{\beta}0} = Max \land N = r_{\beta}))$
+$FindN(d_{00}, \ldots ,d_{k-1k-1}, a_{0}, \ldots , a_{k-1}, Max, M, N):=$\\
+$(d_{M0} = Max \land d_{Mk-1} = Max \land $\\
+$( (N = ((M+1) \mod{k}) \land a_{(M+1) \mod{k}} > a_{(M-1) \mod{k}}) \lor $\\
+$(N = ((M-1) \mod{k}) \land a_{(M-1) \mod{k}} > a_{(M+1) \mod{k}})))$\\
+$ \lor$\\
+$(d_{M0} = Max \land d_{Mk-1} \not= Max \land N = ((M+1)\mod{k}))$\\
+$ \lor$\\
+$(d_{M0} \not= Max \land d_{Mk-1} = Max \land N = ((M-1)\mod{k}))$
 \end{center}
 
 $\phi_R$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
@@ -410,7 +398,9 @@ Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configura
 \begin{center}
     
 $\phi_{ON}(dist_{0}, \ldots , dist_{k-1}):=$\\
-$\lnot IsRigid(dist_{0}, \ldots ,dist_{k-1}) \land $\\
+$\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
+$\exists ds_{00}, \ldots ,ds_{k-1k-1}, \bigwedge_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
+$\lnot IsRigid(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}) \land $\\
 $IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
 $(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0)$
 \end{center}
