@@ -3,54 +3,66 @@ solver :  sat
   1)
 (define-fun a0 () Int
   1)
-(define-fun testds21 () Int
+(define-fun vs11 () Int
   1)
-(define-fun testds03 () Int
+(define-fun dM2 () Int
+  2)
+(define-fun dN3 () Int
+  3)
+(define-fun dM1 () Int
   1)
-(define-fun testds11 () Int
+(define-fun vs31 () Int
+  2)
+(define-fun vs33 () Int
   1)
-(define-fun testds33 () Int
+(define-fun vs03 () Int
   1)
+(define-fun vs22 () Int
+  1)
+(define-fun vs23 () Int
+  3)
 (define-fun d2 () Int
   3)
-(define-fun testds02 () Int
-  2)
 (define-fun a2 () Int
   3)
-(define-fun testds01 () Int
-  3)
-(define-fun N () Int
-  2)
-(define-fun testds32 () Int
+(define-fun vs32 () Int
   1)
+(define-fun dN2 () Int
+  1)
+(define-fun dN0 () Int
+  2)
+(define-fun vs21 () Int
+  1)
+(define-fun vs01 () Int
+  3)
 (define-fun Max () Int
   3)
 (define-fun a3 () Int
   4)
-(define-fun testds13 () Int
-  2)
 (define-fun p1 () Int
+  4)
+(define-fun vs12 () Int
   3)
-(define-fun testds31 () Int
-  2)
-(define-fun testds23 () Int
+(define-fun dM3 () Int
   3)
 (define-fun a1 () Int
   2)
-(define-fun M () Int
-  3)
 (define-fun d1 () Int
   2)
 (define-fun p3 () Int
-  6)
+  2)
+(define-fun dM0 () Int
+  1)
 (define-fun p0 () Int
-  0)
-(define-fun testds12 () Int
   3)
+(define-fun vs13 () Int
+  2)
 (define-fun p2 () Int
+  6)
+(define-fun dN1 () Int
   1)
-(define-fun testds22 () Int
-  1)
+(define-fun vs02 () Int
+  2)
 (define-fun d3 () Int
   1)
 (define-fun t3 () Int
@@ -69,43 +81,43 @@ solver :  sat
   0)
 (define-fun s0 () Int
   (- 1))
-(define-fun testds30 () Int
+(define-fun vs30 () Int
   3)
-(define-fun testds20 () Int
+(define-fun vs20 () Int
   2)
-(define-fun testds10 () Int
+(define-fun vs10 () Int
   1)
-(define-fun testds00 () Int
+(define-fun vs00 () Int
   1)
-(define-fun testd33 () Int
+(define-fun ad33 () Int
   3)
-(define-fun testd32 () Int
+(define-fun ad32 () Int
   2)
-(define-fun testd31 () Int
+(define-fun ad31 () Int
   1)
-(define-fun testd30 () Int
+(define-fun ad30 () Int
   1)
-(define-fun testd23 () Int
+(define-fun ad23 () Int
   2)
-(define-fun testd22 () Int
+(define-fun ad22 () Int
   1)
-(define-fun testd21 () Int
+(define-fun ad21 () Int
   1)
-(define-fun testd20 () Int
+(define-fun ad20 () Int
   3)
-(define-fun testd13 () Int
+(define-fun ad13 () Int
   1)
-(define-fun testd12 () Int
+(define-fun ad12 () Int
   1)
-(define-fun testd11 () Int
+(define-fun ad11 () Int
   3)
-(define-fun testd10 () Int
+(define-fun ad10 () Int
   2)
-(define-fun testd03 () Int
+(define-fun ad03 () Int
   1)
-(define-fun testd02 () Int
+(define-fun ad02 () Int
   3)
-(define-fun testd01 () Int
+(define-fun ad01 () Int
   2)
-(define-fun testd00 () Int
+(define-fun ad00 () Int
   1)

@@ -148,7 +148,7 @@ def ViewSym(taille_anneau, distances, distances_prime):
 
         return And(tabAnd)
 
-def phiSimple(distances):
+def phiSimple(taille_anneau, distances):
         """
         Le robot se déplace vers le robot le plus proche, si les robots sont à équidistances
         alors le robot reste sur place
@@ -163,7 +163,7 @@ def phiSimple(distances):
 
         return And(tabAnd)
 
-def phiSM(distances):
+def phiSM(taille_anneau, distances):
         """
         Strategie est vrai s'il n'y a qu'une seule multiplicité, 
         le robot se déplace vers cette dernière
@@ -200,10 +200,10 @@ def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         tabAnd.append(tmp)
         tmpOr = []
 
-        tmpPhi1 = phi(distances)
+        tmpPhi1 = phi(taille_anneau, distances)
         tmpOr.append(And(tmpPhi1, Or( And( list_positions[indice_robot] < (taille_anneau -1), pp == (list_positions[indice_robot] + 1)), And( list_positions[indice_robot] == (taille_anneau - 1), pp == 0))))
 
-        tmpPhi2 = phi(distances_prime)
+        tmpPhi2 = phi(taille_anneau, distances_prime)
         tmpOr.append(And(tmpPhi2, Or( And( list_positions[indice_robot] > 0, pp == (list_positions[indice_robot] - 1)), And( list_positions[indice_robot] == 0, pp == (taille_anneau - 1)))))
 
         tmpOr.append(And(Not(tmpPhi1), Not(tmpPhi2), pp == list_positions[indice_robot]))

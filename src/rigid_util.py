@@ -1,6 +1,5 @@
 from z3 import *
-from utilZ3v5 import *
-from itertools import *
+from utilZ3v6 import *
 
 def AllView(distances, allDistances):
     tabAnd = []
@@ -27,8 +26,7 @@ def IsRigid(ad, vs):
                     tmpOr3.append(vs[i][j] != ad[l][j])
                     tmpOr4.append(vs[i][j] != vs[l][j])
                 tabAnd.append(And(Or(tmpOr1), Or(tmpOr2), Or(tmpOr3), Or(tmpOr4)))
-    #return And(tabAnd)
-    return Exists([ad[i][j] for i in range(len(ad)) for j in range(len(ad[0]))], Exists([vs[i][j] for i in range(len(vs)) for j in range(len(vs[0]))], And(tabAnd)))
+    return And(tabAnd)
 
 ###################### Rigid configuration
 # taille_anneau = 12
@@ -195,20 +193,31 @@ def FindMax(distances, Max):
 #     print(sol.model().sexpr())
 ######################
 
-def FindM(ad, codes, Max, M):
+def FindMN(ad, codes, Max, M, N):
     tabAnd = []
     tabOr = []
     for i in range(len(ad)):
         tabAndBis = []
+        tabAndNLeft = []
+        tabAndNRight = []
         for j in range(len(ad)):
             tabAndBis.append(Or(And(codes[i] >= codes[j], Or(ad[j][0] == Max, ad[j][-1] == Max)), And(ad[j][0] < Max, ad[j][-1] < Max)))
-        tabAndBis.append(M == i)
+            tabAndNLeft.append(And(N[j] == ad[(i+1)%len(codes)][j], M[j] == ad[i][len(codes)-1-j]))
+            tabAndNRight.append(And(N[j] == ad[(i-1)%len(codes)][len(codes)-1-j], M[j] == ad[i][j]))
+        tabOrN = []
+
+        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] == Max,
+            Or(And(And(tabAndNLeft), codes[(i+1)%len(codes)] > codes[(i-1)%len(codes)] ),
+                And(And(tabAndNRight), codes[(i-1)%len(codes)] > codes[(i+1)%len(codes)] ) )) )
+        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] != Max, And(tabAndNLeft)))
+        tabOrN.append(And(ad[i][0] != Max, ad[i][-1] == Max, And(tabAndNRight)))
+        tabAndBis.append(Or(tabOrN))
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
     return And(tabAnd)
 
-###################### FindM
-# taille_anneau = 6
+###################### FindMN
+# taille_anneau = 12
 # nb_robot = 3
 # distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
 # codes = [ Int('a%s' % (i)) for i in range(nb_robot) ]
@@ -219,25 +228,21 @@ def FindM(ad, codes, Max, M):
 
 # tab0 = Init(p, s, t, taille_anneau)
 # tab1 = ConfigView(taille_anneau, nb_robot, 0, p, distance)
-# print("ok1")
 # sol = Solver()
 # ad = []
 # vs = []
 # for i in range(len(distance)):
-#     ad.append([ Int('testd%s%s' % (i,j)) for j in range(len(distance)) ])
-#     vs.append([ Int('testds%s%s' % (i,j)) for j in range(len(distance)) ])
+#     ad.append([ Int('ad%s%s' % (i,j)) for j in range(len(distance)) ])
+#     vs.append([ Int('vs%s%s' % (i,j)) for j in range(len(distance)) ])
 # sol.add(AllView(distance, ad))
 # for i in range(len(distance)):
 #     sol.add(ViewSym(taille_anneau, ad[i], vs[i]))
-# print("ok2")
 # max = Int('Max')
 # tab3 = FindMax(distance, max)
-# print("CA VA")
 # tab2 = CodeMaker(ad, vs, codes)
-# print("C est chaud")
-# m = Int('M')
-# tab4 = FindM(ad, codes, max, m)
-# print("on va check")
+# m = [ Int('dM%s' % (i)) for i in range(nb_robot) ]
+# n = [ Int('dN%s' % (i)) for i in range(nb_robot) ]
+# tab4 = FindMN(ad, codes, max, m, n)
 # sol.add(tab0)
 # sol.add(tab1)
 # sol.add(tab2)
@@ -249,73 +254,85 @@ def FindM(ad, codes, Max, M):
 #     print(sol.model().sexpr())
 ######################
 
-def FindN(ad, codes, Max, M, N):
+def phiR(taille_anneau, distance):
     tabAnd = []
-    tabOrN = []
-    tabOrN.append(And(ad[M][0] == Max, ad[M][-1] == Max,
-        Or(And(N == (M+1)%len(codes), codes[(M+1)%len(codes)] > codes[(M-1)%len(codes)] ),
-            And(N == (M-1)%len(codes), codes[(M-1)%len(codes)] > codes[(M+1)%len(codes)] ) )) )
-    tabOrN.append(And(ad[M][0] == Max, ad[M][-1] != Max, N == (M+1)%len(codes)))
-    tabOrN.append(And(ad[M][0] != Max, ad[M][-1] == Max, N == (M-1)%len(codes)))
-    tabAnd.append(Or(tabOrN))
-    return And(tabAnd)
-
-def FindMN(ad, codes, Max, M, N):
-    tabAnd = []
+    ad = []
+    vs = []
+    for i in range(len(distance)):
+        ad.append([ Int('phiRad%s%s' % (i,j)) for j in range(len(distance)) ])
+        vs.append([ Int('phiRvs%s%s' % (i,j)) for j in range(len(distance)) ])
+    tabAnd.append(AllView(distance, ad))
+    for i in range(len(distance)):
+        tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
+    max = Int('phiRMax')
+    codes = [ Int('phiRa%s' % (i)) for i in range(len(distance)) ]
+    m = [ Int('phiRdM%s' % (i)) for i in range(len(distance)) ]
+    n = [ Int('phiRdN%s' % (i)) for i in range(len(distance)) ]
+    m2 = [ Int('phiRdM2%s' % (i)) for i in range(len(distance)) ]
+    n2 = [ Int('phiRdN2%s' % (i)) for i in range(len(distance)) ]
+    distm = [ Int('phiRdistM%s' % (i)) for i in range(len(distance)) ]
+    distn = [ Int('phiRdistN%s' % (i)) for i in range(len(distance)) ]
+    tabAnd.append(CodeMaker(ad, vs, codes))
+    tabAnd.append(FindMax(distance, max))
+    tabAnd.append(FindMN(ad, codes, max, m, n))
+    tabOrdM = []
+    tabOrdN = []
+    tabAnddMl = []
+    tabAnddMr = []
+    tabAnddNl = []
+    tabAnddNr = []
+    for i in range(len(distance)):
+        tabOrdM.append(m2[i] != n[i])
+        tabOrdN.append(n2[i] != m[i])
+        tabAnddMl.append(m2[i] == m[(i-1)%len(distance)])
+        tabAnddMr.append(m2[i] == m[(i+1)%len(distance)])
+        tabAnddNl.append(n2[i] == n[(i-1)%len(distance)])
+        tabAnddNr.append(n2[i] == n[(i+1)%len(distance)])
+        summ = []
+        sumn = []
+        for l in range(i+1):
+            summ.append(m[l])
+            sumn.append(n[l])
+        tabAnd.append(distm[i] == Sum(summ))
+        tabAnd.append(distn[i] == Sum(sumn))
+    tabAnd.append(Or(And(tabAnddMl), And(tabAnddMr)))
+    tabAnd.append(Or(And(tabAnddNl), And(tabAnddNr)))
+    tabAnd.append(Or(tabOrdM))
+    tabAnd.append(Or(tabOrdN))
     tabOr = []
-    for i in range(len(ad)):
-        tabAndBis = []
-        for j in range(len(ad)):
-            tabAndBis.append(Or(And(codes[i] >= codes[j], Or(ad[j][0] == Max, ad[j][-1] == Max)), And(ad[j][0] < Max, ad[j][-1] < Max)))
-        tabAndBis.append(M == i)
-        tabOrN = []
-        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] == Max,
-            Or(And(N == (i+1)%len(codes), codes[(i+1)%len(codes)] > codes[(i-1)%len(codes)] ),
-                And(N == (i-1)%len(codes), codes[(i-1)%len(codes)] > codes[(i+1)%len(codes)] ) )) )
-        tabOrN.append(And(ad[i][0] == Max, ad[i][-1] != Max, N == (i+1)%len(codes)))
-        tabOrN.append(And(ad[i][0] != Max, ad[i][-1] == Max, N == (i-1)%len(codes)))
-        tabAndBis.append(Or(tabOrN))
-        tabOr.append(And(tabAndBis))
+    for i in range(len(distance)):
+        tabAndM = []
+        tabAndN = []
+        tabAndM.append(distm[i] < distn[i])
+        tabAndN.append(distn[i] < distm[i])
+        for q in range(i):
+            tabAndM.append(distm[q] == distn[q])
+            tabAndN.append(distm[q] == distn[q])
+        for j in range(len(distance)):
+            tabAndM.append(distm[j] == distance[j])
+            tabAndN.append(distn[j] == distance[j])
+        tabOr.append(Or(And(tabAndM), And(tabAndN)))
     tabAnd.append(Or(tabOr))
+    # return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
+    #         Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
+    #         Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
     return And(tabAnd)
-
-###################### FindN
+###################### phiR
 taille_anneau = 7
 nb_robot = 4
 distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
-codes = [ Int('a%s' % (i)) for i in range(nb_robot) ]
 
 p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
 s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
 t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
 
 tab0 = Init(p, s, t, taille_anneau)
-tab1 = ConfigView(taille_anneau, nb_robot, 0, p, distance)
-print("ok1")
+pp = Int('pp')
+tab1 = Move(taille_anneau, nb_robot, 0, p, pp,phiR)
+
 sol = Solver()
-ad = []
-vs = []
-for i in range(len(distance)):
-    ad.append([ Int('testd%s%s' % (i,j)) for j in range(len(distance)) ])
-    vs.append([ Int('testds%s%s' % (i,j)) for j in range(len(distance)) ])
-sol.add(AllView(distance, ad))
-for i in range(len(distance)):
-    sol.add(ViewSym(taille_anneau, ad[i], vs[i]))
-print("ok2")
-max = Int('Max')
-tab3 = FindMax(distance, max)
-print("CA VA")
-tab2 = CodeMaker(ad, vs, codes)
-print("C est chaud")
-m = Int('M')
-n = Int('N')
-tab4 = FindMN(ad, codes, max, m, n)
-print("on va check")
 sol.add(tab0)
 sol.add(tab1)
-sol.add(tab2)
-sol.add(tab3)
-sol.add(tab4)
 c = sol.check()
 print("solver : ", c)
 if c == sat:
