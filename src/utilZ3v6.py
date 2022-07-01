@@ -1,23 +1,6 @@
 from z3 import *
 from math import factorial
-"""
-soit p0, p1, ..., pk les positions des robots (le numéro de la place sur l'anneau (de 0 à taille de l'anneau -1))
-
-pour une configuration d'un robot on a 
-d0, d1, ..., dk la distance de chaque robot à son robot le plus proche dans le sens horaire
-
-Dans l'exemple on se place sur un anneau de taille 5 avec 3 robots :
-
-robot 1 r0 sur la position 1
-robot 2 r1 sur la position 2
-robot 3 r2 sur la position 3
-les positions vacantes sont donc 4 et 0
-
-Le robot r1 regarde les autres robots
-
-On veut donc que ConfigView nous retourne les positions des robots, et
-d0 = 1, d1 = 3 et d2 = 1
-"""
+#from rigid_util import *
 
 def Init(p, s, t, taille_anneau):
         tmpOr = []
