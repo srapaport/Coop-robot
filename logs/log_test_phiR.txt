@@ -1,0 +1,101 @@
+solver :  sat
+(define-fun phiRad20 () Int
+  (- 1))
+(define-fun phiRdN22 () Int
+  4)
+(define-fun phiRdistN2 () Int
+  15)
+(define-fun phiRad10 () Int
+  (- 1))
+(define-fun phiRvs11 () Int
+  2)
+(define-fun phiRdM0 () Int
+  5)
+(define-fun phiRvs12 () Int
+  2)
+(define-fun phiRad11 () Int
+  2)
+(define-fun phiRad01 () Int
+  2)
+(define-fun phiRdM1 () Int
+  3)
+(define-fun phiRvs21 () Int
+  2)
+(define-fun phiRvs10 () Int
+  (- 1))
+(define-fun phiRdistM0 () Int
+  6)
+(define-fun phiRad02 () Int
+  2)
+(define-fun phiRdM22 () Int
+  6)
+(define-fun phiRdN2 () Int
+  6)
+(define-fun phiRdistM2 () Int
+  11)
+(define-fun phiRdN21 () Int
+  3)
+(define-fun phiRvs02 () Int
+  2)
+(define-fun phiRvs00 () Int
+  (- 1))
+(define-fun phiRad21 () Int
+  2)
+(define-fun phiRdistN1 () Int
+  10)
+(define-fun phiRa0 () Int
+  6)
+(define-fun phiRa2 () Int
+  4)
+(define-fun phiRdistM1 () Int
+  9)
+(define-fun p1 () Int
+  0)
+(define-fun phiRdM20 () Int
+  5)
+(define-fun phiRdM2 () Int
+  4)
+(define-fun phiRa1 () Int
+  5)
+(define-fun phiRvs20 () Int
+  (- 1))
+(define-fun phiRdistN0 () Int
+  7)
+(define-fun phiRvs22 () Int
+  2)
+(define-fun pp () Int
+  1)
+(define-fun phiRdN0 () Int
+  5)
+(define-fun phiRdN20 () Int
+  5)
+(define-fun phiRad00 () Int
+  (- 1))
+(define-fun phiRMax () Int
+  0)
+(define-fun phiRad12 () Int
+  2)
+(define-fun p0 () Int
+  1)
+(define-fun phiRvs01 () Int
+  2)
+(define-fun p2 () Int
+  2)
+(define-fun phiRdM21 () Int
+  3)
+(define-fun phiRad22 () Int
+  2)
+(define-fun phiRdN1 () Int
+  3)
+(define-fun t2 () Int
+  0)
+(define-fun s2 () Int
+  (- 1))
+(define-fun t1 () Int
+  0)
+(define-fun s1 () Int
+  (- 1))
+(define-fun t0 () Int
+  0)
+(define-fun s0 () Int
+  (- 1))

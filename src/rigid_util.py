@@ -5,6 +5,7 @@ def AllView(distances, allDistances):
     tabAnd = []
     for i in range(len(distances)):
         for j in range(len(distances)):
+            tabAnd.append(allDistances[i][j] >= 0)
             tabAnd.append(allDistances[i][j] == distances[(j+i)%len(distances)])
     return And(tabAnd)
 
@@ -309,8 +310,8 @@ def phiR(taille_anneau, distance):
             tabAndM.append(distm[q] == distn[q])
             tabAndN.append(distm[q] == distn[q])
         for j in range(len(distance)):
-            tabAndM.append(distm[j] == distance[j])
-            tabAndN.append(distn[j] == distance[j])
+            tabAndM.append(m[j] == distance[j])
+            tabAndN.append(n[j] == distance[j])
         tabOr.append(Or(And(tabAndM), And(tabAndN)))
     tabAnd.append(Or(tabOr))
     # return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
