@@ -3,7 +3,6 @@ from utilZ3v7 import *
 
 taille_anneau = 3
 nb_robots = 3
-cpt = 0
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
 print("taille_anneau = ", taille_anneau)
@@ -20,9 +19,9 @@ t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
 while True:
 
-        I = InitSM(p, s, t, taille_anneau)
+        I = Init(p, s, t, taille_anneau)
 
-        constI = InitSM(p, s, t, taille_anneau)
+        constI = Init(p, s, t, taille_anneau)
         continuer = True
         pk = []
         sk = []
@@ -78,8 +77,9 @@ while True:
                         continuer = False
                 if continuer:
                         sol = Solver()
-                        sol.add(Implies(And(Ip), I))
-                        if sol.check() == sat:
+                        sol.add(And(And(Ip), Not(I)))
+                        if sol.check() == unsat:
+                                print("And(And(Ip), Not(I)) UNSAT")
                                 if k == taille_boucle_max:
                                         print("Stratégie gagnante\n")
                                         exit()
@@ -89,7 +89,8 @@ while True:
                                         k = k + 1
                                         continuer = False
                         else:
-                                I = Or(I, Ip)
+                                print("And(And(Ip), Not(I)) SAT")
+                                I = Or(I, And(Ip))
 
 """
                 Erreur pour InitSM + phiSM avec taille anneau 3 et nb robot 3

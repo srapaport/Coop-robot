@@ -1,6 +1,5 @@
 from z3 import *
 from math import factorial
-#from rigid_util import *
 
 def Init(p, s, t, taille_anneau):
         tmpOr = []
@@ -184,7 +183,7 @@ def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         tmpOr = []
 
         tmpPhi1 = phi(taille_anneau, distances)
-        tmpOr.append(And(tmpPhi1, Or( And( list_positions[indice_robot] < (taille_anneau -1), pp == (list_positions[indice_robot] + 1)), And( list_positions[indice_robot] == (taille_anneau - 1), pp == 0))))
+        tmpOr.append(And(tmpPhi1, Or( And( list_positions[indice_robot] < (taille_anneau - 1), pp == (list_positions[indice_robot] + 1)), And( list_positions[indice_robot] == (taille_anneau - 1), pp == 0))))
 
         tmpPhi2 = phi(taille_anneau, distances_prime)
         tmpOr.append(And(tmpPhi2, Or( And( list_positions[indice_robot] > 0, pp == (list_positions[indice_robot] - 1)), And( list_positions[indice_robot] == 0, pp == (taille_anneau - 1)))))
@@ -192,7 +191,7 @@ def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         tmpOr.append(And(Not(tmpPhi1), Not(tmpPhi2), pp == list_positions[indice_robot]))
 
         tabAnd.append(Or(tmpOr))
-
+        #return And(tabAnd)
         return Exists(distances, Exists(distances_prime, And(tabAnd)))
 
 def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, function_phi):
@@ -277,17 +276,17 @@ def BouclePerdante_v3(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
         tabAnd.append(Or(tmpOr))
         return And(tabAnd)
 
-def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, function_phi, tab_UNSAT):
+def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, function_phi, NotThisSize):
         
         print("Construction BouclePerdante, len(pk) = ", len(pk))
         tabAnd = []
         tabOrPost = []
-        print("OU")
+        print("DEBUT OU")
         print("Post de ", pk[-1], " à ", p_init)
         tabOrPost.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_init, s_init, t_init, function_phi))
         for i in range(len(pk) - 1):
                 taille_boucle = len(pk) - (i+1)
-                if taille_boucle in tab_UNSAT:
+                if taille_boucle in NotThisSize:
                         print("On ne cherche pas de boucle de taille : ", taille_boucle)
                 else:
                         tabOrPost.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], pk[i], sk[i], tk[i], function_phi))
@@ -309,3 +308,4 @@ def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
                 tmpOr.append(And(tmpAnd))
         tabAnd.append(Or(tmpOr))
         return And(tabAnd)
+
