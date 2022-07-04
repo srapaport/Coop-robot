@@ -139,7 +139,7 @@ model :
 
 What the model shows us is a configuration where robots 0 and 2 are in position 0 and robot 1 is in position 1.
 
-Now we implement in python the $\phi_SM$ strategy :
+Now we implement in python the $\phi_{SM}$ strategy :
 
 \begin{lstlisting}[language=Python]
 
@@ -537,14 +537,13 @@ z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
         $I(c) = Init(c)$\;
         $continue = true$\;
         \While{continue}{
-            \ForEach{$elem$ in $MaybeThisSize$}{
-                $NotThisSizeBis = $[$i$ for $i$ in range($k$) and $i \not= elem$]\;
-                \If{$I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_{k}) \land BouclePerdante(c_{k}, NotThisSizeBis) SAT$}{
+            \If{$MaybeThisSize \not= null$}{
+                $NotThisSizeBis = $[$i$ for $i$ in range($k$) and $i \notin elem$]\;
+                \If{$Init(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_{k}) \land BouclePerdante(c_{k}, NotThisSizeBis)\quad SAT$}{
                     $exit$\Comment*[r]{Loosing Strategy}
                 }
             }
-            $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize))$\;
-            \eIf{$I' = SAT$}{
+            \eIf{$I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize)\quad SAT$}{
                 \eIf{$I = Init$}{
                     $exit$\Comment*[r]{Loosing Strategy}
                 }{
@@ -553,12 +552,14 @@ z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
                     $continue = false$\;
                 }
             }{
+                $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize))$\;
                 \eIf{$I' \implies I$}{
                     \eIf{$k = size_{max}$}{
                         $exit$\Comment*[r]{Winning Strategy}
                     }{
                         $NotThisSize.append(k)$\;
                         $k = k + 1$\;
+                        $continue = false$\;
                     }
                 }{
                     $I = I \lor I'$\;
