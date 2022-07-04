@@ -407,8 +407,8 @@ $(\bigvee_{i = 0}^{k-1} (dN2_{i} \not= dM_{i}) ) \land $\\
 %On initialise toutes les distances possibles par rapport à M et N
 $\exists distM_{0}, \ldots , distM_{k-1}, distN_{0}, \ldots , distN_{k-1},$\\
 $\bigwedge_{i=0}^{k-1}(distM_{i} = (\sum_{l=0}^i dM_{l}) \land distN_{i} = (\sum_{l=0}^i dN_{l}) ) \land $\\
-$(\bigvee_{i=0}^{k-1}\quad (\quad (distM_{i} < distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (distM_{j} = dist_{j}) ) \lor $\\
-$(distM_{i} > distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (distN_{j} = dist_{j}) )\quad )\quad )$
+$(\bigvee_{i=0}^{k-1}\quad (\quad (distM_{i} < distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (dM_{j} = dist_{j}) ) \lor $\\
+$(distM_{i} > distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (dN_{j} = dist_{j}) )\quad )\quad )$
 \end{center}
 
 \section{Gathering an odd number of robots}
@@ -537,17 +537,29 @@ z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
         $I(c) = Init(c)$\;
         $continue = true$\;
         \While{continue}{
-            $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k))$\;
+            \ForEach{$elem$ in $MaybeThisSize$}{
+                $NotThisSizeBis = $[$i$ for $i$ in range($k$) and $i \not= elem$]\;
+                \If{$I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_{k}) \land BouclePerdante(c_{k}, NotThisSizeBis) SAT$}{
+                    $exit$\Comment*[r]{Loosing Strategy}
+                }
+            }
+            $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize))$\;
             \eIf{$I' = SAT$}{
                 \eIf{$I = Init$}{
                     $exit$\Comment*[r]{Loosing Strategy}
                 }{
+                    $MaybeThisSize.append(k)$\;
                     $k = k + 1$\;
                     $continue = false$\;
                 }
             }{
                 \eIf{$I' \implies I$}{
-                    $exit$\Comment*[r]{Winning Strategy}
+                    \eIf{$k = size_{max}$}{
+                        $exit$\Comment*[r]{Winning Strategy}
+                    }{
+                        $NotThisSize.append(k)$\;
+                        $k = k + 1$\;
+                    }
                 }{
                     $I = I \lor I'$\;
                 }
