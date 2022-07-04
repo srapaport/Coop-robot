@@ -1,5 +1,5 @@
 from z3 import *
-from utilZ3v6 import *
+from utilZ3v7 import *
 
 def AllView(distances, allDistances):
     tabAnd = []
@@ -314,27 +314,35 @@ def phiR(taille_anneau, distance):
             tabAndN.append(n[j] == distance[j])
         tabOr.append(Or(And(tabAndM), And(tabAndN)))
     tabAnd.append(Or(tabOr))
-    # return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
-    #         Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
-    #         Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
-    return And(tabAnd)
+    return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
+            Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
+            Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
+    # return Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
+    # Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd)))
 ###################### phiR
-# taille_anneau = 6
-# nb_robot = 3
+taille_anneau = 6
+nb_robot = 3
+distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
+p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
+s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
+t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
 
-# p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
-# s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
-# t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
+tab0 = Init(p, s, t, taille_anneau)
+next_position0 = Int('pp0')
+tab1 = Move(taille_anneau, nb_robot, 0, p, next_position0, phiR)
+next_position1 = Int('pp1')
+tab2 = Move(taille_anneau, nb_robot, 1, p, next_position1, phiR)
+next_position2 = Int('pp2')
+tab3 = Move(taille_anneau, nb_robot, 2, p, next_position2, phiR)
 
-# tab0 = Init(p, s, t, taille_anneau)
-# next_position = Int('pp')
-# tab1 = Move(taille_anneau, nb_robot, 0, p, next_position, phiR)
+sol = Solver()
+sol.add(tab0)
+sol.add(tab1)
+sol.add(tab2)
+sol.add(tab3)
 
-# sol = Solver()
-# sol.add(tab0)
-# sol.add(tab1)
-# c = sol.check()
-# print("solver : ", c)
-# if c == sat:
-#     print(sol.model().sexpr())
+c = sol.check()
+print("solver : ", c)
+if c == sat:
+    print(sol.model().sexpr())
 ######################
