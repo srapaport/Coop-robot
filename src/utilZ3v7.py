@@ -17,7 +17,7 @@ def Init(p, s, t, taille_anneau):
 
 def InitSM(p, s, t, taille_anneau):
         """
-        Initialise la configuration passé en paramètre
+        Initialise la configuration passée en paramètre
         La configuration comportera une multiplicité et ne sera pas gagnante
         """
         tmpOr = []
@@ -48,6 +48,55 @@ def InitSM(p, s, t, taille_anneau):
                 tmpOr.append(And(tmpAndbis))
         tmpAnd.append(Or(tmpOr))
         return And(tmpAnd)
+
+def AllView(distances, allDistances):
+    tabAnd = []
+    for i in range(len(distances)):
+        for j in range(len(distances)):
+            tabAnd.append(allDistances[i][j] == distances[(j+i)%len(distances)])
+    return And(tabAnd)
+
+def InitRigid(p, s, t, taille_anneau):
+        """
+        Initialise la configuration passée en paramètre
+        La configuration sera rigide
+        """
+        tabAnd = []
+        for i in range(len(p)):
+                tabAnd.append(p[i] != p[(i+1)%len(p)])
+                tabAnd.append(And(p[i] >= 0, p[i] < taille_anneau))
+                tabAnd.append(s[i] == -1)
+                tabAnd.append(t[i] == 0)
+        dist = [ Int('IRd%s' % i) for i in range(len(p))]
+        tabAnd.append(ConfigView(taille_anneau, len(p), 0, p, dist))
+        ad = []
+        vs = []
+        for i in range(len(p)):
+                ad.append([ Int('IRad%s%s' % (i,j)) for j in range(len(p)) ])
+                vs.append([ Int('IRvs%s%s' % (i,j)) for j in range(len(p)) ])
+        tabAnd.append(AllView(dist, ad))
+        for i in range(len(p)):
+                tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
+        for i in range(len(ad)):
+                for j in range(len(ad[i])):
+                        tabAnd.append(ad[i][j] != 0)
+        for i in range(len(ad)):
+                for l in range(len(ad)):
+                        if l != i:
+                                tmpOr1 = []
+                                tmpOr2 = []
+                                tmpOr3 = []
+                                tmpOr4 = []
+                                for j in range(len(ad[i])):
+                                        tmpOr1.append(ad[i][j] != ad [l][j])
+                                        tmpOr2.append(ad[i][j] != vs[l][j])
+                                        tmpOr3.append(vs[i][j] != ad[l][j])
+                                        tmpOr4.append(vs[i][j] != vs[l][j])
+                                tabAnd.append(And(Or(tmpOr1), Or(tmpOr2), Or(tmpOr3), Or(tmpOr4)))
+        # return And(tabAnd)
+        return Exists(dist,
+                Exists([ad[i][j] for i in range(len(p)) for j in range(len(p))],
+                Exists([vs[i][j] for i in range(len(p)) for j in range(len(p))], And(tabAnd))))
 
 def ConfigView(taille_anneau, nb_robots, indice_robot, list_positions, distances):
         

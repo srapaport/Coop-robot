@@ -1,13 +1,6 @@
 from z3 import *
 from utilZ3v7 import *
-
-def AllView(distances, allDistances):
-    tabAnd = []
-    for i in range(len(distances)):
-        for j in range(len(distances)):
-            tabAnd.append(allDistances[i][j] >= 0)
-            tabAnd.append(allDistances[i][j] == distances[(j+i)%len(distances)])
-    return And(tabAnd)
+import seaborn as sns
 
 def IsRigid(ad, vs):
     tabAnd = []
@@ -34,24 +27,35 @@ def IsRigid(ad, vs):
 # distance = [ Int('d%s' % (i)) for i in range(5) ]
 # tmpInit = []
 # tmpInit.append(And(distance[0] == 3, distance[1] == 3, distance[2] ==  3, distance[3] == 2, distance[4] == 1))
-# s = Solver()
-# ad = []
-# vs = []
-# for i in range(len(distance)):
-#     ad.append([ Int('ird%s%s' % (i,j)) for j in range(len(distance)) ])
-#     vs.append([ Int('irds%s%s' % (i,j)) for j in range(len(distance)) ])
-# s.add(AllView(distance, ad))
-# for i in range(len(distance)):
-#     s.add(ViewSym(taille_anneau, ad[i], vs[i]))
 
-# tab = IsRigid(ad, vs)
+# taille_anneau = 6
+# nb_robot = 3
+# # distance = [ Int('d%s' % (i)) for i in range(3) ]
+# # # tmpInit = []
+# # # tmpInit.append(And(distance[0] == 3, distance[1] == 3, distance[2] ==  3, distance[3] == 2, distance[4] == 1))
 
-# s.add(And(tmpInit))
-# s.add(tab)
-# c = s.check()
+# # s = Solver()
+# # ad = []
+# # vs = []
+# # for i in range(len(distance)):
+# #     ad.append([ Int('ird%s%s' % (i,j)) for j in range(len(distance)) ])
+# #     vs.append([ Int('irds%s%s' % (i,j)) for j in range(len(distance)) ])
+# # s.add(AllView(distance, ad))
+# # for i in range(len(distance)):
+# #     s.add(ViewSym(taille_anneau, ad[i], vs[i]))
+# p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
+# s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
+# t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
+
+# # tab = IsRigid(ad, vs)
+# tab1 = InitRigid(p, s, t, taille_anneau)
+# sol = Solver()
+# # s.add(And(tmpInit))
+# sol.add(tab1)
+# c = sol.check()
 # print("solver : ", c)
 # if c == sat:
-#     print(s.model().sexpr())
+#     print(sol.model().sexpr())
 ######################
 
 def recur(prefix, suffix, res):
@@ -101,7 +105,6 @@ def AllCode(allDistances, allDistancesSym, alphas, betas, alphas_prime, betas_pr
 
 def CodeMaker(ad, vs, codes):
     tabAnd = []
-    tabAnd.append(IsRigid(ad, vs))
 
     alphas = [ Int('alpha%s' % (j)) for j in range(len(ad)) ]
     betas = [ Int('beta%s' % (j)) for j in range(len(ad)) ]
@@ -317,32 +320,38 @@ def phiR(taille_anneau, distance):
     return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
             Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
             Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
-    # return Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
-    # Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd)))
+
 ###################### phiR
-taille_anneau = 6
-nb_robot = 3
-distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
-p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
-s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
-t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
+# taille_anneau = 6
+# nb_robot = 3
+# distance = [ Int('d%s' % (i)) for i in range(nb_robot) ]
+# p = [ Int('p%s' % (i)) for i in range(nb_robot) ]
+# s = [ Int('s%s' % (i)) for i in range(nb_robot) ]
+# t = [ Int('t%s' % (i)) for i in range(nb_robot) ]
+# p2 = [ Int('p0%s' % (i)) for i in range(nb_robot) ]
+# s2 = [ Int('s0%s' % (i)) for i in range(nb_robot) ]
+# t2 = [ Int('t0%s' % (i)) for i in range(nb_robot) ]
+# p3 = [ Int('p1%s' % (i)) for i in range(nb_robot) ]
+# s3 = [ Int('s1%s' % (i)) for i in range(nb_robot) ]
+# t3 = [ Int('t1%s' % (i)) for i in range(nb_robot) ]
+# p4 = [ Int('p2%s' % (i)) for i in range(nb_robot) ]
+# s4 = [ Int('s2%s' % (i)) for i in range(nb_robot) ]
+# t4 = [ Int('t2%s' % (i)) for i in range(nb_robot) ]
 
-tab0 = Init(p, s, t, taille_anneau)
-next_position0 = Int('pp0')
-tab1 = Move(taille_anneau, nb_robot, 0, p, next_position0, phiR)
-next_position1 = Int('pp1')
-tab2 = Move(taille_anneau, nb_robot, 1, p, next_position1, phiR)
-next_position2 = Int('pp2')
-tab3 = Move(taille_anneau, nb_robot, 2, p, next_position2, phiR)
+# sol = Solver()
+# tab0 = InitRigid(p, s, t, taille_anneau)
 
-sol = Solver()
-sol.add(tab0)
-sol.add(tab1)
-sol.add(tab2)
-sol.add(tab3)
+# tab1 = AsyncPost(taille_anneau, nb_robot, p, s, t, p2, s2, t2, phiR)
+# tab2 = AsyncPost(taille_anneau, nb_robot, p2, s2, t2, p3, s3, t3, phiR)
+# tab3 = AsyncPost(taille_anneau, nb_robot, p3, s3, t3, p4, s4, t4, phiR)
 
-c = sol.check()
-print("solver : ", c)
-if c == sat:
-    print(sol.model().sexpr())
+# sol.add(tab0)
+# sol.add(tab1)
+# sol.add(tab2)
+# sol.add(tab3)
+
+# c = sol.check()
+# print("solver : ", c)
+# if c == sat:
+#     print(sol.model().sexpr())
 ######################
