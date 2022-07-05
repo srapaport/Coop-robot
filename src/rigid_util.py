@@ -1,6 +1,5 @@
 from z3 import *
 from utilZ3v7 import *
-import seaborn as sns
 
 def IsRigid(ad, vs):
     tabAnd = []

@@ -1,0 +1,259 @@
+taille_anneau =  3
+nb_robots =  3
+taille_boucle_max =  2600
+boucle pour k =  1
+Post Init
+Construction BouclePerdante, len(pk) =  1
+DEBUT OU
+Post de  [kp00, kp01, kp02]  à  [p0, p1, p2]
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  1
+Post Init
+Construction BouclePerdante, len(pk) =  1
+DEBUT OU
+Post de  [kp00, kp01, kp02]  à  [p0, p1, p2]
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  1  | On augmente k
+boucle pour k =  2
+Post Init
+Post 1
+Construction BouclePerdante, len(pk) =  2
+DEBUT OU
+Post de  [kp10, kp11, kp12]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  2
+Post Init
+Post 1
+Construction BouclePerdante, len(pk) =  2
+DEBUT OU
+Post de  [kp10, kp11, kp12]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  2  | On augmente k
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21, kp22]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21, kp22]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  3  | On augmente k
+boucle pour k =  4
+Post Init
+Post 1
+Post 2
+Post 3
+Construction BouclePerdante, len(pk) =  4
+DEBUT OU
+Post de  [kp30, kp31, kp32]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  4
+Post Init
+Post 1
+Post 2
+Post 3
+Construction BouclePerdante, len(pk) =  4
+DEBUT OU
+Post de  [kp30, kp31, kp32]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  4  | On augmente k
+boucle pour k =  5
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Construction BouclePerdante, len(pk) =  5
+DEBUT OU
+Post de  [kp40, kp41, kp42]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  4
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+Stratégie perdante
+k =  5
+(define-fun md2!13212 () Int
+  0)
+(define-fun md2!13660 () Int
+  0)
+(define-fun ks00 () Int
+  (- 1))
+(define-fun cvdp1!13215 () Int
+  3)
+(define-fun md0!13214 () Int
+  1)
+(define-fun md1!13213 () Int
+  2)
+(define-fun kt11 () Int
+  1)
+(define-fun kp32 () Int
+  2)
+(define-fun kt00 () Int
+  0)
+(define-fun kp42 () Int
+  2)
+(define-fun kp10 () Int
+  0)
+(define-fun cvdp0!13216 () Int
+  1)
+(define-fun kt20 () Int
+  0)
+(define-fun mdp2!13209 () Int
+  0)
+(define-fun ks31 () Int
+  2)
+(define-fun t0 () Int
+  0)
+(define-fun s2 () Int
+  (- 1))
+(define-fun p2 () Int
+  2)
+(define-fun cvdp1!13663 () Int
+  3)
+(define-fun md1!13661 () Int
+  2)
+(define-fun kp41 () Int
+  2)
+(define-fun mdp1!13210 () Int
+  1)
+(define-fun kp20 () Int
+  0)
+(define-fun kt22 () Int
+  0)
+(define-fun ks11 () Int
+  2)
+(define-fun kp12 () Int
+  2)
+(define-fun kp40 () Int
+  0)
+(define-fun t2 () Int
+  0)
+(define-fun kt02 () Int
+  0)
+(define-fun p1 () Int
+  2)
+(define-fun kt32 () Int
+  0)
+(define-fun ks41 () Int
+  2)
+(define-fun md1!13773 () Int
+  0)
+(define-fun s0 () Int
+  (- 1))
+(define-fun ks22 () Int
+  2)
+(define-fun mdp0!13659 () Int
+  2)
+(define-fun kp31 () Int
+  2)
+(define-fun kp30 () Int
+  0)
+(define-fun kt10 () Int
+  0)
+(define-fun kp00 () Int
+  0)
+(define-fun kt42 () Int
+  1)
+(define-fun kp01 () Int
+  2)
+(define-fun md0!13774 () Int
+  2)
+(define-fun kt40 () Int
+  1)
+(define-fun mdp1!13658 () Int
+  1)
+(define-fun kt12 () Int
+  1)
+(define-fun ks40 () Int
+  (- 1))
+(define-fun kt31 () Int
+  0)
+(define-fun mdp2!13657 () Int
+  0)
+(define-fun kt41 () Int
+  0)
+(define-fun kp02 () Int
+  2)
+(define-fun kt30 () Int
+  1)
+(define-fun md2!13772 () Int
+  1)
+(define-fun ks12 () Int
+  2)
+(define-fun cvdp0!13776 () Int
+  2)
+(define-fun ks30 () Int
+  (- 1))
+(define-fun ks10 () Int
+  (- 1))
+(define-fun ks20 () Int
+  0)
+(define-fun t1 () Int
+  0)
+(define-fun p0 () Int
+  0)
+(define-fun mdp0!13771 () Int
+  1)
+(define-fun mdp2!13769 () Int
+  2)
+(define-fun ks02 () Int
+  (- 1))
+(define-fun mdp1!13770 () Int
+  0)
+(define-fun cvdp0!13664 () Int
+  1)
+(define-fun ks32 () Int
+  2)
+(define-fun ks01 () Int
+  2)
+(define-fun mdp0!13211 () Int
+  2)
+(define-fun md0!13662 () Int
+  1)
+(define-fun kt01 () Int
+  1)
+(define-fun ks21 () Int
+  2)
+(define-fun kp22 () Int
+  2)
+(define-fun cvdp1!13775 () Int
+  2)
+(define-fun kt21 () Int
+  0)
+(define-fun kp11 () Int
+  2)
+(define-fun ks42 () Int
+  (- 1))
+(define-fun s1 () Int
+  (- 1))
+(define-fun kp21 () Int
+  2)
