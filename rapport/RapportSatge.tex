@@ -415,14 +415,13 @@ $(distM_{i} > distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j
 
 We are now building a strategy, $\phi_{ON}$, that will gather an odd number of robots on a non-periodic configuration. It is the strategy with the lowest priority, it means that the configuration won't be rigid and won't have any multiplicity.
 
-First we build the formula, $IsOddNonPeriodic$, that will return $true$ if the number of robots is odd and if the configuration is non-periodic :
+First we build the formula, $IsPeriodic$, that will return $true$ if the configuration is periodic with an odd number of robots :
 
 \begin{center}
     
-$IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}):=$\\
-$((k+1) \mod{2} = 0) \land $\\
-$\exists p \in [0; \frac{k-1}{2}]$\\
-$\exists d'_{0}, \ldots , d'_{p-1}, \bigwedge_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i}) \land dist_{k-1} \not= d'_{p-1}$
+$IsPeriodic(dist_{0}, \ldots , dist_{k-1}):=$\\
+$\exists p \in [1; \lfloor \frac{k}{3} \rfloor ], (p+1) \mod{2} = 0 \land $\\
+$\exists d'_{0}, \ldots , d'_{p-1}, \bigwedge_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i})$
 \end{center}
 
 Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configuration is non-rigid, non-periodic, has no multiplicity and has an odd number of robots. The robot just move in order to create a multiplicity or a rigid configuration that will lead to a rigid configuration or one with a multiplicity.
@@ -433,8 +432,10 @@ $\phi_{ON}(dist_{0}, \ldots , dist_{k-1}):=$\\
 $\exists d_{00}, \ldots ,d_{k-1k-1},\ AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1})\land$\\
 $\exists ds_{00}, \ldots ,ds_{k-1k-1}, \bigwedge_{i=0}^{k-1} (ViewSym(d_{i0}, \ldots , d_{ik-1}, ds_{i0}, \ldots , ds_{ik-1}))\land$\\
 $\lnot IsRigid(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}) \land $\\
-$IsOddNonPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
-$(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0)$
+$((k+1) \mod{2} = 0) \land $\\
+$\lnot IsPeriodic(dist_{0}, \ldots , dist_{k-1}) \land $\\
+$(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0) \land $\\
+$(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
 \end{center}
 
 \section{Tests}

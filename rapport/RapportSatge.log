@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  4 JUL 2022 19:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  6 JUL 2022 18:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -748,52 +748,52 @@ File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
  [2] [3] [4] [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 448--449
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--466
+Underfull \hbox (badness 10000) in paragraph at lines 451--467
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 471--472
+Underfull \hbox (badness 10000) in paragraph at lines 472--473
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 473--487
+Underfull \hbox (badness 10000) in paragraph at lines 474--488
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 488--489
+Underfull \hbox (badness 10000) in paragraph at lines 489--490
 
  []
 
 [7]
-Overfull \hbox (9.33107pt too wide) in paragraph at lines 510--511
+Overfull \hbox (9.33107pt too wide) in paragraph at lines 511--512
 [][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (45.33144pt too wide) in paragraph at lines 516--518
+Overfull \hbox (45.33144pt too wide) in paragraph at lines 517--519
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (9.33107pt too wide) in paragraph at lines 518--519
+Overfull \hbox (9.33107pt too wide) in paragraph at lines 519--520
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (63.33162pt too wide) in paragraph at lines 523--525
+Overfull \hbox (63.33162pt too wide) in paragraph at lines 524--526
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (75.33174pt too wide) in paragraph at lines 527--528
+Overfull \hbox (75.33174pt too wide) in paragraph at lines 528--529
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -811,7 +811,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  60i,27n,60p,907b,1732s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.pdf (9 pages, 208870 bytes).
+Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportSatge.pdf (9 pages, 209338 bytes).
 PDF statistics:
  101 PDF objects out of 1000 (max. 8388607)
  73 compressed objects within 1 object stream
