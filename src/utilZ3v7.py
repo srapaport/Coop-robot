@@ -1,4 +1,6 @@
 from z3 import *
+from rigid_util import phiR
+from odd_util import phiON
 from math import factorial
 
 def Init(p, s, t, taille_anneau):
@@ -215,6 +217,9 @@ def phiSM(taille_anneau, distances):
         tabOr.append(And(distances[1] == 0, distances[-2] != 0))
         tabAnd.append(Or(tabOr))
         return And(tabAnd)
+
+def phiUltime(taille_anneau, distances):
+        return And(Or(phiSM(taille_anneau, distances), phiR(taille_anneau, distances), phiON(taille_anneau, distances)))
 
 def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
         distances = [ Int('md%s' % i) for i in range(nb_robots) ]
