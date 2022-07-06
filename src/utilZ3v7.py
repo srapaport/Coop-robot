@@ -1,6 +1,10 @@
 from z3 import *
-from rigid_util import phiR
-from odd_util import phiON
+from rigid_util import IsRigid
+from rigid_util import CodeMaker
+from rigid_util import FindMax
+from rigid_util import FindMN
+from odd_util import IsOdd
+from odd_util import IsPeriodic
 from math import factorial
 
 def Init(p, s, t, taille_anneau):
@@ -218,7 +222,89 @@ def phiSM(taille_anneau, distances):
         tabAnd.append(Or(tabOr))
         return And(tabAnd)
 
-def phiUltime(taille_anneau, distances):
+def phiR(taille_anneau, distance):
+    tabAnd = []
+    ad = []
+    vs = []
+    for i in range(len(distance)):
+        ad.append([ Int('phiRad%s%s' % (i,j)) for j in range(len(distance)) ])
+        vs.append([ Int('phiRvs%s%s' % (i,j)) for j in range(len(distance)) ])
+    tabAnd.append(AllView(distance, ad))
+    for i in range(len(distance)):
+        tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
+    max = Int('phiRMax')
+    codes = [ Int('phiRa%s' % (i)) for i in range(len(distance)) ]
+    m = [ Int('phiRdM%s' % (i)) for i in range(len(distance)) ]
+    n = [ Int('phiRdN%s' % (i)) for i in range(len(distance)) ]
+    m2 = [ Int('phiRdM2%s' % (i)) for i in range(len(distance)) ]
+    n2 = [ Int('phiRdN2%s' % (i)) for i in range(len(distance)) ]
+    distm = [ Int('phiRdistM%s' % (i)) for i in range(len(distance)) ]
+    distn = [ Int('phiRdistN%s' % (i)) for i in range(len(distance)) ]
+    tabAnd.append(CodeMaker(ad, vs, codes))
+    tabAnd.append(FindMax(distance, max))
+    tabAnd.append(FindMN(ad, codes, max, m, n))
+    tabOrdM = []
+    tabOrdN = []
+    tabAnddMl = []
+    tabAnddMr = []
+    tabAnddNl = []
+    tabAnddNr = []
+    for i in range(len(distance)):
+        tabOrdM.append(m2[i] != n[i])
+        tabOrdN.append(n2[i] != m[i])
+        tabAnddMl.append(m2[i] == m[(i-1)%len(distance)])
+        tabAnddMr.append(m2[i] == m[(i+1)%len(distance)])
+        tabAnddNl.append(n2[i] == n[(i-1)%len(distance)])
+        tabAnddNr.append(n2[i] == n[(i+1)%len(distance)])
+        summ = []
+        sumn = []
+        for l in range(i+1):
+            summ.append(m[l])
+            sumn.append(n[l])
+        tabAnd.append(distm[i] == Sum(summ))
+        tabAnd.append(distn[i] == Sum(sumn))
+    tabAnd.append(Or(And(tabAnddMl), And(tabAnddMr)))
+    tabAnd.append(Or(And(tabAnddNl), And(tabAnddNr)))
+    tabAnd.append(Or(tabOrdM))
+    tabAnd.append(Or(tabOrdN))
+    tabOr = []
+    for i in range(len(distance)):
+        tabAndM = []
+        tabAndN = []
+        tabAndM.append(distm[i] < distn[i])
+        tabAndN.append(distn[i] < distm[i])
+        for q in range(i):
+            tabAndM.append(distm[q] == distn[q])
+            tabAndN.append(distm[q] == distn[q])
+        for j in range(len(distance)):
+            tabAndM.append(m[j] == distance[j])
+            tabAndN.append(n[j] == distance[j])
+        tabOr.append(Or(And(tabAndM), And(tabAndN)))
+    tabAnd.append(Or(tabOr))
+    return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
+            Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
+            Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
+
+def phiON(taille_anneau, distance):
+    tabAnd = []
+    ad = []
+    vs = []
+    for i in range(len(distance)):
+        ad.append([ Int('phiONad%s%s' % (i,j)) for j in range(len(distance)) ])
+        vs.append([ Int('phiONvs%s%s' % (i,j)) for j in range(len(distance)) ])
+    tabAnd.append(AllView(distance, ad))
+    for i in range(len(distance)):
+        tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
+    tabAnd.append(Not(IsRigid(ad, vs)))
+    tabAnd.append(IsOdd(distance))
+    tabAnd.append(Not(IsPeriodic(distance)))
+    for i in range(len(distance)):
+        tabAnd.append(distance[i] != 0)
+        tabAnd.append(distance[i] == vs[0][i])
+    return Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))], 
+    Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd)))
+
+def phiUltimate(taille_anneau, distances):
         return And(Or(phiSM(taille_anneau, distances), phiR(taille_anneau, distances), phiON(taille_anneau, distances)))
 
 def Move(taille_anneau, nb_robots, indice_robot, list_positions, pp, phi):
@@ -268,9 +354,9 @@ def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, func
                                 # Ligne 1 AsyncPost
                                 tmpAnd.append(And(p_prime[j] == p[j], s_prime[j] == s[j]))
                 # Ligne 2 AsyncPost
-                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], function_phi), p_prime[i] == p[i]))
+                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], function_phi), p_prime[i] == p[i], t[i] == 0))
                 # Ligne 3 AsyncPost
-                tmpOr.append(And(s[i] != -1, p_prime[i] == s[i], s_prime[i] == -1))
+                tmpOr.append(And(s[i] != -1, p_prime[i] == s[i], s_prime[i] == -1, t[i] == 0))
                 tmpAnd.append(Or(tmpOr))
 
                 tmpAndBis = []
@@ -300,6 +386,122 @@ def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, func
                 tmpOr_i1k.append(And(tmpAnd))
         tabAnd.append(Or(tmpOr_i1k))
         return And(tabAnd)
+
+def BouclePerdante(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
+        #taille_boucle = 10
+        #TODO
+        ## On fixe les tailles des tableaux pour enlever les append
+        ## On stocke toutes les tailles de boucle perdante et on les test dans l'interpolant
+        ## On Test les configurations symétriques pour limiter les tailles de boucles perdantes
+        #TODO
+        superAnd = []
+        mainTmpOr = []
+        cp = [None] * taille_boucle
+        cs = [None] * taille_boucle
+        ct = [None] * taille_boucle
+
+        for i in range(taille_boucle):
+                cp[i] = [ Int('bpp%s%s' % (i, j)) for j in range(len(pk)) ]
+                cs[i] = [ Int('bps%s%s' % (i, j)) for j in range(len(sk)) ]
+                ct[i] = [ Int('bpt%s%s' % (i, j)) for j in range(len(tk)) ]
+
+        for x in range(taille_boucle):
+                print("Construction de la boucle de taille : ", x+1," | pour une taille totale de : ", taille_boucle)
+        
+                tmpAnd = []
+                tmpAndbis = []
+                tmpOr = []
+                tmpOrbis = []
+
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
+                #print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
+                for i in range(x):
+                        # if i == 0 :
+                        #         print("Entrée dans la boucle des AsyncPost")
+                        tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
+                        #print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
+                
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[x], cs[x], ct[x], pk, sk, tk, function_phi))
+                #print("Dernier Post : cp départ : ", cp[-1], " | cp arrivé : ", pk,"\n")
+                ############################
+                for j in range(len(pk) - 1):
+                        tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+                tmpAnd.append(Or(tmpOr))
+
+                for i in range(x):
+                        tmpOr = []
+                        for j in range(len(pk) - 1):
+                                tmpOr.append(cp[i][j] != cp[i][j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+                        tmpAnd.append(Or(tmpOr))
+                ############ Partie avec aucune config gagnante longue mais ok
+
+                for j in range(len(pk)):
+                        tmpAndbis.append(tk[j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+                tmpOrbis.append(And(tmpAndbis))
+
+                for i in range(x):
+                        tmpAndbis = []
+                        for j in range(len(pk)):
+                                tmpAndbis.append(ct[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+                        tmpOrbis.append(And(tmpAndbis))
+                
+                tmpAnd.append(Or(tmpOrbis))
+                ############ Partie avec une config avec tous les t à 0
+                ###########################
+                mainTmpOr.append(And(tmpAnd))
+        superAnd.append(Or(mainTmpOr))
+        #return And(superAnd)
+        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(superAnd))))
+
+def BouclePerdante_v2(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
+
+        cp = [None] * taille_boucle
+        cs = [None] * taille_boucle
+        ct = [None] * taille_boucle
+        for i in range(taille_boucle):
+                cp[i] = [ Int('bpp%s%s' % (i, j)) for j in range(len(pk)) ]
+                cs[i] = [ Int('bps%s%s' % (i, j)) for j in range(len(sk)) ]
+                ct[i] = [ Int('bpt%s%s' % (i, j)) for j in range(len(tk)) ]
+        
+        tmpAnd = []
+        tmpAndbis = []
+        tmpOr = []
+        tmpOrbis = []
+
+        print("Construction de la boucle de taille : ", taille_boucle, " | BouclePerdante_v2")
+        tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
+        for i in range(taille_boucle - 1):
+                #print("Construction de la boucle de taille : ", i+2)
+                tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
+        tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[-1], cs[-1], ct[-1], pk, sk, tk, function_phi))
+        ############################
+        for j in range(len(pk)):
+                tmpOr.append(pk[j] != pk[(j+1)%len(pk)]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+        tmpAnd.append(Or(tmpOr))
+
+        for i in range(taille_boucle):
+                tmpOr = []
+                for j in range(len(pk) - 1):
+                        tmpOr.append(cp[i][j] != cp[i][j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+                tmpAnd.append(Or(tmpOr))
+        ############ Partie avec aucune config gagnante longue mais ok
+
+        for j in range(len(pk)):
+                tmpAndbis.append(tk[j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+        tmpOrbis.append(And(tmpAndbis))
+
+        for i in range(taille_boucle):
+                tmpAndbis = []
+                for j in range(len(pk)):
+                        tmpAndbis.append(ct[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+                tmpOrbis.append(And(tmpAndbis))
+        
+        tmpAnd.append(Or(tmpOrbis))
+        ############ Partie avec une config avec tous les t à 0
+        ###########################
+        #return And(tmpAnd)
+        return Exists([cp[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([cs[i][j] for i in range(taille_boucle) for j in range(len(pk))], Exists([ct[i][j] for i in range(taille_boucle) for j in range(len(pk))], And(tmpAnd))))
+
 
 def BouclePerdante_v3(taille_anneau, p_init, s_init, t_init, pk, sk, tk, function_phi):
 

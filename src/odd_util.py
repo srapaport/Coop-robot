@@ -1,6 +1,5 @@
 from z3 import *
 from utilZ3v7 import *
-from rigid_util import *
 import math
 
 def IsOdd(distances):
@@ -16,11 +15,11 @@ def IsPeriodic(distances):
     d_prime = []
     for p in range(1, borne_sup_p + 1, 2):
         d_prime.append([ Int('IsOdd_d_prime%s%s' % (p, i)) for i in range(p) ])
-        print(d_prime)
-        print("p : ", p)
+        #print(d_prime)
+        #print("p : ", p)
         tabAndBis = []
         for i in range(len(distances)):
-            print("d_prime[", i%p,"] == dist[",i,"]")
+            #print("d_prime[", i%p,"] == dist[",i,"]")
             tabAndBis.append(d_prime[-1][i%p] == distances[i])
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
@@ -43,24 +42,6 @@ def IsPeriodic(distances):
 #     sol.add(IsOddNonPeriodic([ Int('d%s' % (j)) for j in range(i) ]))
 #     print("solver ",i," : ", sol.check())
 ######################
-
-def phiON(taille_anneau, distance):
-    tabAnd = []
-    ad = []
-    vs = []
-    for i in range(len(distance)):
-        ad.append([ Int('phiONad%s%s' % (i,j)) for j in range(len(distance)) ])
-        vs.append([ Int('phiONvs%s%s' % (i,j)) for j in range(len(distance)) ])
-    tabAnd.append(AllView(distance, ad))
-    for i in range(len(distance)):
-        tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
-    tabAnd.append(Not(IsRigid(ad, vs)))
-    tabAnd.append(IsOdd(distance))
-    tabAnd.append(Not(IsPeriodic(distance)))
-    for i in range(len(distance)):
-        tabAnd.append(distance[i] != 0)
-        tabAnd.append(distance[i] == vs[0][i])
-    return And(tabAnd)
 
 ###################### phiON
 # taille_anneau = 12

@@ -257,69 +257,6 @@ def FindMN(ad, codes, Max, M, N):
 #     print(sol.model().sexpr())
 ######################
 
-def phiR(taille_anneau, distance):
-    tabAnd = []
-    ad = []
-    vs = []
-    for i in range(len(distance)):
-        ad.append([ Int('phiRad%s%s' % (i,j)) for j in range(len(distance)) ])
-        vs.append([ Int('phiRvs%s%s' % (i,j)) for j in range(len(distance)) ])
-    tabAnd.append(AllView(distance, ad))
-    for i in range(len(distance)):
-        tabAnd.append(ViewSym(taille_anneau, ad[i], vs[i]))
-    max = Int('phiRMax')
-    codes = [ Int('phiRa%s' % (i)) for i in range(len(distance)) ]
-    m = [ Int('phiRdM%s' % (i)) for i in range(len(distance)) ]
-    n = [ Int('phiRdN%s' % (i)) for i in range(len(distance)) ]
-    m2 = [ Int('phiRdM2%s' % (i)) for i in range(len(distance)) ]
-    n2 = [ Int('phiRdN2%s' % (i)) for i in range(len(distance)) ]
-    distm = [ Int('phiRdistM%s' % (i)) for i in range(len(distance)) ]
-    distn = [ Int('phiRdistN%s' % (i)) for i in range(len(distance)) ]
-    tabAnd.append(CodeMaker(ad, vs, codes))
-    tabAnd.append(FindMax(distance, max))
-    tabAnd.append(FindMN(ad, codes, max, m, n))
-    tabOrdM = []
-    tabOrdN = []
-    tabAnddMl = []
-    tabAnddMr = []
-    tabAnddNl = []
-    tabAnddNr = []
-    for i in range(len(distance)):
-        tabOrdM.append(m2[i] != n[i])
-        tabOrdN.append(n2[i] != m[i])
-        tabAnddMl.append(m2[i] == m[(i-1)%len(distance)])
-        tabAnddMr.append(m2[i] == m[(i+1)%len(distance)])
-        tabAnddNl.append(n2[i] == n[(i-1)%len(distance)])
-        tabAnddNr.append(n2[i] == n[(i+1)%len(distance)])
-        summ = []
-        sumn = []
-        for l in range(i+1):
-            summ.append(m[l])
-            sumn.append(n[l])
-        tabAnd.append(distm[i] == Sum(summ))
-        tabAnd.append(distn[i] == Sum(sumn))
-    tabAnd.append(Or(And(tabAnddMl), And(tabAnddMr)))
-    tabAnd.append(Or(And(tabAnddNl), And(tabAnddNr)))
-    tabAnd.append(Or(tabOrdM))
-    tabAnd.append(Or(tabOrdN))
-    tabOr = []
-    for i in range(len(distance)):
-        tabAndM = []
-        tabAndN = []
-        tabAndM.append(distm[i] < distn[i])
-        tabAndN.append(distn[i] < distm[i])
-        for q in range(i):
-            tabAndM.append(distm[q] == distn[q])
-            tabAndN.append(distm[q] == distn[q])
-        for j in range(len(distance)):
-            tabAndM.append(m[j] == distance[j])
-            tabAndN.append(n[j] == distance[j])
-        tabOr.append(Or(And(tabAndM), And(tabAndN)))
-    tabAnd.append(Or(tabOr))
-    return Exists(max, Exists(codes, Exists(m, (Exists(n, Exists(m2, Exists(n2, Exists(distm, Exists(distn, 
-            Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))],
-            Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd))))))))))))
-
 ###################### phiR
 # taille_anneau = 6
 # nb_robot = 3
