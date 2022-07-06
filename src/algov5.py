@@ -1,8 +1,13 @@
 from z3 import *
-from utilZ3v5 import *
+from utilZ3v7 import *
+import sys
 
-taille_anneau = 2
-nb_robots = 4
+if len(sys.argv) < 3:
+        print("Pas assez d'arguments")
+        exit()
+
+taille_anneau = int(sys.argv[1])
+nb_robots = int(sys.argv[2])
 cpt = 0
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
@@ -17,12 +22,12 @@ s = [ Int('s%s' % i) for i in range(nb_robots) ]
 t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
 while True:
-        taille_boucle = 0
+        taille_boucle = (2*nb_robots) - 2
         satisfiable = False
 
-        I = InitSM(p, s, t, taille_anneau)
+        I = Init(p, s, t, taille_anneau)
 
-        constI = InitSM(p, s, t, taille_anneau)
+        constI = Init(p, s, t, taille_anneau)
         continuer = True
         pk = []
         sk = []
@@ -38,18 +43,18 @@ while True:
                 tmpAndContext = []
 
                 tmpAndInterpolant.append(I)
-                tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSM))
+                tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
 
                 if k > 1:
                         for i in range(1, k):
                                 print("Pass before %s" % i)
-                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiSM))
+                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiSimple))
                                 print("Pass after %s" % i)
 
                 while (not satisfiable) or (taille_boucle < taille_boucle_max):
                         tmpAndContextBis = []
                         taille_boucle = taille_boucle + 1
-                        tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSM))
+                        tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))
                         tmpAndContext.append(And(tmpAndContextBis))
                         print("Test pour taille_boucle = ", taille_boucle)
                         try:
@@ -67,8 +72,8 @@ while True:
                                 k = k + 1
                                 continuer = False
                 sol = Solver()
-                sol.add(Implies(And(Ip), I))
-                if sol.check() == sat:
+                sol.add(And(And(Ip), Not(I)))
+                if sol.check() == unsat:
                         print("Stratégie gagnante\n")
                         exit()
                 else:

@@ -1,15 +1,20 @@
 from z3 import *
-from rigid_util import *
+from utilZ3v7 import *
+import sys
 
-taille_anneau = 3
-nb_robots = 3
+if len(sys.argv) < 3:
+        print("Pas assez d'argument")
+        exit()
+
+taille_anneau = int(sys.argv[1])
+nb_robots = int(sys.argv[2])
 
 taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
 print("taille_anneau = ", taille_anneau)
 print("nb_robots = ", nb_robots)
 print("taille_boucle_max = ", taille_boucle_max)
 
-k = 1
+k = (2*nb_robots) - 1
 NotThisSize = []
 MaybeThisSize = []
 
@@ -39,11 +44,11 @@ while True:
                                 NotThisSizeBis.remove(elem)
                         tabAnd = []
                         tabAnd.append(I)
-                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiR))
+                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
                         for i in range(k-1):
                                 print("Post %s" % (i+1))
-                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiR))
-                        tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiR, NotThisSizeBis))
+                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
+                        tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSizeBis))
                         solBis = Solver()
                         solBis.add(And(tabAnd))
                         if solBis.check() == sat:
@@ -60,11 +65,11 @@ while True:
 
                 tmpAndInterpolant.append(I)
                 print("Post Init")
-                tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiR))
+                tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
                 for i in range(k-1):
                         print("Post %s" % (i+1))
-                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiR))
-                tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiR, NotThisSize))
+                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
+                tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSize))
                 try:
                         Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
                 except ModelRef as m:
@@ -94,7 +99,7 @@ while True:
                                 I = Or(I, And(Ip))
 
 """
-                Erreur pour InitSM + phiR avec taille anneau 3 et nb robot 3
+                Erreur pour InitSM + phiSimple avec taille anneau 3 et nb robot 3
 
 Traceback (most recent call last):
   File "algov7.py", line 69, in <module>
