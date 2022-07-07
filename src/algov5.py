@@ -23,6 +23,7 @@ t = [ Int('t%s' % i) for i in range(nb_robots) ]
 
 while True:
         taille_boucle = (2*nb_robots) - 2
+        #taille_boucle = 0
         satisfiable = False
 
         I = Init(p, s, t, taille_anneau)

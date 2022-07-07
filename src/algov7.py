@@ -15,6 +15,7 @@ print("nb_robots = ", nb_robots)
 print("taille_boucle_max = ", taille_boucle_max)
 
 k = (2*nb_robots) - 1
+#k = 1
 NotThisSize = []
 MaybeThisSize = []
 

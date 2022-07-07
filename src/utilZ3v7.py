@@ -354,9 +354,9 @@ def AsyncPost(taille_anneau, nb_robots, p, s, t, p_prime, s_prime, t_prime, func
                                 # Ligne 1 AsyncPost
                                 tmpAnd.append(And(p_prime[j] == p[j], s_prime[j] == s[j]))
                 # Ligne 2 AsyncPost
-                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], function_phi), p_prime[i] == p[i], t[i] == 0))
+                tmpOr.append(And(s[i] == -1, Move(taille_anneau, nb_robots, i, p, s_prime[i], function_phi), p_prime[i] == p[i]))
                 # Ligne 3 AsyncPost
-                tmpOr.append(And(s[i] != -1, p_prime[i] == s[i], s_prime[i] == -1, t[i] == 0))
+                tmpOr.append(And(s[i] != -1, p_prime[i] == s[i], s_prime[i] == -1))
                 tmpAnd.append(Or(tmpOr))
 
                 tmpAndBis = []
@@ -538,30 +538,57 @@ def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
         tabAnd = []
         tabOrPost = []
         print("DEBUT OU")
+
         print("Post de ", pk[-1], " à ", p_init)
-        tabOrPost.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_init, s_init, t_init, function_phi))
+        tabAndBis = []
+        tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_init, s_init, t_init, function_phi))
+        tmpOrBis = []
+        for m in range(1, len(pk) + 1):
+                tmpOr = []
+                tmpAnd = []
+                for n in range(len(pk[-m])):
+                        tmpOr.append(pk[-m][n] != pk[-m][(n+1)%len(pk[-m])])
+                        tmpAnd.append(tk[-m][n] == 0)
+                tmpOrBis.append(And(tmpAnd))
+                tabAndBis.append(Or(tmpOr))
+        tabAndBis.append(Or(tmpOrBis))
+        tabOrPost.append(And(tabAndBis))        
+
         for i in range(len(pk) - 1):
                 taille_boucle = len(pk) - (i+1)
                 if taille_boucle in NotThisSize:
                         print("On ne cherche pas de boucle de taille : ", taille_boucle)
                 else:
-                        tabOrPost.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], pk[i], sk[i], tk[i], function_phi))
                         print("Post de ", pk[-1], " à ", pk[i])
+                        tabAndBis = []  # Construction du tabOrPost
+                        tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], pk[i], sk[i], tk[i], function_phi))
+                        tmpOrBis = []   # Construction de tmpAnd
+                        for m in range(1, taille_boucle + 1):
+                                tmpOr = []      # Aucune configuration n'est gagnante
+                                tmpAnd = []     # Au moins une configuration a tous ses t à 0
+                                for n in range(len(pk[-m])):
+                                        tmpOr.append(pk[-m][n] != pk[-m][(n+1)%len(pk[-m])])
+                                        tmpAnd.append(tk[-m][n] == 0)
+                                tmpOrBis.append(And(tmpAnd))
+                                tabAndBis.append(Or(tmpOr))
+                        tabAndBis.append(Or(tmpOrBis))
+                        tabOrPost.append(And(tabAndBis))
+
         tabAnd.append(Or(tabOrPost))
         print("FIN OU")
         ############################
-        for i in range(len(pk)):
-                tmpOr = []
-                for j in range(len(pk[i])):
-                        tmpOr.append(pk[i][j] != pk[i][(j+1)%len(pk[0])]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
-                tabAnd.append(Or(tmpOr))
+        # for i in range(len(pk)):
+        #         tmpOr = []
+        #         for j in range(len(pk[i])):
+        #                 tmpOr.append(pk[i][j] != pk[i][(j+1)%len(pk[0])]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
+        #         tabAnd.append(Or(tmpOr))
 
-        tmpOr = []
-        for i in range(len(pk)):
-                tmpAnd = []
-                for j in range(len(pk[i])):
-                        tmpAnd.append(tk[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
-                tmpOr.append(And(tmpAnd))
-        tabAnd.append(Or(tmpOr))
+        # tmpOr = []
+        # for i in range(len(pk)):
+        #         tmpAnd = []
+        #         for j in range(len(pk[i])):
+        #                 tmpAnd.append(tk[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
+        #         tmpOr.append(And(tmpAnd))
+        # tabAnd.append(Or(tmpOr))
         return And(tabAnd)
 
