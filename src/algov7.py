@@ -16,7 +16,7 @@ print("taille_boucle_max = ", taille_boucle_max)
 
 k = (2*nb_robots) - 1
 #k = 1
-NotThisSize = []
+NotThisSize = [i for i in range(k)]
 MaybeThisSize = []
 
 p = [ Int('p%s' % i) for i in range(nb_robots) ]
