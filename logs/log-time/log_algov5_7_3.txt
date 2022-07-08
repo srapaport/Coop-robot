@@ -1,0 +1,16 @@
+Init + phiSimple
+taille_anneau =  7
+nb_robots =  3
+taille_boucle_max =  30856
+boucle pour k = 1
+
+Construction de la boucle de taille :  1  | pour une taille totale de :  5
+Construction de la boucle de taille :  2  | pour une taille totale de :  5
+Construction de la boucle de taille :  3  | pour une taille totale de :  5
+Construction de la boucle de taille :  4  | pour une taille totale de :  5
+Construction de la boucle de taille :  5  | pour une taille totale de :  5
+Test pour taille_boucle =  5
+Command exited with non-zero status 1
+python3 algov5.py 7 3
+	Real time elapsed : 1:09:06
+

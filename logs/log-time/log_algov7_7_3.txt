@@ -1,0 +1,22 @@
+Init + phiSimple
+taille_anneau =  7
+nb_robots =  3
+taille_boucle_max =  30856
+boucle pour k =  5
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Construction BouclePerdante, len(pk) =  5
+DEBUT OU
+Post de  [kp40, kp41, kp42]  à  [p0, p1, p2]
+Post de  [kp40, kp41, kp42]  à  [kp00, kp01, kp02]
+Post de  [kp40, kp41, kp42]  à  [kp10, kp11, kp12]
+Post de  [kp40, kp41, kp42]  à  [kp20, kp21, kp22]
+Post de  [kp40, kp41, kp42]  à  [kp30, kp31, kp32]
+FIN OU
+Command exited with non-zero status 1
+python3 algov7.py 7 3
+	Real time elapsed : 16:17.32
+
