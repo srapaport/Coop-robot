@@ -16,6 +16,8 @@ do
             echo -n "`sed -r -n 's/^taille_anneau =  (.*)$/\1/p' ../logs/log-time/$file`;" >> ../data/data-time.csv
             echo -n "`sed -r -n 's/^nb_robots =  (.*)$/\1/p' ../logs/log-time/$file`;" >> ../data/data-time.csv
             echo "`sed -r -n 's/^.*elapsed : (.*)$/\1/p' ../logs/log-time/$file`" >> ../data/data-time.csv
+        else
+            echo "Error with $file"
         fi
     else
         echo "Error with $file"
