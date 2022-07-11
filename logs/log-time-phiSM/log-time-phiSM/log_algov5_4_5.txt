@@ -1,0 +1,5 @@
+Init + phiSimple
+Command terminated by signal 9
+python3 algov5.py 4 5
+	Real time elapsed : 1:00:50
+

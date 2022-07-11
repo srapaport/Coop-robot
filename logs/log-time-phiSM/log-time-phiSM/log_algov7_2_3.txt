@@ -1,0 +1,22 @@
+Init + phiSimple
+taille_anneau =  2
+nb_robots =  3
+taille_boucle_max =  816
+boucle pour k =  5
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Construction BouclePerdante, len(pk) =  5
+DEBUT OU
+Post de  [kp40, kp41, kp42]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  4
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+Command exited with non-zero status 1
+python3 algov7.py 2 3
+	Real time elapsed : 0:15.33
+

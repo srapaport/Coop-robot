@@ -50,11 +50,11 @@ def main():
                                                         NotThisSizeBis.remove(elem)
                                                 tabAnd = []
                                                 tabAnd.append(I)
-                                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+                                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
                                                 for i in range(k-1):
                                                         print("Post %s" % (i+1))
-                                                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
-                                                tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSizeBis))
+                                                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiUltimate))
+                                                tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiUltimate, NotThisSizeBis))
                                                 solBis = Solver()
                                                 solBis.add(And(tabAnd))
                                                 if solBis.check() == sat:
@@ -71,11 +71,11 @@ def main():
 
                                         tmpAndInterpolant.append(I)
                                         print("Post Init")
-                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
                                         for i in range(k-1):
                                                 print("Post %s" % (i+1))
-                                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
-                                        tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSize))
+                                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiUltimate))
+                                        tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiUltimate, NotThisSize))
                                         try:
                                                 Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
                                         except ModelRef as m:
@@ -111,7 +111,7 @@ thr = threading.Thread(target = main)
 thr.start()
 thr.join()
 """
-                Erreur pour InitSM + phiSimple avec taille anneau 3 et nb robot 3
+                Erreur pour InitSM + phiUltimate avec taille anneau 3 et nb robot 3
 
 Traceback (most recent call last):
   File "algov7.py", line 69, in <module>

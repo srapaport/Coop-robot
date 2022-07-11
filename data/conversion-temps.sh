@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "file;algo;taille anneau;nb robots;time elapsed" > data-timev2.csv
+echo "file;algo;taille anneau;nb robots;error;time elapsed" > data-timev2.csv
 for data in `cat ./data-time.csv`
 do
     echo -n $data | sed -r -n 's/(^.*algo.*;).*:.*$/\1/p' >> data-timev2.csv
