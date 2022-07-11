@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv('./data/data-timev2.csv', sep=';')
+data = pd.read_csv('./data/data-phiSimple/data-timev2.csv', sep=';')
 
 algov5 = data.loc[data['algo'] == 5]
 algov7 = data.loc[data['algo'] == 7]
