@@ -1,5 +1,5 @@
 from z3 import *
-from utilZ3v7 import *
+#from utilZ3v7 import *
 import math
 
 def IsOdd(distances):

@@ -47,27 +47,27 @@ def main():
                                         tmpAndContext = []
 
                                         tmpAndInterpolant.append(I)
-                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiR))
+                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
 
                                         if k > 1:
                                                 for i in range(1, k):
                                                         print("Pass before %s" % i)
-                                                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiR))
+                                                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiSimple))
                                                         print("Pass after %s" % i)
 
                                         while (not satisfiable) or (taille_boucle < taille_boucle_max):
                                                 # tmpAndContextBis = []
                                                 taille_boucle = taille_boucle + 1
-                                                # tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiR))
+                                                # tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))
                                                 #tmpAndContext.append(And(tmpAndContextBis))
                                                 #print("tmpAndContext : ", tmpAndContext)
                                                 #print("tmpAndInterpolant : ",tmpAndInterpolant)
                                                 print("Test pour taille_boucle = ", taille_boucle)
                                                 try:
                                                         if len(tmpAndContext) == 0:
-                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiR)))
+                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple)))
                                                         else:
-                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext, BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiR))))
+                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext, BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))))
                                                         # print("Id : ", id(Ip))
                                                         print("Unsat pour taille_boucle = ", taille_boucle)
                                                         # if taille_boucle < taille_boucle_max:
@@ -75,7 +75,7 @@ def main():
                                                 # except Z3Exception as z:
                                                 #         solz = Solver()
                                                 #         solz.add(And(tmpAndInterpolant))
-                                                #         solz.add(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiR))
+                                                #         solz.add(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))
                                                 #         cz = solz.check()
                                                 #         print("Z3Exception solver : ", cz)
                                                 #         if cz == sat:

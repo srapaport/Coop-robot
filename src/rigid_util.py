@@ -1,5 +1,5 @@
 from z3 import *
-from utilZ3v7 import *
+#from utilZ3v7 import *
 
 def IsRigid(ad, vs):
     tabAnd = []
