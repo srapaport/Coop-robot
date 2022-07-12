@@ -25,11 +25,19 @@
 
 \section{Introduction}
 
-The goal is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be an interpretation of the pseudo-code given in the research report \cite{gathering}.
+There are two goals here, the first one is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be an interpretation of the pseudo-code given in the research report \cite{gathering}.
 
-The formulas we are building, will be used with formulas given in an other research report \cite{algo}, and then will be tested in the acceleration algorithm using an interpolant \cite{algo}
+The formulas we are building, will be used with formulas given in an other research report \cite{algo}, and then will be tested in the acceleration algorithm using an interpolant \cite{algo}. Which leads us to the second goal, we want to implement and, if possible, improve this algorithm.
 
-\section{Configuration with single multiplicity}
+\section{Logical Formulas}
+
+In this section, we will translate the algorithms given in the research report \cite{gathering}. Some changes will have to be made because we can't literally translate an algorithm into a first-order logic formula.
+
+Before each formula we will describe briefly their scope : when will they be true (or false). We won't present to you the implementation of those formulas in this report. There will be an annex available with the \textit{Python} implementation that we use in order to test those formulas and to put them in the algorithm \cite{algo}.
+
+We have three strategies. Each of them allows a robot to move in a given direction based on its environment. They all have the same definition, they take one argument : the view vector (distance vector).
+
+\subsection{Configurations with single multiplicity}
 
 The strategy $\phi_{SM}$ is $true$ if the given configuration has a single multiplicity and that the robot calling the strategy should move toward the robot at distance $d_{0}$ :
 \begin{center}
@@ -39,238 +47,24 @@ $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
 
-In order to test our strategy we need a function that will initialize our first configuration and make it one with a single multiplicity without being already a winning one. Here is its implementation in python :
+In order to test our strategy we need a function that will initialize our first configuration and make it one with a single multiplicity without being already a winning one. Here is the formula $InitSM$ which is $true$ if $p$, $s$ and $t$ form a configuration with a single multiplicity, the configuration is not a winning one, all $p$ are initialized in the right scope, all $t$ are initialized at $0$ and all $s$ are initialized at $RLC$ ($-1$) :
 
-\begin{lstlisting}[language=Python]
-
-def InitSM(p, s, t, taille_anneau):
-    """
-    Initialize the given configuration
-    The configuration will have no multiplicity
-    and won't be a winning one
-    """
-    tmpOr = []
-    tmpAnd = []
-    for i in range(len(p)):
-        tmpOr.append(p[i] != p[(i+1)%len(p)])
-    tmpAnd.append(Or(tmpOr))
-    # we make sure there is no winning configuration
-    # as a result of this function
-    tmpOr = []
-    for i in range(len(s)):
-        tmpAnd.append(p[i] >= 0)
-        tmpAnd.append(p[i] < taille_anneau)
-        tmpAnd.append(s[i] == -1)
-        tmpAnd.append(t[i] == 0)
+\begin{center}
     
-    for i in range(len(p)):
-        tmpAndbis = []
-        tmpAndbis.append(p[i] == p[(i+1)%len(p)])
-        tmpOrbis = []
-        for j in range(len(p)):
-            if((j != i) and (j != (i+1))):
-                tmpOrbis.append(p[j] == p[i])
-                tmpAndter=[]
-                for h in range(len(p)):
-                    if h !=j:
-                        tmpAndter.append(p[h] != p[j])
-                tmpOrbis.append(And(tmpAndter))
-        tmpAndbis.append(Or(tmpOrbis))
-        tmpOr.append(And(tmpAndbis))
-    tmpAnd.append(Or(tmpOr))
-    return And(tmpAnd)
-\end{lstlisting}
+$InitSM(p_{0},\dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, size_{ring}):=$\\
+$\bigvee_{i = 0}^{k-1}( p_{i} \not= p_{i+1 \mod{k-1}} ) \land$\\
+$(\bigwedge_{i = 0}^{k-1} ( p_{i} \geq 0 \land p_{i} <  size_{ring} \land s_{i} = -1 \land t_{i} = 0)) \land$\\
+$(\bigvee_{i = 0}^{k-1} (\bigvee_{j = 0, j\not=i}^{k-1} (p_{j} = p_{i} \land \bigwedge_{h = 0}^{k-1} ( \bigwedge_{l = 0, l\not=h}^{k-1} (p_{h} \not= p_{l} \lor p_{h} = p_{i}) ) ) ) )$
+\end{center}
 
-We want to test this function, we choose a configuration with a ring of size 5 and 3 robots. We use the parameters below as an input :
-\begin{lstlisting}[language=Python]
-
-taille_anneau = 5       # Taille de l'anneau 
-nb_robots = 3           # Nombre de robot sur l'anneau
-
-p = [ Int('p%s' % i) for i in range(nb_robots) ]
-s = [ Int('s%s' % i) for i in range(nb_robots) ]
-t = [ Int('t%s' % i) for i in range(nb_robots) ]
-
-tabInit = InitSM(p, s, t, taille_anneau)
-print("tabInit :\n", tabInit)
-
-solv1 = Solver()
-solv1.add(tabInit)
-
-print("solv1 : ",solv1.check())
-if(solv1.check() == sat):
-    print("model :\n",solv1.model())
-\end{lstlisting}
-The code above produces the following output : 
-\begin{lstlisting}
-tabInit :
- And(Or(p0 != p1, p1 != p2, p2 != p0),
-    p0 >= 0,
-    p0 < 5,
-    s0 == -1,
-    t0 == 0,
-    p1 >= 0,
-    p1 < 5,
-    s1 == -1,
-    t1 == 0,
-    p2 >= 0,
-    p2 < 5,
-    s2 == -1,
-    t2 == 0,
-    Or(And(p0 == p1, Or(p2 == p0, And(p0 != p2, p1 != p2))),
-       And(p1 == p2, Or(p0 == p1, And(p1 != p0, p2 != p0))),
-       And(p2 == p0,
-           Or(p0 == p2,
-              And(p1 != p0, p2 != p0),
-              p1 == p2,
-              And(p0 != p1, p2 != p1)))))
-solv1 :  sat
-model :
- [p1 = 1,
- p0 = 0,
- p2 = 0,
- t2 = 0,
- s2 = -1,
- t1 = 0,
- s1 = -1,
- t0 = 0,
- s0 = -1]
-\end{lstlisting}
-
-What the model shows us is a configuration where robots 0 and 2 are in position 0 and robot 1 is in position 1.
-
-Now we implement in python the $\phi_{SM}$ strategy :
-
-\begin{lstlisting}[language=Python]
-
-def phiSM(distances):
-    tabAnd = []
-    tabOr = []
-    for i in range(len(distances)):
-        tabAndBis = []
-        tabAndBis.append(distances[i] == 0)
-        for j in range(len(distances)):
-            if j != i:
-                tabOrBis.append(distances[j] > 0)
-                tabOrBis.append(And(distances[j] == 0,
-                    distances[j-1] == 0))
-                tabAndBis.append(Or(tabOrBis))
-        tabOr.append(And(tabAndBis))
-    tabAnd.append(Or(tabOr))
-    tabAnd.append(distances[-1] != 0)
-    tabOr = []
-    tabOr.append(And(distances[1] == 0, distances[-2] == 0,
-        distances[0] <= distances[-1]))
-    tabOr.append(And(distances[1] == 0, distances[-2] != 0))
-    tabAnd.append(Or(tabOr))
-    return And(tabAnd)
-\end{lstlisting}
-
-We test this function in the same configuration than given before with the following input :
-
-\begin{lstlisting}[language=Python]
-
-taille_anneau = 5       # Taille de l'anneau 
-nb_robots = 3           # Nombre de robot sur l'anneau
-
-p = [ Int('p%s' % i) for i in range(nb_robots) ]
-s = [ Int('s%s' % i) for i in range(nb_robots) ]
-t = [ Int('t%s' % i) for i in range(nb_robots) ]
-
-d0 = [ Int('d%s' % i) for i in range(nb_robots) ]
-d1 = [ Int('d%s' % i) for i in range(nb_robots) ]
-d2 = [ Int('d%s' % i) for i in range(nb_robots) ]
-
-tabInit = InitSM(p, s, t, taille_anneau)
-tabConfig1 = ConfigView(taille_anneau, nb_robots, 0, p, d0)
-tabConfig2 = ConfigView(taille_anneau, nb_robots, 1, p, d1)
-tabConfig3 = ConfigView(taille_anneau, nb_robots, 2, p, d2)
-tabPhiSM1 = phiSM(d0)
-tabPhiSM2 = phiSM(d1)
-tabPhiSM3 = phiSM(d2)
-
-solv1 = Solver()
-solv1.add(tabInit)
-solv1.add(tabConfig1)
-solv1.add(tabPhiSM1)
-
-print("solv1 : ",solv1.check())
-if(solv1.check() == sat):
-        print("model :\n",solv1.model())
-
-solv2 = Solver()
-solv2.add(tabInit)
-solv2.add(tabConfig2)
-solv2.add(tabPhiSM2)
-
-print("solv2 : ",solv2.check())
-if(solv2.check() == sat):
-        print("model :\n",solv2.model())
-
-solv3 = Solver()
-solv3.add(tabInit)
-solv3.add(tabConfig3)
-solv3.add(tabPhiSM3)
-
-print("solv3 : ",solv3.check())
-if(solv3.check() == sat):
-        print("model :\n",solv3.model())
-\end{lstlisting}
-
-It produces the following output :
-
-\begin{lstlisting}
-solv1 :  sat
-model :
- [d0 = 1,
- d2 = 4,
- p1 = 1,
- p0 = 0,
- p2 = 1,
- d1 = 0,
- t2 = 0,
- s2 = -1,
- t1 = 0,
- s1 = -1,
- t0 = 0,
- s0 = -1]
-solv2 :  sat
-model :
- [d0 = 1,
- d2 = 4,
- p1 = 0,
- p0 = 1,
- p2 = 1,
- d1 = 0,
- t2 = 0,
- s2 = -1,
- t1 = 0,
- s1 = -1,
- t0 = 0,
- s0 = -1]
-solv3 :  sat
-model :
- [d0 = 1,
- d2 = 4,
- p1 = 0,
- p0 = 0,
- p2 = 4,
- d1 = 0,
- t2 = 0,
- s2 = -1,
- t1 = 0,
- s1 = -1,
- t0 = 0,
- s0 = -1]
-\end{lstlisting}
-
-What it shows us is that every robot can move in this kind of configuration. The solver find a way to place the robot calling the strategy outside of the multiplicity and then allow the strategy to be true, meaning, the robot moves toward the multiplicity.
-
-\section{Gathering rigid configurations}
+\subsection{Gathering rigid configurations}
 
 Let $d_{ij}$ be the value $j$ of the view vector of the robot $i$, and $ds_{ij}$ the value $j$ of the symmetrical 
 view of the robot $i$.
-The robot is calling the strategy $\phi_R$, here are all the logic formulas used in order to build $\phi_R$:
+The robot is calling the strategy $\phi_R$.
+
+Here are all the logic formulas used in order to build $\phi_R$:\newline
+
 
 $AllView$ is $true$ if $d_{00}, \ldots ,d_{k-1k-1}$ are all the views you can obtain from a single view vector $dist_{0}, \ldots ,dist_{k-1}$ :
 
@@ -280,7 +74,7 @@ $AllView(dist_{0}, \ldots ,dist_{k-1}, d_{00}, \ldots ,d_{k-1k-1}):=$\\
 $(\bigwedge_{i=0}^{k-1} (\bigwedge_{j=0}^{k-1} (d_{ij} = dist_{(j+i) \mod{k}}) ) )$
 \end{center}
 
-$IsRigid$ is $true$ if the given configuration is a rigid configuration. Meaning, all the views are distinct, and so there is no multiplicity, the configuration isn't symmetric or periodic.
+$IsRigid$ is $true$ if the given configuration is a rigid configuration. Meaning, all views are distinct, there is no multiplicity, and the configuration isn't symmetric nor periodic.
 
 \begin{center}
 
@@ -295,7 +89,7 @@ $\land (\bigvee_{j=0}^{k-1}ds_{ij} \not= d_{lj})
 ) )$\\%Toutes les vues sont distinctes
 \end{center}
 
-$AllCode$ is $true$ if $(\alpha'_{r}, \beta'_{r})$ is the set of two natural numbers of the robot $r$ such as $\alpha'_r$ and $\beta'_r$ are codes of $r$'s views, with $\alpha'_{r} < \beta'_{r}$. 
+$AllCode$ is $true$ if $(\alpha'_{r}, \beta'_{r})$ is the set of two natural numbers of the robot $r$ such as $\alpha'_r$ and $\beta'_r$ are codes of $r$'s views, with $\alpha'_{r} < \beta'_{r}$. The process which leads us to obtain all view codes is defined in the research report \cite{gathering}. 
 
 \begin{center}
 $AllCode(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, \alpha_{0}, \dots, \alpha_{k-1}, \beta_{0}, \dots, \beta_{k-1},$\\
@@ -356,7 +150,7 @@ $ \lor$\\
 $(d_{M0} \not= Max \land d_{Mk-1} = Max \land N = ((M-1)\mod{k}))$
 \end{center}
 
-Since those formulas can't be implemented in python because it is impossible to work around a variable index, we choose to build a new formula, $FindMN$ that will be $true$ if both vectors $dM$ and $dN$ are the view vector of, respectively, $M$ and $N$.
+Since those formulas can't be implemented in \textit{Python} because it is impossible to work around a variable index, we choose to build a new formula, $FindMN$ that will be $true$ if both vectors $dM$ and $dN$ are the view vector of, respectively, $M$ and $N$.
 
 \begin{center}
 
@@ -384,7 +178,7 @@ $(N = M+1\mod{k} \land (\bigwedge_{l = 0}^{k-1} (dN_{l} = d_{(m+1 \mod{k})l} \la
 $\quad )$
 \end{center}
 
-$\phi_R$ is $true$ if the robot can move toward a multiplicity. There must be only one multiplicity and the configuration must be rigid :
+$\phi_R$ is $true$ if the configuration is rigid, and if the robot is $M$ and has a closest neighbor than $N$, or if the robot is $N$ and has a closest neighbor than $M$.
 
 \begin{center}
 
@@ -411,9 +205,9 @@ $(\bigvee_{i=0}^{k-1}\quad (\quad (distM_{i} < distN_{i} \bigwedge_{q=0}^{i} (di
 $(distM_{i} > distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (dN_{j} = dist_{j}) )\quad )\quad )$
 \end{center}
 
-\section{Gathering an odd number of robots}
+\subsection{Gathering an odd number of robots}
 
-We are now building a strategy, $\phi_{ON}$, that will gather an odd number of robots on a non-periodic configuration. It is the strategy with the lowest priority, it means that the configuration won't be rigid and won't have any multiplicity.
+We are now building a strategy, $\phi_{ON}$, that will gather an odd number of robots on a non-periodic configuration. It is the strategy with the lowest priority, meaning that the configuration won't be rigid and won't have any multiplicity.
 
 First we build the formula, $IsPeriodic$, that will return $true$ if the configuration is periodic with an odd number of robots :
 
@@ -424,7 +218,7 @@ $\exists p \in [1; \lfloor \frac{k}{3} \rfloor ], (p+1) \mod{2} = 0 \land $\\
 $\exists d'_{0}, \ldots , d'_{p-1}, \bigwedge_{i=0}^{k-1} (d'_{i\mod{p}} = dist_{i})$
 \end{center}
 
-Now, we build build the $\phi_{OD}$ strategy, it returns $true$ if the configuration is non-rigid, non-periodic, has no multiplicity and has an odd number of robots. The robot just move in order to create a multiplicity or a rigid configuration that will lead to a rigid configuration or one with a multiplicity.
+Now, we build build $\phi_{OD}$, the strategy returns $true$ if the configuration is non-rigid, non-periodic, has no multiplicity and has an odd number of robots. If the robot is axial then it moves in order to create a multiplicity or a rigid configuration.
 
 \begin{center}
     
@@ -438,6 +232,10 @@ $(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0) \land $\\
 $(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
 \end{center}
 
+\section{Algorithms}
+
+Now that we have done all of our logical formulas, we need to test those in the acceleration algorithm using an interpolant \cite{algo} and in an alternate version of that same algorithm.
+//TODO
 \section{Tests}
 
 In order to test the algorithm \cite{algo} we will use the python code we show you at the beginning : $InitSM$ and $phiSM$.
@@ -570,8 +368,6 @@ z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
     }
 }
 \end{algorithm}
-
-On change la forme et le fond
 
 \printbibliography %Prints bibliography
 \end{document}

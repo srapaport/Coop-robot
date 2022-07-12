@@ -2185,8 +2185,12 @@
     <bcf:citekey order="1">gathering</bcf:citekey>
     <bcf:citekey order="2">algo</bcf:citekey>
     <bcf:citekey order="3">algo</bcf:citekey>
-    <bcf:citekey order="4">algo</bcf:citekey>
+    <bcf:citekey order="4">gathering</bcf:citekey>
     <bcf:citekey order="5">algo</bcf:citekey>
+    <bcf:citekey order="6">gathering</bcf:citekey>
+    <bcf:citekey order="7">algo</bcf:citekey>
+    <bcf:citekey order="8">algo</bcf:citekey>
+    <bcf:citekey order="9">algo</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
