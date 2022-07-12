@@ -31,27 +31,23 @@ def InitSM(p, s, t, taille_anneau):
         for i in range(len(p)):
                 tmpOr.append(p[i] != p[(i+1)%len(p)])
         tmpAnd.append(Or(tmpOr)) # pas de configuration gagnante initialement
-        tmpOr = []
         for i in range(len(s)):
                 tmpAnd.append(p[i] >= 0)
                 tmpAnd.append(p[i] < taille_anneau)
                 tmpAnd.append(s[i] == -1)
                 tmpAnd.append(t[i] == 0)
-        
+        tmpOr = []
         for i in range(len(p)):
-                tmpAndbis = []
-                tmpAndbis.append(p[i] == p[(i+1)%len(p)])
-                tmpOrbis = []
                 for j in range(len(p)):
-                        if((j != i) and (j != ((i+1)%len(p)))):
-                                tmpOrbis.append(p[j] == p[i])
-                                tmpAndter=[]
+                        if j != i:
+                                tmpAndBis = []
+                                tmpAndBis.append(p[i] == p[j])
                                 for h in range(len(p)):
-                                        if h !=j:
-                                                tmpAndter.append(p[h] != p[j])
-                                tmpOrbis.append(And(tmpAndter))
-                tmpAndbis.append(Or(tmpOrbis))
-                tmpOr.append(And(tmpAndbis))
+                                        # if h != j:
+                                        for l in range(len(p)):
+                                                if l != h:
+                                                        tmpAndBis.append(Or(p[h] != p[l], p[h] == p[i]))
+                                tmpOr.append(And(tmpAndBis))
         tmpAnd.append(Or(tmpOr))
         return And(tmpAnd)
 
