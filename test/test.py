@@ -1,3 +1,6 @@
+from z3 import *
+import sys
+sys.path.insert(0, '../src')
 from utilZ3v7 import *
 
 taille_anneau = 3
