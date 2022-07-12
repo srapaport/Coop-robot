@@ -1,0 +1,11 @@
+taille : 10 | nb robot : 5
+Init + phiR
+taille_anneau =  10
+nb_robots =  5
+taille_boucle_max =  30872016
+boucle pour k = 1
+
+Tiemout reached ! -->  21600
+python3 algov5.py 10 5 21600
+	Real time elapsed : 6:00:05
+

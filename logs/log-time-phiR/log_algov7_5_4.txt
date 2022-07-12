@@ -1,0 +1,13 @@
+taille : 5 | nb robot : 4
+Init + phiR
+taille_anneau =  5
+nb_robots =  4
+taille_boucle_max =  123410
+boucle pour k =  7
+Post Init
+Post 1
+Post 2
+Tiemout reached ! -->  21600
+python3 algov7.py 5 4 21600
+	Real time elapsed : 6:00:01
+
