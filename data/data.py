@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv('./data/data-phiR/data-timev2.csv', sep=';')
+data = pd.read_csv('./data/data-phiSM/data-timev2.csv', sep=';')
 
 
 algov5 = data.loc[(data['algo'] == 5) & ((data['error'] == 0) | (data['error'] == 3) | (data['error'] == 2))]
@@ -22,15 +22,15 @@ algov7r5 = data.loc[(data['algo'] == 7) & (data['nb robots'] == 5) & ((data['err
 
 ######################## 2D
 
-# fig, ax = plt.subplots()
-# ax.plot(algov5r2.sort_values(by = 'taille anneau')['taille anneau'], algov5r2.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r2')
-# ax.plot(algov7r2.sort_values(by = 'taille anneau')['taille anneau'], algov7r2.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r2')
+fig, ax = plt.subplots()
+ax.plot(algov5r5.sort_values(by = 'taille anneau')['taille anneau'], algov5r5.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r5')
+ax.plot(algov7r5.sort_values(by = 'taille anneau')['taille anneau'], algov7r5.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r5')
 
-# ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 2 robots')
-# ax.grid()
-# ax.legend()
-# #fig.savefig("./data/compar2.png")
-# plt.show()
+ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 5 robots')
+ax.grid()
+ax.legend()
+fig.savefig("./data/compar_phiSM_5.png")
+plt.show()
 
 ######################## 3D
 
