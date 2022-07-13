@@ -1,4 +1,5 @@
-Init + phiSimple
+taille : 2 | nb robot : 3
+Init + phiSM
 taille_anneau =  2
 nb_robots =  3
 taille_boucle_max =  816
@@ -16,7 +17,6 @@ On ne cherche pas de boucle de taille :  3
 On ne cherche pas de boucle de taille :  2
 On ne cherche pas de boucle de taille :  1
 FIN OU
-Command exited with non-zero status 1
-python3 algov7.py 2 3
-	Real time elapsed : 0:15.33
+python3 algov7.py 2 3 21600
+	Real time elapsed : 0:17.82
 

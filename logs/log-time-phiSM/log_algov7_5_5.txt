@@ -1,5 +1,6 @@
-Init + phiSimple
+taille : 5 | nb robot : 5
+Init + phiSM
 Command terminated by signal 9
-python3 algov7.py 5 5
-	Real time elapsed : 4:40:16
+python3 algov7.py 5 5 21600
+	Real time elapsed : 13:11:38
 

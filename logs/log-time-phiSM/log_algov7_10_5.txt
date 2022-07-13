@@ -1,4 +1,5 @@
-Init + phiSimple
+taille : 10 | nb robot : 5
+Init + phiSM
 taille_anneau =  10
 nb_robots =  5
 taille_boucle_max =  30872016
@@ -626,6 +627,6 @@ k =  9
   5)
 (define-fun cvdp2!221 () Int
   (- 22))
-python3 algov7.py 10 5
-	Real time elapsed : 1:06:38
+python3 algov7.py 10 5 21600
+	Real time elapsed : 1:10:14
 

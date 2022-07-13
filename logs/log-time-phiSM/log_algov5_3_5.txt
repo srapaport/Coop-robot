@@ -1,5 +1,21 @@
-Init + phiSimple
-Command terminated by signal 9
-python3 algov5.py 3 5
-	Real time elapsed : 1:00:32
+taille : 3 | nb robot : 5
+Init + phiSM
+taille_anneau =  3
+nb_robots =  5
+taille_boucle_max =  98280
+boucle pour k = 1
+
+Test pour taille_boucle =  9
+Construction de la boucle de taille :  1  | pour une taille totale de :  9
+Construction de la boucle de taille :  2  | pour une taille totale de :  9
+Construction de la boucle de taille :  3  | pour une taille totale de :  9
+Construction de la boucle de taille :  4  | pour une taille totale de :  9
+Construction de la boucle de taille :  5  | pour une taille totale de :  9
+Construction de la boucle de taille :  6  | pour une taille totale de :  9
+Construction de la boucle de taille :  7  | pour une taille totale de :  9
+Construction de la boucle de taille :  8  | pour une taille totale de :  9
+Construction de la boucle de taille :  9  | pour une taille totale de :  9
+Tiemout reached ! -->  21600
+python3 algov5.py 3 5 21600
+	Real time elapsed : 6:56:29
 

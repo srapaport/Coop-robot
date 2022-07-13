@@ -1,9 +1,11 @@
-Init + phiSimple
+taille : 2 | nb robot : 5
+Init + phiSM
 taille_anneau =  2
 nb_robots =  5
 taille_boucle_max =  15504
 boucle pour k = 1
 
+Test pour taille_boucle =  9
 Construction de la boucle de taille :  1  | pour une taille totale de :  9
 Construction de la boucle de taille :  2  | pour une taille totale de :  9
 Construction de la boucle de taille :  3  | pour une taille totale de :  9
@@ -13,8 +15,7 @@ Construction de la boucle de taille :  6  | pour une taille totale de :  9
 Construction de la boucle de taille :  7  | pour une taille totale de :  9
 Construction de la boucle de taille :  8  | pour une taille totale de :  9
 Construction de la boucle de taille :  9  | pour une taille totale de :  9
-Test pour taille_boucle =  9
-Interpolant est satisfiable --> Boucle perdante pour taille_boucle =  9
+Sat --> Boucle perdante pour taille_boucle =  9
 Stratégie perdante
 k =  1  | taille_boucle =  9
 (define-fun bpp54!175 () Int
@@ -575,6 +576,6 @@ k =  1  | taille_boucle =  9
   0)
 (define-fun md2!366 () Int
   0)
-python3 algov5.py 2 5
-	Real time elapsed : 1:32.44
+python3 algov5.py 2 5 21600
+	Real time elapsed : 1:34.99
 

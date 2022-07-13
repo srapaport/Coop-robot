@@ -1,4 +1,5 @@
-Init + phiSimple
+taille : 2 | nb robot : 5
+Init + phiSM
 taille_anneau =  2
 nb_robots =  5
 taille_boucle_max =  15504
@@ -608,6 +609,6 @@ k =  9
   0)
 (define-fun mdp3!169 () Int
   1)
-python3 algov7.py 2 5
-	Real time elapsed : 2:18.43
+python3 algov7.py 2 5 21600
+	Real time elapsed : 2:12.02
 

@@ -1,14 +1,15 @@
-Init + phiSimple
+taille : 7 | nb robot : 2
+Init + phiSM
 taille_anneau =  7
 nb_robots =  2
 taille_boucle_max =  1596
 boucle pour k = 1
 
+Test pour taille_boucle =  3
 Construction de la boucle de taille :  1  | pour une taille totale de :  3
 Construction de la boucle de taille :  2  | pour une taille totale de :  3
 Construction de la boucle de taille :  3  | pour une taille totale de :  3
-Test pour taille_boucle =  3
-Interpolant est satisfiable --> Boucle perdante pour taille_boucle =  3
+Sat --> Boucle perdante pour taille_boucle =  3
 Stratégie perdante
 k =  1  | taille_boucle =  3
 (define-fun mdp1!83 () Int
@@ -103,6 +104,6 @@ k =  1  | taille_boucle =  3
   5)
 (define-fun bps21!16 () Int
   (- 1))
-python3 algov5.py 7 2
-	Real time elapsed : 0:01.25
+python3 algov5.py 7 2 21600
+	Real time elapsed : 0:01.27
 
