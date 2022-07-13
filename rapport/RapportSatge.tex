@@ -47,7 +47,7 @@ $(d_{k-1} \not= 0) \land $\\
 $((d_1 = 0 \land d_{k-2} = 0 \land d_0 \leq d_{k-1}) \lor (d_1 = 0 \land d_{k-2} \not= 0))$
 \end{center}
 
-In order to test our strategy we need a function that will initialize our first configuration and make it one with a single multiplicity without being already a winning one. Here is the formula $InitSM$ which is $true$ if $p$, $s$ and $t$ form a configuration with a single multiplicity, the configuration is not a winning one, all $p$ are initialized in the right scope, all $t$ are initialized at $0$ and all $s$ are initialized at $RLC$ ($-1$) :
+In order to test our strategy we need a function that will initialize our first configuration and make it one with a single multiplicity without being already a winning one, we just thought it'd be a neat thing to do. Here is the formula $InitSM$ which is $true$ if $p$, $s$ and $t$ form a configuration with a single multiplicity, the configuration is not a winning one, all $p$ are initialized in the right scope, all $t$ are initialized at $0$ and all $s$ are initialized at $RLC$ ($-1$) :
 
 \begin{center}
     
@@ -235,7 +235,75 @@ $(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
 \section{Algorithms}
 
 Now that we have done all of our logical formulas, we need to test those in the acceleration algorithm using an interpolant \cite{algo} and in an alternate version of that same algorithm.
-//TODO
+
+We needed to create an alternate version because of the way the formula, $BouclePerdante$, is done. Two ways it can be done :
+\begin{enumerate}
+    \item we can try to create a loosing loop by trying to add as many $AsyncPost$ as needed (increase the size of the loop if it's not a loosing one) with a maximum of the size of the graph of all possible configurations
+    \item or we can try to create a loop that comes back to a previous configuration with only one $AsyncPost$
+\end{enumerate}
+
+The first possibility has been implemented in the acceleration algorithm using an interpolant \cite{algo}. In order to implement the second possibility we needed to change the algorithm because the winning condition wasn't good anymore.
+
+First we will try to prove that the alternate version of the algorithm works.
+Here is the algorithm :
+
+\SetKwComment{Comment}{/* }{ */}
+\begin{algorithm}
+\ForEach{synchronous winning strategy $f$}{
+    $k = 1$\;
+    \While{$true$}{
+        $I(c) = Init(c)$\;
+        $continue = true$\;
+        \While{continue}{
+            \If{$MaybeThisSize \not= null$}{
+                $NotThisSizeBis = $[$i$ for $i$ in range($k$) and $i \notin MaybeThisSize$]\;
+                \If{$Init(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_{k}) \land BouclePerdante(c_{k}, NotThisSizeBis)\quad SAT$}{
+                    $exit$\Comment*[r]{Loosing Strategy}
+                }
+            }
+            \eIf{$I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize)\quad SAT$}{
+                \eIf{$I = Init$}{
+                    $exit$\Comment*[r]{Loosing Strategy}
+                }{
+                    $MaybeThisSize.append(k)$\;
+                    $k = k + 1$\;
+                    $continue = false$\;
+                }
+            }{
+                $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize))$\;
+                \eIf{$I' \implies I$}{
+                    \eIf{$k = size_{max}$}{
+                        $exit$\Comment*[r]{Winning Strategy}
+                    }{
+                        $NotThisSize.append(k)$\;
+                        $k = k + 1$\;
+                        $continue = false$\;
+                    }
+                }{
+                    $I = I \lor I'$\;
+                }
+            }
+        }
+    }
+}
+\end{algorithm}
+\newpage
+
+\noindent \textbf{Proof :}\newline
+
+First let's talk about the termination of the algorithm :
+\begin{itemize}
+    \item the list of synchronous winning strategy is finished
+    \item we can exit the "\textbf{while} $true$" (l.3) loop with $exit$ instructions that we find at line 10, 15 and 25.
+    \begin{itemize}
+        \item we find a loosing loop without the interpolant and then we enter the $exit$ at line 10 or the one at line 15 if $I$ is still equal to $Init$
+        \item we find a loosing loop with the interpolant and then we increase $k$, we exit the "\textbf{while} $continue$" loop (l.6) which allows us to reinitialize $I$ and test if a loosing loop exists for a higher $k$ or for this $k$ without the interpolant.
+        \item we don't find any loosing loop, then, eventually, the interpolant will stop growing and $(I \lor I') \implies I$, likewise, $k$ will reach $size_{max}$ and we will enter the $exit$ at line 25. $k$ will always reach $size_{max}$ if there is no loosing loop, because if the condition line 13, which checks if there is a loosing loop, is false, then if $k < size_{max}$ we reached line 28 and we increase $k$. Also, the interpolant will eventually stop growing because the graph of all possible configurations is finished and the interpolant won't create new variables.
+    \end{itemize}
+    \item to summarize, we can't have more than $size_{max}$ failure at finding a loosing loop and if we find one we either exit if $Init = I$ or we keep trying until we find none or one where $Init = I$.
+    \item TODO
+\end{itemize}
+
 \section{Tests}
 
 In order to test the algorithm \cite{algo} we will use the python code we show you at the beginning : $InitSM$ and $phiSM$.
@@ -327,47 +395,6 @@ z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
 \end{lstlisting}
 
 \newpage
-
-\SetKwComment{Comment}{/* }{ */}
-\begin{algorithm}
-\ForEach{synchronous winning strategy $f$}{
-    $k = 1$\;
-    \While{$true$}{
-        $I(c) = Init(c)$\;
-        $continue = true$\;
-        \While{continue}{
-            \If{$MaybeThisSize \not= null$}{
-                $NotThisSizeBis = $[$i$ for $i$ in range($k$) and $i \notin elem$]\;
-                \If{$Init(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_{k}) \land BouclePerdante(c_{k}, NotThisSizeBis)\quad SAT$}{
-                    $exit$\Comment*[r]{Loosing Strategy}
-                }
-            }
-            \eIf{$I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize)\quad SAT$}{
-                \eIf{$I = Init$}{
-                    $exit$\Comment*[r]{Loosing Strategy}
-                }{
-                    $MaybeThisSize.append(k)$\;
-                    $k = k + 1$\;
-                    $continue = false$\;
-                }
-            }{
-                $I' = Interpolant(I(c) \land Post(c, c1), Post(c1, c2) \land \dots \land Post(c_{k-1}, c_k) \land BouclePerdante(c_k, NotThisSize))$\;
-                \eIf{$I' \implies I$}{
-                    \eIf{$k = size_{max}$}{
-                        $exit$\Comment*[r]{Winning Strategy}
-                    }{
-                        $NotThisSize.append(k)$\;
-                        $k = k + 1$\;
-                        $continue = false$\;
-                    }
-                }{
-                    $I = I \lor I'$\;
-                }
-            }
-        }
-    }
-}
-\end{algorithm}
 
 \printbibliography %Prints bibliography
 \end{document}
