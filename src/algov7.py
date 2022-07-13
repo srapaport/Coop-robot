@@ -18,7 +18,7 @@ def main():
         print("nb_robots = ", nb_robots)
         print("taille_boucle_max = ", taille_boucle_max)
 
-        k = (2*nb_robots) - 1
+        k = (2*nb_robots) - 1 # On considère qu'initialement tous les s sont à -1 et tous les t à 0
         #k = 1
         NotThisSize = [i for i in range(k)]
         MaybeThisSize = []
@@ -50,11 +50,11 @@ def main():
                                                         NotThisSizeBis.remove(elem)
                                                 tabAnd = []
                                                 tabAnd.append(I)
-                                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
+                                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiON))
                                                 for i in range(k-1):
                                                         print("Post %s" % (i+1))
-                                                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiUltimate))
-                                                tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiUltimate, NotThisSizeBis))
+                                                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiON))
+                                                tabAnd.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiON, NotThisSizeBis))
                                                 solBis = Solver()
                                                 solBis.add(And(tabAnd))
                                                 if solBis.check() == sat:
@@ -71,11 +71,11 @@ def main():
 
                                         tmpAndInterpolant.append(I)
                                         print("Post Init")
-                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
+                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiON))
                                         for i in range(k-1):
                                                 print("Post %s" % (i+1))
-                                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiUltimate))
-                                        tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiUltimate, NotThisSize))
+                                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiON))
+                                        tmpAndContext.append(BouclePerdante_v4(taille_anneau, p, s, t, pk, sk, tk, phiON, NotThisSize))
                                         try:
                                                 Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
                                         except ModelRef as m:
@@ -104,14 +104,14 @@ def main():
                                                         print("And(And(Ip), Not(I)) SAT")
                                                         I = Or(I, And(Ip))
         except TimeoutError:
-                print("Tiemout reached ! --> ", to)
+                print("Timeout reached ! --> ", to)
                 exit()
 
 thr = threading.Thread(target = main)
 thr.start()
 thr.join()
 """
-                Erreur pour InitSM + phiUltimate avec taille anneau 3 et nb robot 3
+                Erreur pour InitSM + phiON avec taille anneau 3 et nb robot 3
 
 Traceback (most recent call last):
   File "algov7.py", line 69, in <module>

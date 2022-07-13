@@ -98,7 +98,7 @@ def main():
                                         else:
                                                 I = Or(I, Ip)
         except TimeoutError:
-                print("Tiemout reached ! --> ", to)
+                print("Timeout reached ! --> ", to)
                 exit()
 
 thr = threading.Thread(target = main)

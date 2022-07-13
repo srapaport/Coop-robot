@@ -298,7 +298,7 @@ def phiON(taille_anneau, distance):
         tabAnd.append(distance[i] != 0)
         tabAnd.append(distance[i] == vs[0][i])
     return Exists([ad[i][j] for i in range(len(distance)) for j in range(len(distance))], 
-    Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd)))
+        Exists([vs[i][j] for i in range(len(distance)) for j in range(len(distance))], And(tabAnd)))
 
 def phiUltimate(taille_anneau, distances):
         return And(Or(phiSM(taille_anneau, distances), phiR(taille_anneau, distances), phiON(taille_anneau, distances)))
