@@ -6,6 +6,8 @@
 \usepackage{listings}
 \usepackage{array}
 \usepackage{calc}
+\usepackage{graphicx}
+\usepackage{subfig}
 
 \usepackage{tikz}
 
@@ -342,51 +344,40 @@ Here is the algorithm :
 
 \section{Tests}
 
-In order to test the algorithm \cite{algo} we will use the python code we show you at the beginning : $InitSM$ and $phiSM$.
+We are now comparing both algorithms through some tests. We will put an initialized configuration with no other conditions than : no winning configuration, all $s$ at $-1$ and all $t$ at $0$. And with that configuration, one of the strategy written above. We mesure the time it takes the algorithm to find a loosing loop. We will change the number of robots and the size of the ring from a test to another.
 
-We will use the SAT-solver to test different configurations. We will change the number of robots and the size of the ring from a test to an other.
+Here 'algov5' is the algorithm from the report \cite{algo}, and 'algov7' is the alternate version of the algorithm, presented above.
 
-\subsection{Test $InitSM$}
+We will use one graph per number of robots. Each graph will show the time it tooked to find a loosing loop per size of the ring for a given number of robots.
 
-First, we test the function $InitSM$ alone : can we have an initial configuration with a single multiplicity with those parameters ?\\
+\subsection{Test $\phi_{Simple}$}
 
-\begin{tabular}{|r|c|c|c|c|c|}
-  \hline
-  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
-  \hline
-  2 & Unsat & Unsat & Unsat & Unsat & Unsat \\
-  \hline
-  3 & Sat & Sat & Sat & Sat & Sat \\
-  \hline
-  4 & Sat & Sat & Sat & Sat & Sat \\
-  \hline
-  5 & Sat & Sat & Sat & Sat & Sat \\
-  \hline
-  6 & Sat & Sat & Sat & Sat & Sat \\
-  \hline
-\end{tabular}
-\\
+First, we test $\phi_{Simple}$, a simple strategy that moves the robot toward its closest neighbor.
 
-The results make sense : we can't create a multiplicity with 2 robots which is not a winning configuration. Else, even on a ring size of 2 we can have a multiplicity on one spot and only one robot on the other spot.
+\begin{figure}[!h]
+    \centering
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple/compar_phiSimple_2.png}\label{phiSimpler2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple/compar_phiSimple_3.png}\label{phiSimpler3}}
+    \caption{Results for 2 (a) \& 3 (b) robots}
+\end{figure}
 
 \subsection{Test $\phi_{SM}$}
 
-Now we test $\phi_{SM}$ through the algorithm \cite{algo}, we also use the function $InitSM$ that makes sure we have a single multiplicity at the beginning.\\
+Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant.
 
-\begin{tabular}{|r|c|c|c|c|c|}
-  \hline
-  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
-  \hline
-  3 & Timeout & Timeout & Timeout & ... & ... \\
-  \hline
-  4 & Timeout & ... & ... & ... & ... \\
-  \hline
-  5 & ... & ... & ... & ... & ... \\
-  \hline
-  6 & ... & ... & ... & ... & ... \\
-  \hline
-\end{tabular}
-\\
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../data/data-phiSM/compar_phiSM_2.png}\label{phiSMr2}
+    \caption{Results for 2 robots}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../data/data-phiSM/compar_phiSM_3.png}\label{phiSMr3}
+    \caption{Results for 3 robots}
+\end{figure}
+
+//TODO
 
 Same test but with the function $Init$ instead.\\
 
