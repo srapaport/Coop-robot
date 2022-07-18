@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  18 JUL 2022 15:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  18 JUL 2022 15:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -771,52 +771,52 @@ pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rappo
 
 pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinSM.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinRigid.pdf_tex
-<dessinRigid.pdf, id=28, page=1, 502.37001pt x 357.24213pt>
+<dessinRigid.pdf, id=28, page=1, 395.27068pt x 357.24213pt>
 File: dessinRigid.pdf Graphic file (type pdf)
 <use dessinRigid.pdf, page 1>
 Package pdftex.def Info: dessinRigid.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 150.71252pt x 107.17346pt.
-<dessinRigid.pdf, id=29, page=2, 502.37001pt x 357.24213pt>
+(pdftex.def)             Requested size: 118.5824pt x 107.17346pt.
+<dessinRigid.pdf, id=29, page=2, 395.27068pt x 357.24213pt>
 File: dessinRigid.pdf Graphic file (type pdf)
 <use dessinRigid.pdf, page 2>
 Package pdftex.def Info: dessinRigid.pdf , page2 used on input line 59.
-(pdftex.def)             Requested size: 150.71252pt x 107.17346pt.
-<dessinRigid.pdf, id=30, page=3, 502.37001pt x 357.24213pt>
+(pdftex.def)             Requested size: 118.5824pt x 107.17346pt.
+<dessinRigid.pdf, id=30, page=3, 395.27068pt x 357.24213pt>
 File: dessinRigid.pdf Graphic file (type pdf)
 <use dessinRigid.pdf, page 3>
 Package pdftex.def Info: dessinRigid.pdf , page3 used on input line 62.
-(pdftex.def)             Requested size: 150.71252pt x 107.17346pt.
-<dessinRigid.pdf, id=31, page=4, 502.37001pt x 357.24213pt>
+(pdftex.def)             Requested size: 118.5824pt x 107.17346pt.
+<dessinRigid.pdf, id=31, page=4, 395.27068pt x 357.24213pt>
 File: dessinRigid.pdf Graphic file (type pdf)
 <use dessinRigid.pdf, page 4>
 Package pdftex.def Info: dessinRigid.pdf , page4 used on input line 66.
-(pdftex.def)             Requested size: 150.71252pt x 107.17346pt.
-<dessinRigid.pdf, id=32, page=5, 502.37001pt x 357.24213pt>
+(pdftex.def)             Requested size: 118.5824pt x 107.17346pt.
+<dessinRigid.pdf, id=32, page=5, 395.27068pt x 357.24213pt>
 File: dessinRigid.pdf Graphic file (type pdf)
 <use dessinRigid.pdf, page 5>
 Package pdftex.def Info: dessinRigid.pdf , page5 used on input line 69.
-(pdftex.def)             Requested size: 150.71252pt x 107.17346pt.
+(pdftex.def)             Requested size: 118.5824pt x 107.17346pt.
 ) [3] (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinOdd.pdf_tex
-<dessinOdd.pdf, id=36, page=1, 348.67867pt x 380.31009pt>
+<dessinOdd.pdf, id=36, page=1, 348.67867pt x 380.26953pt>
 File: dessinOdd.pdf Graphic file (type pdf)
 <use dessinOdd.pdf, page 1>
 Package pdftex.def Info: dessinOdd.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 104.60466pt x 114.0939pt.
-<dessinOdd.pdf, id=37, page=2, 348.67867pt x 380.31009pt>
+(pdftex.def)             Requested size: 104.60466pt x 114.08173pt.
+<dessinOdd.pdf, id=37, page=2, 348.67867pt x 380.26953pt>
 File: dessinOdd.pdf Graphic file (type pdf)
 <use dessinOdd.pdf, page 2>
 Package pdftex.def Info: dessinOdd.pdf , page2 used on input line 59.
-(pdftex.def)             Requested size: 104.60466pt x 114.0939pt.
-<dessinOdd.pdf, id=38, page=3, 348.67867pt x 380.31009pt>
+(pdftex.def)             Requested size: 104.60466pt x 114.08173pt.
+<dessinOdd.pdf, id=38, page=3, 348.67867pt x 380.26953pt>
 File: dessinOdd.pdf Graphic file (type pdf)
 <use dessinOdd.pdf, page 3>
 Package pdftex.def Info: dessinOdd.pdf , page3 used on input line 62.
-(pdftex.def)             Requested size: 104.60466pt x 114.0939pt.
-<dessinOdd.pdf, id=39, page=4, 348.67867pt x 380.31009pt>
+(pdftex.def)             Requested size: 104.60466pt x 114.08173pt.
+<dessinOdd.pdf, id=39, page=4, 348.67867pt x 380.26953pt>
 File: dessinOdd.pdf Graphic file (type pdf)
 <use dessinOdd.pdf, page 4>
 Package pdftex.def Info: dessinOdd.pdf , page4 used on input line 64.
-(pdftex.def)             Requested size: 104.60466pt x 114.0939pt.
+(pdftex.def)             Requested size: 104.60466pt x 114.08173pt.
 )
 Overfull \hbox (14.66566pt too wide) in paragraph at lines 264--265
 []\OT1/cmr/m/n/10 We needed to cre-ate an al-ter-nate ver-sion be-cause of the way the for-mula, $\OML/cmm/m/it/10 BouclePerdante$\OT1/cmr/m/n/10 ,
@@ -927,7 +927,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  60i,27n,60p,907b,1514s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (9 pages, 229077 bytes).
+Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (9 pages, 229072 bytes).
 PDF statistics:
  127 PDF objects out of 1000 (max. 8388607)
  85 compressed objects within 1 object stream

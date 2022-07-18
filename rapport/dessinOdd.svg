@@ -161,11 +161,6 @@
          y="108.69109"
          style="stroke-width:0.26458332">E</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.58999992, 0.26499999;stroke-dashoffset:0.50349998;stroke-opacity:1"
-       d="M 98.805337,58.254883 112.65462,186.20573"
-       id="path4766"
-       inkscape:connector-curvature="0" />
-    <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 95.29134,63.835938 -21.083984,7.2347"
        id="path4768"
@@ -184,6 +179,11 @@
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 126.2972,60.942058 2.48047,5.994466 -5.99447,2.687174"
        id="path4774"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.46500002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:3.72000014,3.72000014;stroke-dashoffset:2.83650011;stroke-opacity:1"
+       d="M 98.805337,58.254883 112.65462,186.20573"
+       id="path4766"
        inkscape:connector-curvature="0" />
   </g>
 </svg>
