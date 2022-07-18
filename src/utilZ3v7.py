@@ -1,10 +1,6 @@
 from z3 import *
-from rigid_util import IsRigid
-from rigid_util import CodeMaker
-from rigid_util import FindMax
-from rigid_util import FindMN
-from odd_util import IsOdd
-from odd_util import IsPeriodic
+from rigid_util import *
+from odd_util import *
 from math import factorial
 
 def Init(p, s, t, taille_anneau):
@@ -587,4 +583,3 @@ def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
         #         tmpOr.append(And(tmpAnd))
         # tabAnd.append(Or(tmpOr))
         return And(tabAnd)
-
