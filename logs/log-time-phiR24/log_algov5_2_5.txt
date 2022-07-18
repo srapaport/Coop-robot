@@ -1,0 +1,6 @@
+taille : 2 | nb robot : 5
+Init + phiR
+Command terminated by signal 9
+python3 algov5.py 2 5 86400
+	Real time elapsed : 70:56:50
+

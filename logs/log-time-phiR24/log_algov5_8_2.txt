@@ -1,0 +1,111 @@
+taille : 8 | nb robot : 2
+Init + phiR
+taille_anneau =  8
+nb_robots =  2
+taille_boucle_max =  2080
+boucle pour k = 1
+
+Test pour taille_boucle =  3
+Construction de la boucle de taille :  1  | pour une taille totale de :  3
+Construction de la boucle de taille :  2  | pour une taille totale de :  3
+Construction de la boucle de taille :  3  | pour une taille totale de :  3
+Sat --> Boucle perdante pour taille_boucle =  3
+Stratégie perdante
+k =  1  | taille_boucle =  3
+(define-fun mdp0!220 () Int
+  3)
+(define-fun cvdp0!4 () Int
+  3)
+(define-fun ks00 () Int
+  6)
+(define-fun md0!825 () Int
+  3)
+(define-fun bps21!140 () Int
+  (- 1))
+(define-fun bpp10!149 () Int
+  6)
+(define-fun bpp20!147 () Int
+  6)
+(define-fun bpt21!134 () Int
+  0)
+(define-fun kt00 () Int
+  1)
+(define-fun bpt10!137 () Int
+  1)
+(define-fun bps01!144 () Int
+  1)
+(define-fun mdp1!822 () Int
+  3)
+(define-fun md1!824 () Int
+  5)
+(define-fun t0 () Int
+  0)
+(define-fun cvdp0!893 () Int
+  0)
+(define-fun bps10!143 () Int
+  (- 1))
+(define-fun bpt00!139 () Int
+  0)
+(define-fun t1 () Int
+  0)
+(define-fun p0 () Int
+  6)
+(define-fun mdp0!823 () Int
+  5)
+(define-fun bpt20!135 () Int
+  0)
+(define-fun bpp01!150 () Int
+  1)
+(define-fun p1 () Int
+  1)
+(define-fun md0!3 () Int
+  3)
+(define-fun md1!2 () Int
+  5)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun bpp00!151 () Int
+  6)
+(define-fun bpt01!138 () Int
+  0)
+(define-fun md0!222 () Int
+  5)
+(define-fun md1!221 () Int
+  3)
+(define-fun kt01 () Int
+  0)
+(define-fun mdp1!219 () Int
+  5)
+(define-fun s0 () Int
+  (- 1))
+(define-fun bpt11!136 () Int
+  0)
+(define-fun bpp21!146 () Int
+  1)
+(define-fun mdp0!1 () Int
+  5)
+(define-fun cvdp0!223 () Int
+  5)
+(define-fun bps20!141 () Int
+  (- 1))
+(define-fun cvdp0!692 () Int
+  0)
+(define-fun s1 () Int
+  (- 1))
+(define-fun cvdp0!826 () Int
+  3)
+(define-fun bps11!142 () Int
+  1)
+(define-fun kp00 () Int
+  6)
+(define-fun bpp11!148 () Int
+  1)
+(define-fun bps00!145 () Int
+  6)
+(define-fun kp01 () Int
+  1)
+(define-fun mdp1!0 () Int
+  3)
+python3 algov5.py 8 2 86400
+	Real time elapsed : 0:08.46
+
