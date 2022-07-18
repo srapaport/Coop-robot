@@ -22,12 +22,12 @@ do
     fi
     if [ `grep -c 'Command terminated by signal' ../logs/log-time-$1/$file` == 1 ]
     then
-        echo "2;6:00:00" >> ../data/data-$1/data-time.csv
+        echo "2;24:00:00" >> ../data/data-$1/data-time.csv
         let "ctrl+=1"
     fi
     if [ `grep -c 'Tiemout reached' ../logs/log-time-$1/$file` == 1 ]
     then
-        echo "3;6:00:00" >> ../data/data-$1/data-time.csv
+        echo "3;24:00:00" >> ../data/data-$1/data-time.csv
         let "ctrl+=1"
     fi
     if [ $ctrl == 0 ]
