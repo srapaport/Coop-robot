@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{array}
+\usepackage{calc}
 
 \usepackage{tikz}
 
@@ -56,6 +57,14 @@ $\bigvee_{i = 0}^{k-1}( p_{i} \not= p_{i+1 \mod{k-1}} ) \land$\\
 $(\bigwedge_{i = 0}^{k-1} ( p_{i} \geq 0 \land p_{i} <  size_{ring} \land s_{i} = -1 \land t_{i} = 0)) \land$\\
 $(\bigvee_{i = 0}^{k-1} (\bigvee_{j = 0, j\not=i}^{k-1} (p_{j} = p_{i} \land \bigwedge_{h = 0}^{k-1} ( \bigwedge_{l = 0, l\not=h}^{k-1} (p_{h} \not= p_{l} \lor p_{h} = p_{i}) ) ) ) )$
 \end{center}
+
+\begin{figure}
+    \centering
+    \def\svgscale{0.3}
+    \input{dessinSM.pdf_tex}
+    \caption{Single multiplicity configuration. Here, the view vector or C is (4, 0, 5, 3). Because there's only one 0 we know there is a single multiplicity. Because the 0 isn't the last int of the vector we know C is not on the multiplicity. There's only one free segment toward the multiplicity, hence C can move on this segment.}
+    \label{dessinSM}
+\end{figure}
 
 \subsection{Gathering rigid configurations}
 
