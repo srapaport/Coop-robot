@@ -16,7 +16,7 @@
 
 \usepackage[linesnumbered]{algorithm2e}
 
-\geometry{hmargin=4cm,vmargin=1.5cm}
+\geometry{hmargin=3.5cm,vmargin=1.5cm}
 
 \title{Internship Report}
 \author{Solal Rapaport }
@@ -255,7 +255,7 @@ $(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
     \centering
     \def\svgscale{0.3}
     \input{dessinOdd.pdf_tex}
-    \caption{A symetrical, non-periodic configuration with an odd number of robots. Here, if the robot is axial it moves. In this case A moves in order to create, eventually, a rigid configuration or a single multiplicity.}
+    \caption{A symetrical, non-periodic configuration with an odd number of robots. Here, if the robot is axial it moves. In this case, A moves in order to create, eventually, a rigid configuration or a single multiplicity.}
     \label{dessinOdd}
 \end{figure}
 
@@ -344,7 +344,7 @@ Here is the algorithm :
 
 \section{Tests}
 
-We are now comparing both algorithms through some tests. We will put an initialized configuration with no other conditions than : no winning configuration, all $s$ at $-1$ and all $t$ at $0$. And with that configuration, one of the strategy written above. We mesure the time it takes the algorithm to find a loosing loop. We will change the number of robots and the size of the ring from a test to another.
+We are now comparing both algorithms through some tests. We will put an initialized configuration with no other conditions than : no winning configuration, all $s$ at $-1$ and all $t$ at $0$. And with that configuration, one of the strategy written above. We mesure the time it takes the algorithm to find a loosing loop. We will change the number of robots and the size of the ring from a test to another. There is a timeout of 24h (86400s), and all tests are performed on the same computer.
 
 Here 'algov5' is the algorithm from the report \cite{algo}, and 'algov7' is the alternate version of the algorithm, presented above.
 
@@ -363,63 +363,38 @@ First, we test $\phi_{Simple}$, a simple strategy that moves the robot toward it
 
 \subsection{Test $\phi_{SM}$}
 
-Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant.
+Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant. Here, the timeout is 6h (21600s).
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.7\textwidth]{../data/data-phiSM/compar_phiSM_2.png}\label{phiSMr2}
-    \caption{Results for 2 robots}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_2.png}\label{phiSMr2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_3.png}\label{phiSMr3}}
+    \caption{Results for 2 (a) \& 3 (b) robots}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.7\textwidth]{../data/data-phiSM/compar_phiSM_3.png}\label{phiSMr3}
-    \caption{Results for 3 robots}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_4.png}\label{phiSMr4}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_5.png}\label{phiSMr5}}
+    \caption{Results for 4 (a) \& 5 (b) robots}
 \end{figure}
 
-//TODO
+\subsection{Test $\phi_{R}$}
 
-Same test but with the function $Init$ instead.\\
+Finally, we test $\phi_{R}$ the most complex strategy that we have.
 
-\begin{tabular}{|r|c|c|c|c|c|}
-  \hline
-  nb-robot \textbackslash size-ring & 2 & 3 & 4 & 5 & 6\\
-  \hline
-  3 & Timeout & Loose & Loose & Loose & ... \\
-  \hline
-  4 &  & ... & ... & ... & ... \\
-  \hline
-  5 & ... & ... & ... & ... & ... \\
-  \hline
-  6 & ... & ... & ... & ... & ... \\
-  \hline
-\end{tabular}
+\begin{figure}[!h]
+    \centering
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiR24/compar_phiR24_2.png}\label{phiR24r2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiR24/compar_phiR24_3.png}\label{phiR24r3}}
+    \caption{Results for 2 (a) \& 3 (b) robots}
+\end{figure}
 
-For $nb_{robot} = 3$ and $size_{ring} = 2$ we face this problem :
-\begin{lstlisting}
-Traceback (most recent call last):
-
-  File "algov5.py", line 56, in <module>
-  
-    Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), 
-    And(tmpAndContext)))
-    
-  File "/usr/lib/python3.8/site-packages/z3/z3.py", line 8297, 
-  in tree_interpolant
-  
-    res = Z3_compute_interpolant(ctx.ref(),f.as_ast(),p.params,ptr,mptr)
-    
-  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 4074, 
-  in Z3_compute_interpolant
-  
-    _elems.Check(a0)
-    
-  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 1336, in Check
-  
-    raise self.Exception(self.get_error_message(ctx, err))
-    
-z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
-\end{lstlisting}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../data/data-phiR24/compar_phiR24_4.png}\label{phiR24r4}
+    \caption{Results for 4 robots}
+\end{figure}
 
 \newpage
 
