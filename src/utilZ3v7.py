@@ -568,18 +568,4 @@ def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
 
         tabAnd.append(Or(tabOrPost))
         print("FIN OU")
-        ############################
-        # for i in range(len(pk)):
-        #         tmpOr = []
-        #         for j in range(len(pk[i])):
-        #                 tmpOr.append(pk[i][j] != pk[i][(j+1)%len(pk[0])]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
-        #         tabAnd.append(Or(tmpOr))
-
-        # tmpOr = []
-        # for i in range(len(pk)):
-        #         tmpAnd = []
-        #         for j in range(len(pk[i])):
-        #                 tmpAnd.append(tk[i][j] == 0) # On vérifie qu'au moins une configuration a tous ces t à 0
-        #         tmpOr.append(And(tmpAnd))
-        # tabAnd.append(Or(tmpOr))
         return And(tabAnd)
