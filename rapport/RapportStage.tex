@@ -15,6 +15,9 @@
 \addbibresource{ref.bib} %Import the bibliography file
 
 \usepackage[linesnumbered]{algorithm2e}
+\usepackage{hyperref}
+\usepackage{setspace}
+\renewcommand*\contentsname{Summary}
 
 \geometry{hmargin=3.5cm,vmargin=1.5cm}
 
@@ -25,6 +28,10 @@
 \begin{document}
 
 \maketitle
+\doublespacing
+\tableofcontents
+\singlespacing
+\newpage
 
 \section{Introduction}
 
@@ -60,7 +67,7 @@ $(\bigwedge_{i = 0}^{k-1} ( p_{i} \geq 0 \land p_{i} <  size_{ring} \land s_{i} 
 $(\bigvee_{i = 0}^{k-1} (\bigvee_{j = 0, j\not=i}^{k-1} (p_{j} = p_{i} \land \bigwedge_{h = 0}^{k-1} ( \bigwedge_{l = 0, l\not=h}^{k-1} (p_{h} \not= p_{l} \lor p_{h} = p_{i}) ) ) ) )$
 \end{center}
 
-\begin{figure}
+\begin{figure}[!hp]
     \centering
     \def\svgscale{0.3}
     \input{dessinSM.pdf_tex}
@@ -215,12 +222,12 @@ $\bigwedge_{i=0}^{k-1}(distM_{i} = (\sum_{l=0}^i dM_{l}) \land distN_{i} = (\sum
 $(\bigvee_{i=0}^{k-1}\quad (\quad (distM_{i} < distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (dM_{j} = dist_{j}) ) \lor $\\
 $(distM_{i} > distN_{i} \bigwedge_{q=0}^{i} (distM_{q} = distN_{q}) \bigwedge_{j = 0}^{k-1} (dN_{j} = dist_{j}) )\quad )\quad )$
 \end{center}
-
-\begin{figure}
+\newpage
+\begin{figure}[!hp]
     \centering
     \def\svgscale{0.3}
     \input{dessinRigid.pdf_tex}
-    \caption{Rigid configuration. Here A has the biggest code of view, and the only neighbor at distance $Max$ that he has is B, hence A is $M$ and B is $N$. As we can see with the distance in red, A will move toward E : this will create a single multiplicity faster than if B would have moved toward C}
+    \caption{Rigid configuration. Here, A has the biggest code of view, and the only neighbor at distance $Max$ that he has is B, hence A is $M$ and B is $N$. As we can see with the distance in red, A will move toward E : this will create a single multiplicity faster than if B would have moved toward C}
     \label{dessinRigid}
 \end{figure}
 
@@ -251,13 +258,36 @@ $(\bigwedge_{i=0}^{k-1} dist_{i} \not= 0) \land $\\
 $(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
 \end{center}
 
-\begin{figure}[!h]
+\begin{figure}[!hp]
     \centering
     \def\svgscale{0.3}
     \input{dessinOdd.pdf_tex}
     \caption{A symetrical, non-periodic configuration with an odd number of robots. Here, if the robot is axial it moves. In this case, A moves in order to create, eventually, a rigid configuration or a single multiplicity.}
     \label{dessinOdd}
 \end{figure}
+
+\subsection{Equivalence classes}
+
+In order to decrease the time it takes to find a loosing loop we want to be able to detect if two configurations are in the same equivalence class.
+
+Two configurations are in the same equivalence class if :
+\begin{itemize}
+    \item one is a rotation of the other
+    \item one is the mirror configuration of the other
+    \item one is the same configuration but with different index position (i.e position vector:\newline (0, 3, 1) is the same that position vector: (0, 1, 3) and it is the same configuration if the status vector and the equity vector have the same value for a given position.)
+\end{itemize}
+
+\noindent The formula $SameClass$ is $true$ if both configuration are in the same equivalence class.
+
+\begin{center}
+    
+$SameClass(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
+$p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
+%symetry
+$(\bigvee_{s=0}^{size_{ring}-1} ( \bigwedge_{i=0}^{k-1} (p'_{i} = p_{i+s \mod{size_{ring}}} \land s'_{i} = s_{i+s \mod{size_{ring}}} \land t'_{i} = t_{i+s \mod{size_{ring}}}) ))\land$\\
+$()$
+//TODO
+\end{center}
 
 \section{Algorithms}
 
@@ -341,7 +371,7 @@ Here is the algorithm :
         \item Finally, let's say we exit the algorithm at line 25 and that there is a loosing loop. Two things : we have reached $k = size_{max}$ and the interpolant can't grow anymore ($I' \implies I$), meaning that, for every loop size and for all configurations we can't find a loosing loop. Because there is a loosing loop either the interpolant find it (l.13) and we add the size to $MaybeThisSize$ and then we confirm the size of the loosing loop line 9, either we find the loop when $I = Init$ at line 13. We only increase $k$ by one for each iteration. $k$ can't reach $size_{max}$ without reaching first the size of the loosing loop that will be added to $MaybeThisSize$ or will lead directly to the $exit$ line 15. We face a contradiction.
     \end{itemize}
 \end{itemize}
-
+\newpage
 \section{Tests}
 
 We are now comparing both algorithms through some tests. We will put an initialized configuration with no other conditions than : no winning configuration, all $s$ at $-1$ and all $t$ at $0$. And with that configuration, one of the strategy written above. We mesure the time it takes the algorithm to find a loosing loop. We will change the number of robots and the size of the ring from a test to another. There is a timeout of 24h (86400s), and all tests are performed on the same computer.
@@ -395,8 +425,6 @@ Finally, we test $\phi_{R}$ the most complex strategy that we have.
     \includegraphics[width=0.6\textwidth]{../data/data-phiR24/compar_phiR24_4.png}\label{phiR24r4}
     \caption{Results for 4 robots}
 \end{figure}
-
 \newpage
-
 \printbibliography %Prints bibliography
 \end{document}
