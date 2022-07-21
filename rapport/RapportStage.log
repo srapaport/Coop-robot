@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  20 JUL 2022 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  21 JUL 2022 15:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -983,114 +983,114 @@ pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rappo
 
 pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinOdd.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >] [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 349--350
+Underfull \hbox (badness 10000) in paragraph at lines 371--372
 
  []
 
 [8]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 383.
+(hyperref)                removing `math shift' on input line 405.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 383.
+(hyperref)                removing `\phi' on input line 405.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 383.
+(hyperref)                removing `subscript' on input line 405.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 383.
+(hyperref)                removing `math shift' on input line 405.
 
-<../data/data-phiSimple/compar_phiSimple_2.png, id=187, 462.528pt x 346.896pt>
+<../data/data-phiSimple/compar_phiSimple_2.png, id=188, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple/compar_phiSimple_2.png Graphic file (type png)
 <use ../data/data-phiSimple/compar_phiSimple_2.png>
-Package pdftex.def Info: ../data/data-phiSimple/compar_phiSimple_2.png  used on input line 389.
+Package pdftex.def Info: ../data/data-phiSimple/compar_phiSimple_2.png  used on input line 411.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
-<../data/data-phiSimple/compar_phiSimple_3.png, id=189, 462.528pt x 346.896pt>
+<../data/data-phiSimple/compar_phiSimple_3.png, id=190, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple/compar_phiSimple_3.png Graphic file (type png)
 <use ../data/data-phiSimple/compar_phiSimple_3.png>
-Package pdftex.def Info: ../data/data-phiSimple/compar_phiSimple_3.png  used on input line 390.
+Package pdftex.def Info: ../data/data-phiSimple/compar_phiSimple_3.png  used on input line 412.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 394.
+(hyperref)                removing `math shift' on input line 416.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 394.
+(hyperref)                removing `\phi' on input line 416.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 394.
+(hyperref)                removing `subscript' on input line 416.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 394.
+(hyperref)                removing `math shift' on input line 416.
 
-<../data/data-phiSM/compar_phiSM_2.png, id=190, 462.528pt x 346.896pt>
+<../data/data-phiSM/compar_phiSM_2.png, id=191, 462.528pt x 346.896pt>
 File: ../data/data-phiSM/compar_phiSM_2.png Graphic file (type png)
 <use ../data/data-phiSM/compar_phiSM_2.png>
-Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_2.png  used on input line 400.
+Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_2.png  used on input line 422.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
-<../data/data-phiSM/compar_phiSM_3.png, id=191, 462.528pt x 346.896pt>
+<../data/data-phiSM/compar_phiSM_3.png, id=192, 462.528pt x 346.896pt>
 File: ../data/data-phiSM/compar_phiSM_3.png Graphic file (type png)
 <use ../data/data-phiSM/compar_phiSM_3.png>
-Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_3.png  used on input line 401.
+Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_3.png  used on input line 423.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
-<../data/data-phiSM/compar_phiSM_4.png, id=192, 462.528pt x 346.896pt>
+<../data/data-phiSM/compar_phiSM_4.png, id=193, 462.528pt x 346.896pt>
 File: ../data/data-phiSM/compar_phiSM_4.png Graphic file (type png)
 <use ../data/data-phiSM/compar_phiSM_4.png>
-Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_4.png  used on input line 407.
+Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_4.png  used on input line 429.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
-<../data/data-phiSM/compar_phiSM_5.png, id=193, 462.528pt x 346.896pt>
+<../data/data-phiSM/compar_phiSM_5.png, id=194, 462.528pt x 346.896pt>
 File: ../data/data-phiSM/compar_phiSM_5.png Graphic file (type png)
 <use ../data/data-phiSM/compar_phiSM_5.png>
-Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_5.png  used on input line 408.
+Package pdftex.def Info: ../data/data-phiSM/compar_phiSM_5.png  used on input line 430.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 412.
+(hyperref)                removing `math shift' on input line 434.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 412.
+(hyperref)                removing `\phi' on input line 434.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 412.
+(hyperref)                removing `subscript' on input line 434.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 412.
+(hyperref)                removing `math shift' on input line 434.
 
-<../data/data-phiR24/compar_phiR24_2.png, id=194, 462.528pt x 346.896pt>
+<../data/data-phiR24/compar_phiR24_2.png, id=195, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_2.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_2.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_2.png  used on input line 418.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_2.png  used on input line 440.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
-<../data/data-phiR24/compar_phiR24_3.png, id=195, 462.528pt x 346.896pt>
+<../data/data-phiR24/compar_phiR24_3.png, id=196, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_3.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_3.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_3.png  used on input line 419.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_3.png  used on input line 441.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 [9 <../data/data-phiSimple/compar_phiSimple_2.png> <../data/data-phiSimple/compar_phiSimple_3.png> <../data/data-phiSM/compar_phiSM_2.png> <../data/data-phiSM/compar_phiSM_3.png>]
-<../data/data-phiR24/compar_phiR24_4.png, id=213, 462.528pt x 346.896pt>
+<../data/data-phiR24/compar_phiR24_4.png, id=214, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_4.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_4.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_4.png  used on input line 425.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_4.png  used on input line 447.
 (pdftex.def)             Requested size: 249.07796pt x 186.8129pt.
  [10 <../data/data-phiSM/compar_phiSM_4.png> <../data/data-phiSM/compar_phiSM_5.png> <../data/data-phiR24/compar_phiR24_2.png> <../data/data-phiR24/compar_phiR24_3.png> <../data/data-phiR24/compar_phiR24_4.png>] [11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 430.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 430.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 452.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 452.
  (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 430.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 430.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 452.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 452.
 Package rerunfilecheck Info: File `RapportStage.out' has not changed.
 (rerunfilecheck)             Checksum: 7546A24BA84D05FF7C4CF4CA5664D119;673.
 Package logreq Info: Writing requests to 'RapportStage.run.xml'.
@@ -1100,16 +1100,16 @@ Package logreq Info: Writing requests to 'RapportStage.run.xml'.
 Here is how much of TeX's memory you used:
  27733 strings out of 481239
  515083 string characters out of 5920378
- 1155374 words of memory out of 5000000
+ 1159388 words of memory out of 5000000
  42456 multiletter control sequences out of 15000+600000
  541360 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,27n,60p,907b,1129s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (11 pages, 518592 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (11 pages, 527882 bytes).
 PDF statistics:
- 320 PDF objects out of 1000 (max. 8388607)
- 254 compressed objects within 3 object streams
+ 324 PDF objects out of 1000 (max. 8388607)
+ 257 compressed objects within 3 object streams
  84 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

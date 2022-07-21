@@ -1,6 +1,7 @@
 from z3 import *
 from rigid_util import *
 from odd_util import *
+from equivalence import *
 from math import factorial
 
 def Init(p, s, t, taille_anneau):
@@ -569,3 +570,62 @@ def BouclePerdante_v4(taille_anneau, p_init, s_init, t_init, pk, sk, tk, functio
         tabAnd.append(Or(tabOrPost))
         print("FIN OU")
         return And(tabAnd)
+
+def BouclePerdante_v4_1(taille_anneau, p_init, s_init, t_init, pk, sk, tk, function_phi, NotThisSize):
+        
+        print("Construction BouclePerdante, len(pk) = ", len(pk))
+        tabAnd = []
+        tabOrPost = []
+        print("DEBUT OU")
+
+        p_equi = []
+        s_equi = []
+        t_equi = []
+
+        print("Post de ", pk[-1], " à ", p_init)
+        tabAndBis = []
+        p_equi.append([ Int('p_equiInit%s' % (i)) for i in range(len(p_init)) ])
+        s_equi.append([ Int('s_equiInit%s' % (i)) for i in range(len(p_init)) ])
+        t_equi.append([ Int('t_equiInit%s' % (i)) for i in range(len(p_init)) ])
+        tabAndBis.append(equiAll(p_init, s_init, t_init, p_equi[0], s_equi[0], t_equi[0], taille_anneau))
+        tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_equi[0], s_equi[0], t_equi[0], function_phi))
+        tmpOrBis = []
+        for m in range(1, len(pk) + 1):
+                tmpOr = []
+                tmpAnd = []
+                for n in range(len(pk[-m])):
+                        tmpOr.append(pk[-m][n] != pk[-m][(n+1)%len(pk[-m])])
+                        tmpAnd.append(tk[-m][n] == 0)
+                tmpOrBis.append(And(tmpAnd))
+                tabAndBis.append(Or(tmpOr))
+        tabAndBis.append(Or(tmpOrBis))
+        tabOrPost.append(And(tabAndBis))        
+
+        for i in range(len(pk) - 1):
+                taille_boucle = len(pk) - (i+1)
+                if taille_boucle in NotThisSize:
+                        print("On ne cherche pas de boucle de taille : ", taille_boucle)
+                else:
+                        p_equi.append([ Int('p_equi%s%s' % (i, j)) for j in range(len(p_init)) ])
+                        s_equi.append([ Int('s_equi%s%s' % (i, j)) for j in range(len(p_init)) ])
+                        t_equi.append([ Int('t_equi%s%s' % (i, j)) for j in range(len(p_init)) ])
+                        print("Post de ", pk[-1], " à ", pk[i], " ou configuration équivalente")
+                        tabAndBis = []  # Construction du tabOrPost
+                        tabAndBis.append(equiAll(pk[i], sk[i], tk[i], p_equi[-1], s_equi[-1], t_equi[-1]))
+                        tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_equi[-1], s_equi[-1], t_equi[-1], function_phi))
+                        tmpOrBis = []   # Construction de tmpAnd
+                        for m in range(1, taille_boucle + 1):
+                                tmpOr = []      # Aucune configuration n'est gagnante
+                                tmpAnd = []     # Au moins une configuration a tous ses t à 0
+                                for n in range(len(pk[-m])):
+                                        tmpOr.append(pk[-m][n] != pk[-m][(n+1)%len(pk[-m])])
+                                        tmpAnd.append(tk[-m][n] == 0)
+                                tmpOrBis.append(And(tmpAnd))
+                                tabAndBis.append(Or(tmpOr))
+                        tabAndBis.append(Or(tmpOrBis))
+                        tabOrPost.append(And(tabAndBis))
+
+        tabAnd.append(Or(tabOrPost))
+        print("FIN OU")
+        return And(tabAnd)
+        # return Exists([p_equi[i][j] for i in range(len(p_equi)) for j in range(len(p_init))], Exists([s_equi[i][j] for i in range(len(s_equi)) for j in range(len(p_init))], Exists([t_equi[i][j] for i in range(len(t_equi)) for j in range(len(p_init))], And(tabAnd))))

@@ -15,7 +15,7 @@
 \addbibresource{ref.bib} %Import the bibliography file
 
 \usepackage[linesnumbered]{algorithm2e}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{setspace}
 \renewcommand*\contentsname{Summary}
 
@@ -35,15 +35,15 @@
 
 \section{Introduction}
 
-There are two goals here, the first one is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be an interpretation of the pseudo-code given in the research report \cite{gathering}.
+There are two goals here, the first one is to build formulas that will allow robots, spread on a ring, to gather. We have $k$ robots and we will use view vectors to build those formulas. The formulas will be an interpretation of the pseudo-code given in the research report~\cite{gathering}.
 
-The formulas we are building, will be used with formulas given in an other research report \cite{algo}, and then will be tested in the acceleration algorithm using an interpolant \cite{algo}. Which leads us to the second goal, we want to implement and, if possible, improve this algorithm.
+The formulas we are building, will be used with formulas given in an other research report~\cite{algo}, and then will be tested in the acceleration algorithm using an interpolant~\cite{algo}. Which leads us to the second goal, we want to implement and, if possible, improve this algorithm.
 
 \section{Logical Formulas}
 
-In this section, we will translate the algorithms given in the research report \cite{gathering}. Some changes will have to be made because we can't literally translate an algorithm into a first-order logic formula.
+In this section, we will translate the algorithms given in the research report~\cite{gathering}. Some changes will have to be made because we can't literally translate an algorithm into a first-order logic formula.
 
-Before each formula we will describe briefly their scope : when will they be true (or false). We won't present to you the implementation of those formulas in this report. There will be an annex available with the \textit{Python} implementation that we use in order to test those formulas and to put them in the algorithm \cite{algo}.
+Before each formula we will describe briefly their scope : when will they be true (or false). We won't present to you the implementation of those formulas in this report. There will be an annex available with the \textit{Python} implementation that we use in order to test those formulas and to put them in the algorithm~\cite{algo}.
 
 We have three strategies. Each of them allows a robot to move in a given direction based on its environment. They all have the same definition, they take one argument : the view vector (distance vector).
 
@@ -107,7 +107,7 @@ $\land (\bigvee_{j=0}^{k-1}ds_{ij} \not= d_{lj})
 ) )$\\%Toutes les vues sont distinctes
 \end{center}
 
-$AllCode$ is $true$ if $(\alpha'_{r}, \beta'_{r})$ is the set of two natural numbers of the robot $r$ such as $\alpha'_r$ and $\beta'_r$ are codes of $r$'s views, with $\alpha'_{r} < \beta'_{r}$. The process which leads us to obtain all view codes is defined in the research report \cite{gathering}. 
+$AllCode$ is $true$ if $(\alpha'_{r}, \beta'_{r})$ is the set of two natural numbers of the robot $r$ such as $\alpha'_r$ and $\beta'_r$ are codes of $r$'s views, with $\alpha'_{r} < \beta'_{r}$. The process which leads us to obtain all view codes is defined in the research report~\cite{gathering}. 
 
 \begin{center}
 $AllCode(d_{00}, \ldots ,d_{k-1k-1}, ds_{00}, \ldots ,ds_{k-1k-1}, \alpha_{0}, \dots, \alpha_{k-1}, \beta_{0}, \dots, \beta_{k-1},$\\
@@ -277,21 +277,43 @@ Two configurations are in the same equivalence class if :
     \item one is the same configuration but with different index position (i.e position vector:\newline (0, 3, 1) is the same that position vector: (0, 1, 3) and it is the same configuration if the status vector and the equity vector have the same value for a given position.)
 \end{itemize}
 
-\noindent The formula $SameClass$ is $true$ if both configuration are in the same equivalence class.
+\noindent The formula $SameClassRot$ is $true$ if one configuration is a rotation of the other.
 
 \begin{center}
     
-$SameClass(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
+$SameClassRot(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
 $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
-%symetry
-$(\bigvee_{s=0}^{size_{ring}-1} ( \bigwedge_{i=0}^{k-1} (p'_{i} = p_{i+s \mod{size_{ring}}} \land s'_{i} = s_{i+s \mod{size_{ring}}} \land t'_{i} = t_{i+s \mod{size_{ring}}}) ))\land$\\
-$()$
-//TODO
+%rotation
+$(\bigvee_{s=0}^{size_{ring}-1} ( \bigwedge_{i=0}^{k-1} (p'_{i} = p_{i}+s \mod{size_{ring}} \land t'_{i} = t_{i}+s \mod{size_{ring}} \land$\\
+$((s_{i} = -1 \land s'_{i} = -1) \lor (s_{i} \not= -1 \land s'_{i} = s_{i}+s \mod{size_{ring}}) ) ) ))$
+\end{center}
+
+\noindent The formula $SameClassMirror$ is $true$ if one configuration is the mirror of the other.
+
+\begin{center}
+    
+    $SameClassMirror(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
+    $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
+    %mirror
+    $\bigwedge_{i=0}^{k-1}( p'_{i} = (size_{ring} - p_{i})\mod{size_{ring}} \land t'_{i} = t_{i} \land$ \\
+    $((s_{i} = -1 \land s'_{i} = -1) \lor (s_{i} \not= -1 \land s'_{i} = (size_{ring} - s_{i})\mod{size_{ring}}))) $
+\end{center}
+
+\noindent The formula $SameClassOrder$ is $true$ if one configuration is the same with different index on the configuration vectors than the other configuration.
+
+\begin{center}
+    
+    $SameClassOrder(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
+    $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}):=$\\
+    %order
+    $\exists o_{0_{1}},\dots, o_{0_{k-1}}, \dots, o_{k!-1_{0}}, \dots, o_{k!-1_{k-1}},$\\
+    $( o_{0_{1}} = 0 \land \dots \land o_{0_{k-1}} = k-1 \land \dots \land o_{k!-1_{0}} = k-1 \land \dots \land o_{k!-1_{k-1}} = 0 ) \land $\\
+    $(\bigvee_{i=0}^{k!-1} (\bigwedge_{j=0}^{k-1} (p'_{j} = p_{o_{i_{j}}} \land s'_{j} = s_{o_{i_{j}}} \land t'_{j} = t_{o_{i_{j}}}  ) ) )$
 \end{center}
 
 \section{Algorithms}
 
-Now that we have done all of our logical formulas, we need to test those in the acceleration algorithm using an interpolant \cite{algo} and in an alternate version of that same algorithm.
+Now that we have done all of our logical formulas, we need to test those in the acceleration algorithm using an interpolant~\cite{algo} and in an alternate version of that same algorithm.
 
 We needed to create an alternate version because of the way the formula, $BouclePerdante$, is done. Two ways it can be done :
 \begin{enumerate}
@@ -299,7 +321,7 @@ We needed to create an alternate version because of the way the formula, $Boucle
     \item or we can try to create a loop that comes back to a previous configuration with only one $AsyncPost$
 \end{enumerate}
 
-The first possibility has been implemented in the acceleration algorithm using an interpolant \cite{algo}. In order to implement the second possibility we needed to change the algorithm because the winning condition wasn't good anymore.
+The first possibility has been implemented in the acceleration algorithm using an interpolant~\cite{algo}. In order to implement the second possibility we needed to change the algorithm because the winning condition wasn't good anymore.
 
 First we will try to prove that the alternate version of the algorithm works.
 Here is the algorithm :
@@ -376,7 +398,7 @@ Here is the algorithm :
 
 We are now comparing both algorithms through some tests. We will put an initialized configuration with no other conditions than : no winning configuration, all $s$ at $-1$ and all $t$ at $0$. And with that configuration, one of the strategy written above. We mesure the time it takes the algorithm to find a loosing loop. We will change the number of robots and the size of the ring from a test to another. There is a timeout of 24h (86400s), and all tests are performed on the same computer.
 
-Here 'algov5' is the algorithm from the report \cite{algo}, and 'algov7' is the alternate version of the algorithm, presented above.
+Here 'algov5' is the algorithm from the report~\cite{algo}, and 'algov7' is the alternate version of the algorithm, presented above.
 
 We will use one graph per number of robots. Each graph will show the time it tooked to find a loosing loop per size of the ring for a given number of robots.
 
