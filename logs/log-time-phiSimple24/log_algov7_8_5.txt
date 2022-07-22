@@ -1,0 +1,636 @@
+taille : 8 | nb robot : 5
+Init + phiSimple
+taille_anneau =  8
+nb_robots =  5
+taille_boucle_max =  10424128
+boucle pour k =  9
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Post 5
+Post 6
+Post 7
+Post 8
+Construction BouclePerdante, len(pk) =  9
+DEBUT OU
+Post de  [kp80, kp81, kp82, kp83, kp84]  à  [p0, p1, p2, p3, p4]
+On ne cherche pas de boucle de taille :  8
+On ne cherche pas de boucle de taille :  7
+On ne cherche pas de boucle de taille :  6
+On ne cherche pas de boucle de taille :  5
+On ne cherche pas de boucle de taille :  4
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+Stratégie perdante
+k =  9
+(define-fun cvdp0!27 () Int
+  113)
+(define-fun cvdp3!150 () Int
+  (- 269))
+(define-fun cvdp2!179 () Int
+  (- 178))
+(define-fun cvdp0!209 () Int
+  85)
+(define-fun kp32 () Int
+  0)
+(define-fun kp81 () Int
+  6)
+(define-fun cvdp3!192 () Int
+  (- 264))
+(define-fun cvdp2!109 () Int
+  64)
+(define-fun kp51 () Int
+  6)
+(define-fun kp34 () Int
+  2)
+(define-fun cvdp2!263 () Int
+  (- 2))
+(define-fun kt33 () Int
+  1)
+(define-fun kt61 () Int
+  1)
+(define-fun md3!286 () Int
+  2)
+(define-fun cvdp2!67 () Int
+  (- 177))
+(define-fun kp44 () Int
+  2)
+(define-fun kt60 () Int
+  0)
+(define-fun ks11 () Int
+  (- 1))
+(define-fun cvdp2!81 () Int
+  (- 158))
+(define-fun md4!271 () Int
+  0)
+(define-fun kp40 () Int
+  4)
+(define-fun kt02 () Int
+  1)
+(define-fun kt32 () Int
+  1)
+(define-fun ks41 () Int
+  6)
+(define-fun cvdp3!248 () Int
+  89)
+(define-fun s0 () Int
+  (- 1))
+(define-fun kp30 () Int
+  4)
+(define-fun kp31 () Int
+  6)
+(define-fun kp43 () Int
+  2)
+(define-fun kt62 () Int
+  1)
+(define-fun mdp0!284 () Int
+  2)
+(define-fun mdp4!266 () Int
+  0)
+(define-fun cvdp3!346 () Int
+  (- 345))
+(define-fun ks71 () Int
+  (- 1))
+(define-fun kt12 () Int
+  1)
+(define-fun mdp0!116 () Int
+  2)
+(define-fun mdp4!112 () Int
+  0)
+(define-fun kt31 () Int
+  1)
+(define-fun mdp2!156 () Int
+  0)
+(define-fun cvdp0!293 () Int
+  2)
+(define-fun ks73 () Int
+  2)
+(define-fun kt72 () Int
+  1)
+(define-fun cvdp0!181 () Int
+  (- 182))
+(define-fun cvdp1!124 () Int
+  4)
+(define-fun md2!119 () Int
+  2)
+(define-fun md0!37 () Int
+  2)
+(define-fun kp80 () Int
+  4)
+(define-fun kt83 () Int
+  1)
+(define-fun kp64 () Int
+  2)
+(define-fun cvdp1!40 () Int
+  4)
+(define-fun cvdp0!349 () Int
+  (- 336))
+(define-fun kp54 () Int
+  2)
+(define-fun kt24 () Int
+  0)
+(define-fun ks84 () Int
+  2)
+(define-fun mdp4!28 () Int
+  2)
+(define-fun md0!163 () Int
+  2)
+(define-fun kp53 () Int
+  2)
+(define-fun mdp4!154 () Int
+  2)
+(define-fun kp61 () Int
+  6)
+(define-fun kt64 () Int
+  0)
+(define-fun cvdp2!39 () Int
+  6)
+(define-fun cvdp3!220 () Int
+  65)
+(define-fun cvdp0!265 () Int
+  18)
+(define-fun ks61 () Int
+  (- 1))
+(define-fun s4 () Int
+  (- 1))
+(define-fun md4!117 () Int
+  0)
+(define-fun cvdp2!207 () Int
+  67)
+(define-fun ks00 () Int
+  (- 1))
+(define-fun kt11 () Int
+  0)
+(define-fun kt52 () Int
+  0)
+(define-fun kp52 () Int
+  0)
+(define-fun mdp2!30 () Int
+  2)
+(define-fun cvdp2!123 () Int
+  6)
+(define-fun kp42 () Int
+  0)
+(define-fun mdp3!281 () Int
+  0)
+(define-fun md3!160 () Int
+  2)
+(define-fun cvdp3!206 () Int
+  24)
+(define-fun kp74 () Int
+  2)
+(define-fun kt70 () Int
+  1)
+(define-fun t0 () Int
+  0)
+(define-fun cvdp2!95 () Int
+  (- 34))
+(define-fun cvdp2!305 () Int
+  71)
+(define-fun cvdp3!38 () Int
+  6)
+(define-fun md2!287 () Int
+  2)
+(define-fun mdp1!283 () Int
+  2)
+(define-fun cvdp3!276 () Int
+  8)
+(define-fun cvdp3!66 () Int
+  72)
+(define-fun mdp1!269 () Int
+  2)
+(define-fun cvdp0!503 () Int
+  0)
+(define-fun md1!274 () Int
+  2)
+(define-fun ks74 () Int
+  2)
+(define-fun cvdp0!69 () Int
+  2)
+(define-fun ks63 () Int
+  2)
+(define-fun ks33 () Int
+  2)
+(define-fun ks72 () Int
+  (- 1))
+(define-fun md3!34 () Int
+  0)
+(define-fun ks22 () Int
+  0)
+(define-fun cvdp0!167 () Int
+  2)
+(define-fun cvdp0!223 () Int
+  (- 2))
+(define-fun kt71 () Int
+  1)
+(define-fun mdp2!114 () Int
+  2)
+(define-fun kt03 () Int
+  0)
+(define-fun kp03 () Int
+  2)
+(define-fun kp01 () Int
+  6)
+(define-fun ks43 () Int
+  2)
+(define-fun kt40 () Int
+  0)
+(define-fun ks70 () Int
+  (- 1))
+(define-fun md1!120 () Int
+  2)
+(define-fun md0!289 () Int
+  2)
+(define-fun kt13 () Int
+  1)
+(define-fun kp82 () Int
+  0)
+(define-fun kt14 () Int
+  0)
+(define-fun kp50 () Int
+  4)
+(define-fun md0!275 () Int
+  2)
+(define-fun mdp3!113 () Int
+  2)
+(define-fun kp02 () Int
+  0)
+(define-fun cvdp3!262 () Int
+  24)
+(define-fun mdp4!280 () Int
+  2)
+(define-fun kt84 () Int
+  0)
+(define-fun cvdp2!319 () Int
+  (- 296))
+(define-fun cvdp1!292 () Int
+  2)
+(define-fun ks24 () Int
+  (- 1))
+(define-fun cvdp3!94 () Int
+  (- 170))
+(define-fun ks20 () Int
+  (- 1))
+(define-fun t1 () Int
+  0)
+(define-fun ks14 () Int
+  (- 1))
+(define-fun cvdp2!291 () Int
+  4)
+(define-fun ks83 () Int
+  (- 1))
+(define-fun cvdp1!236 () Int
+  (- 279))
+(define-fun kt80 () Int
+  1)
+(define-fun kp14 () Int
+  2)
+(define-fun ks42 () Int
+  0)
+(define-fun kt01 () Int
+  0)
+(define-fun md3!118 () Int
+  2)
+(define-fun cvdp1!110 () Int
+  10)
+(define-fun cvdp1!68 () Int
+  4)
+(define-fun cvdp2!25 () Int
+  100)
+(define-fun s1 () Int
+  (- 1))
+(define-fun cvdp1!194 () Int
+  85)
+(define-fun ks51 () Int
+  (- 1))
+(define-fun cvdp1!348 () Int
+  (- 348))
+(define-fun md3!272 () Int
+  2)
+(define-fun md4!159 () Int
+  2)
+(define-fun ks50 () Int
+  4)
+(define-fun cvdp2!249 () Int
+  (- 280))
+(define-fun kt00 () Int
+  0)
+(define-fun md4!33 () Int
+  2)
+(define-fun kp60 () Int
+  4)
+(define-fun md4!285 () Int
+  2)
+(define-fun kp72 () Int
+  0)
+(define-fun cvdp3!122 () Int
+  8)
+(define-fun cvdp2!137 () Int
+  37)
+(define-fun cvdp1!96 () Int
+  (- 25))
+(define-fun cvdp0!13 () Int
+  5)
+(define-fun cvdp2!11 () Int
+  6)
+(define-fun ks82 () Int
+  (- 1))
+(define-fun ks13 () Int
+  2)
+(define-fun cvdp2!655 () Int
+  0)
+(define-fun kt04 () Int
+  0)
+(define-fun kt22 () Int
+  1)
+(define-fun kp12 () Int
+  0)
+(define-fun kp13 () Int
+  2)
+(define-fun p1 () Int
+  6)
+(define-fun t4 () Int
+  0)
+(define-fun mdp1!115 () Int
+  2)
+(define-fun cvdp2!151 () Int
+  (- 313))
+(define-fun cvdp1!250 () Int
+  (- 18))
+(define-fun kt63 () Int
+  0)
+(define-fun cvdp3!136 () Int
+  57)
+(define-fun ks54 () Int
+  2)
+(define-fun cvdp1!306 () Int
+  75)
+(define-fun kp23 () Int
+  2)
+(define-fun kt42 () Int
+  0)
+(define-fun kp04 () Int
+  2)
+(define-fun cvdp1!208 () Int
+  79)
+(define-fun cvdp1!320 () Int
+  (- 281))
+(define-fun ks52 () Int
+  0)
+(define-fun mdp1!31 () Int
+  0)
+(define-fun kp70 () Int
+  4)
+(define-fun ks40 () Int
+  4)
+(define-fun p3 () Int
+  2)
+(define-fun cvdp2!235 () Int
+  0)
+(define-fun kt50 () Int
+  0)
+(define-fun cvdp1!54 () Int
+  23)
+(define-fun cvdp0!97 () Int
+  (- 16))
+(define-fun ks23 () Int
+  2)
+(define-fun mdp3!155 () Int
+  2)
+(define-fun ks30 () Int
+  (- 1))
+(define-fun mdp2!282 () Int
+  2)
+(define-fun cvdp0!279 () Int
+  2)
+(define-fun md2!273 () Int
+  2)
+(define-fun mdp3!29 () Int
+  2)
+(define-fun ks32 () Int
+  0)
+(define-fun p0 () Int
+  4)
+(define-fun kt82 () Int
+  1)
+(define-fun cvdp3!80 () Int
+  (- 165))
+(define-fun ks02 () Int
+  0)
+(define-fun cvdp3!318 () Int
+  (- 308))
+(define-fun md0!121 () Int
+  2)
+(define-fun cvdp0!111 () Int
+  25)
+(define-fun cvdp3!52 () Int
+  78)
+(define-fun ks04 () Int
+  (- 1))
+(define-fun mdp2!268 () Int
+  2)
+(define-fun cvdp3!290 () Int
+  6)
+(define-fun md1!288 () Int
+  0)
+(define-fun cvdp0!321 () Int
+  (- 280))
+(define-fun kp71 () Int
+  6)
+(define-fun kp73 () Int
+  2)
+(define-fun cvdp1!334 () Int
+  (- 3))
+(define-fun kp22 () Int
+  0)
+(define-fun cvdp0!335 () Int
+  (- 5))
+(define-fun kp33 () Int
+  2)
+(define-fun cvdp0!139 () Int
+  50)
+(define-fun kp11 () Int
+  6)
+(define-fun mdp3!267 () Int
+  2)
+(define-fun cvdp2!333 () Int
+  (- 2))
+(define-fun s3 () Int
+  (- 1))
+(define-fun cvdp3!332 () Int
+  57)
+(define-fun kp21 () Int
+  6)
+(define-fun cvdp3!178 () Int
+  (- 179))
+(define-fun kt73 () Int
+  0)
+(define-fun kp83 () Int
+  2)
+(define-fun kp62 () Int
+  0)
+(define-fun cvdp0!195 () Int
+  20)
+(define-fun t3 () Int
+  0)
+(define-fun cvdp3!24 () Int
+  104)
+(define-fun ks64 () Int
+  2)
+(define-fun kp63 () Int
+  2)
+(define-fun kp10 () Int
+  4)
+(define-fun kt54 () Int
+  0)
+(define-fun cvdp0!83 () Int
+  (- 300))
+(define-fun cvdp1!82 () Int
+  1)
+(define-fun kt20 () Int
+  0)
+(define-fun s2 () Int
+  (- 1))
+(define-fun ks31 () Int
+  6)
+(define-fun kt43 () Int
+  0)
+(define-fun p2 () Int
+  0)
+(define-fun kp41 () Int
+  6)
+(define-fun kt44 () Int
+  0)
+(define-fun ks62 () Int
+  (- 1))
+(define-fun mdp0!32 () Int
+  2)
+(define-fun kp20 () Int
+  4)
+(define-fun cvdp3!10 () Int
+  0)
+(define-fun cvdp3!234 () Int
+  2)
+(define-fun ks03 () Int
+  (- 1))
+(define-fun cvdp2!347 () Int
+  (- 338))
+(define-fun ks44 () Int
+  2)
+(define-fun t2 () Int
+  0)
+(define-fun md1!162 () Int
+  2)
+(define-fun md2!161 () Int
+  0)
+(define-fun kt34 () Int
+  1)
+(define-fun cvdp0!125 () Int
+  2)
+(define-fun mdp1!157 () Int
+  2)
+(define-fun cvdp1!278 () Int
+  4)
+(define-fun cvdp0!153 () Int
+  (- 334))
+(define-fun cvdp1!180 () Int
+  (- 181))
+(define-fun kp24 () Int
+  2)
+(define-fun cvdp0!307 () Int
+  1)
+(define-fun p4 () Int
+  2)
+(define-fun kt53 () Int
+  0)
+(define-fun cvdp1!264 () Int
+  12)
+(define-fun kt74 () Int
+  0)
+(define-fun ks53 () Int
+  2)
+(define-fun kt10 () Int
+  0)
+(define-fun kp00 () Int
+  4)
+(define-fun cvdp0!41 () Int
+  2)
+(define-fun cvdp1!166 () Int
+  4)
+(define-fun ks81 () Int
+  (- 1))
+(define-fun ks60 () Int
+  4)
+(define-fun md1!36 () Int
+  2)
+(define-fun cvdp1!138 () Int
+  40)
+(define-fun cvdp1!222 () Int
+  (- 12))
+(define-fun cvdp0!55 () Int
+  112)
+(define-fun cvdp3!164 () Int
+  6)
+(define-fun mdp0!270 () Int
+  2)
+(define-fun cvdp2!53 () Int
+  87)
+(define-fun kt41 () Int
+  0)
+(define-fun cvdp3!108 () Int
+  (- 270))
+(define-fun kt81 () Int
+  1)
+(define-fun kt30 () Int
+  0)
+(define-fun md2!35 () Int
+  2)
+(define-fun ks12 () Int
+  0)
+(define-fun kt51 () Int
+  1)
+(define-fun cvdp2!277 () Int
+  6)
+(define-fun ks10 () Int
+  (- 1))
+(define-fun cvdp3!304 () Int
+  5)
+(define-fun cvdp2!165 () Int
+  4)
+(define-fun kp84 () Int
+  2)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun kt21 () Int
+  1)
+(define-fun cvdp1!152 () Int
+  (- 328))
+(define-fun mdp0!158 () Int
+  2)
+(define-fun ks21 () Int
+  6)
+(define-fun cvdp0!237 () Int
+  1)
+(define-fun cvdp0!251 () Int
+  (- 15))
+(define-fun ks80 () Int
+  (- 1))
+(define-fun cvdp2!193 () Int
+  (- 271))
+(define-fun cvdp1!26 () Int
+  121)
+(define-fun ks34 () Int
+  2)
+(define-fun cvdp1!12 () Int
+  7)
+(define-fun kt23 () Int
+  1)
+(define-fun cvdp2!221 () Int
+  (- 289))
+python3 algov7.py 8 5 86400
+	Real time elapsed : 3:38:03
+

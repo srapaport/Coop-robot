@@ -1,0 +1,27 @@
+taille : 5 | nb robot : 2
+Init + phiSimple
+taille_anneau =  5
+nb_robots =  2
+taille_boucle_max =  820
+boucle pour k = 1
+
+Test pour taille_boucle =  3
+Construction de la boucle de taille :  1  | pour une taille totale de :  3
+Construction de la boucle de taille :  2  | pour une taille totale de :  3
+Construction de la boucle de taille :  3  | pour une taille totale de :  3
+Unsat pour taille_boucle =  3
+Test pour taille_boucle =  4
+Construction de la boucle de taille :  1  | pour une taille totale de :  4
+Construction de la boucle de taille :  2  | pour une taille totale de :  4
+Construction de la boucle de taille :  3  | pour une taille totale de :  4
+Construction de la boucle de taille :  4  | pour une taille totale de :  4
+Unsat pour taille_boucle =  4
+Test pour taille_boucle =  5
+Construction de la boucle de taille :  1  | pour une taille totale de :  5
+Construction de la boucle de taille :  2  | pour une taille totale de :  5
+Construction de la boucle de taille :  3  | pour une taille totale de :  5
+Construction de la boucle de taille :  4  | pour une taille totale de :  5
+Construction de la boucle de taille :  5  | pour une taille totale de :  5
+python3 algov5.py 5 2 86400
+	Real time elapsed : 0:29.82
+

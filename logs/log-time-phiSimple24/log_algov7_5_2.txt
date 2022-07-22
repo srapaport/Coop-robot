@@ -1,0 +1,129 @@
+taille : 5 | nb robot : 2
+Init + phiSimple
+taille_anneau =  5
+nb_robots =  2
+taille_boucle_max =  820
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  3  | On augmente k
+boucle pour k =  4
+Post Init
+Post 1
+Post 2
+Post 3
+Construction BouclePerdante, len(pk) =  4
+DEBUT OU
+Post de  [kp30, kp31]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  4
+Post Init
+Post 1
+Post 2
+Post 3
+Construction BouclePerdante, len(pk) =  4
+DEBUT OU
+Post de  [kp30, kp31]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) SAT
+boucle pour k =  4
+Post Init
+Post 1
+Post 2
+Post 3
+Construction BouclePerdante, len(pk) =  4
+DEBUT OU
+Post de  [kp30, kp31]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+And(And(Ip), Not(I)) UNSAT
+Pas de boucle perdante de taille :  4  | On augmente k
+boucle pour k =  5
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Construction BouclePerdante, len(pk) =  5
+DEBUT OU
+Post de  [kp40, kp41]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  4
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+python3 algov7.py 5 2 86400
+	Real time elapsed : 0:20.47
+
