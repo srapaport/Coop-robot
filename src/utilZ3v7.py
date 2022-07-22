@@ -624,8 +624,8 @@ def BouclePerdante_v4_1(taille_anneau, p_init, s_init, t_init, pk, sk, tk, funct
 
         tabAnd.append(Or(tabOrPost))
         print("FIN OU")
-        return And(tabAnd)
-        # return Exists([p_equi[i][j] for i in range(len(p_equi)) for j in range(len(p_init))], Exists([s_equi[i][j] for i in range(len(s_equi)) for j in range(len(p_init))], Exists([t_equi[i][j] for i in range(len(t_equi)) for j in range(len(p_init))], And(tabAnd))))
+        #return And(tabAnd)
+        return Exists([p_equi[i][j] for i in range(len(p_equi)) for j in range(len(p_init))], Exists([s_equi[i][j] for i in range(len(s_equi)) for j in range(len(p_init))], Exists([t_equi[i][j] for i in range(len(t_equi)) for j in range(len(p_init))], And(tabAnd))))
 
 def BouclePerdante_v5(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         superAnd = []
@@ -654,15 +654,15 @@ def BouclePerdante_v5(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
                 tmpOrter = []
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), pk, sk, tk, cp[0], cs[0], ct[0], function_phi))
-                print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
+                #print("1er Post : cp départ : ", pk, " | cp arrivé : ", cp[0],"\n")
                 for i in range(x):
                         # if i == 0 :
                         #         print("Entrée dans la boucle des AsyncPost")
                         tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[i], cs[i], ct[i], cp[i+1], cs[i+1], ct[i+1], function_phi))
-                        print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
+                        #print("Boucle Post : ", i, " cp départ : ", cp[i], " | cp arrivé : ", cp[i+1],"\n")
 
                 tmpAnd.append(AsyncPost(taille_anneau, len(pk), cp[x], cs[x], ct[x], p_equi, s_equi, t_equi, function_phi))
-                print("Dernier Post : cp départ : ", cp[x], " | cp arrivé : ", p_equi,"\n")
+                #print("Dernier Post : cp départ : ", cp[x], " | cp arrivé : ", p_equi,"\n")
                 ############################
                 for j in range(len(pk) - 1):
                         tmpOr.append(pk[j] != pk[j+1]) # On vérifie qu'aucune des configurations de transition n'est une configuration gagnante
