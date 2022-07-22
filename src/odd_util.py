@@ -15,14 +15,13 @@ def IsPeriodic(distances):
     d_prime = []
     for p in range(1, borne_sup_p + 1, 2):
         d_prime.append([ Int('IsOdd_d_prime%s%s' % (p, i)) for i in range(p) ])
-        #print(d_prime)
-        #print("p : ", p)
         tabAndBis = []
         for i in range(len(distances)):
             #print("d_prime[", i%p,"] == dist[",i,"]")
             tabAndBis.append(d_prime[-1][i%p] == distances[i])
         tabOr.append(And(tabAndBis))
     tabAnd.append(Or(tabOr))
+    #return And(tabAnd)
     return Exists( [d_prime[i][j] for i in range(len(d_prime)) for j in range(len(d_prime[i]))], And(tabAnd))
 
 ###################### Odd Non Periodic configuration

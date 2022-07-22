@@ -26,7 +26,6 @@ def main():
                 with TimeoutAfter(timeout=to, exception=TimeoutError):
                         while True:
                                 taille_boucle = (2*nb_robots) - 2
-                                #taille_boucle = 4
                                 satisfiable = False
 
                                 I = Init(p, s, t, taille_anneau)
@@ -47,27 +46,27 @@ def main():
                                         tmpAndContext = []
 
                                         tmpAndInterpolant.append(I)
-                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+                                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
 
                                         if k > 1:
                                                 for i in range(1, k):
                                                         print("Pass before %s" % i)
-                                                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiSimple))
+                                                        tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i-1], sk[i-1], tk[i-1], pk[i], sk[i], tk[i], phiUltimate))
                                                         print("Pass after %s" % i)
 
                                         while (not satisfiable) or (taille_boucle < taille_boucle_max):
                                                 # tmpAndContextBis = []
                                                 taille_boucle = taille_boucle + 1
-                                                # tmpAndContextBis.append(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))
+                                                # tmpAndContextBis.append(BouclePerdante_v5(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiUltimate))
                                                 #tmpAndContext.append(And(tmpAndContextBis))
                                                 #print("tmpAndContext : ", tmpAndContext)
                                                 #print("tmpAndInterpolant : ",tmpAndInterpolant)
                                                 print("Test pour taille_boucle = ", taille_boucle)
                                                 try:
                                                         if len(tmpAndContext) == 0:
-                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple)))
+                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), BouclePerdante_v5(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiUltimate)))
                                                         else:
-                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext, BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))))
+                                                                Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext, BouclePerdante_v5(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiUltimate))))
                                                         # print("Id : ", id(Ip))
                                                         print("Unsat pour taille_boucle = ", taille_boucle)
                                                         # if taille_boucle < taille_boucle_max:
@@ -75,7 +74,7 @@ def main():
                                                 # except Z3Exception as z:
                                                 #         solz = Solver()
                                                 #         solz.add(And(tmpAndInterpolant))
-                                                #         solz.add(BouclePerdante(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiSimple))
+                                                #         solz.add(BouclePerdante_v5(taille_anneau, pk[-1], sk[-1], tk[-1], taille_boucle, phiUltimate))
                                                 #         cz = solz.check()
                                                 #         print("Z3Exception solver : ", cz)
                                                 #         if cz == sat:
@@ -104,16 +103,3 @@ def main():
 thr = threading.Thread(target = main)
 thr.start()
 thr.join()
-################
-"""
-Traceback (most recent call last):
-  File "algov5.py", line 56, in <module>
-    Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
-  File "/usr/lib/python3.8/site-packages/z3/z3.py", line 8297, in tree_interpolant
-    res = Z3_compute_interpolant(ctx.ref(),f.as_ast(),p.params,ptr,mptr)
-  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 4074, in Z3_compute_interpolant
-    _elems.Check(a0)
-  File "/usr/lib/python3.8/site-packages/z3/z3core.py", line 1336, in Check
-    raise self.Exception(self.get_error_message(ctx, err))
-z3.z3types.Z3Exception: b'theory not supported by interpolation or bad proof'
-"""
