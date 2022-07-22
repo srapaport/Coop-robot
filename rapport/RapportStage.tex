@@ -266,6 +266,18 @@ $(\bigwedge_{i=0}^{k-1} dist_{i} = ds_{0i})$
     \label{dessinOdd}
 \end{figure}
 
+\subsection{Combining formulas}
+
+Finally, we build the last formula, $\phi_{Ultimate}$, that will garanty us that, with an odd number of robot and no periodicity in the initial configuration, we can gather robots.
+
+\begin{center}
+    
+$\phi_{Ultimate}(dist_{0}, \ldots , dist_{k-1}):=$\\
+$\phi_{ON}(dist_{0}, \ldots , dist_{k-1}) \lor$\\
+$\phi_R(dist_{0}, \ldots , dist_{k-1}) \lor$\\
+$\phi_{SM}(dist_{0}, \ldots , dist_{k-1})$
+\end{center}
+
 \subsection{Equivalence classes}
 
 In order to decrease the time it takes to find a loosing loop we want to be able to detect if two configurations are in the same equivalence class.
@@ -330,6 +342,16 @@ $((s_{i} = -1 \land s'_{i} = -1) \lor (s_{i} \not= -1 \land s'_{i} = s_{i}+s \mo
     $SameClassOrder(pm_{0}, \dots, pm_{k-1}, sm_{0}, \dots, sm_{k-1}, tm_{0}, \dots, tm_{k-1},$\\
     $p'_{0}, \dots,p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}) )$
 \end{center}
+
+\begin{figure}[!hp]
+    \centering
+    \def\svgscale{0.8}
+    \input{dessinEqui.pdf_tex}
+    \caption{An example of four configurations that are in the same equivalence class}
+    \label{dessinEqui}
+\end{figure}
+
+\newpage
 
 \section{Algorithms}
 

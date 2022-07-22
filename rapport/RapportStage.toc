@@ -10,18 +10,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3}Gathering an odd number of robots}{5}{subsection.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4}Equivalence classes}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.4}Combining formulas}{6}{subsection.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Algorithms}{6}{section.3}%
+\contentsline {subsection}{\numberline {2.5}Equivalence classes}{6}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Alternative Version Algorithm}{7}{subsection.3.1}%
+\contentsline {section}{\numberline {3}Algorithms}{8}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Proof}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.1}Alternative Version Algorithm}{8}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Tests}{9}{section.4}%
+\contentsline {subsection}{\numberline {3.2}Proof}{10}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Test $\phi _{Simple}$}{9}{subsection.4.1}%
+\contentsline {section}{\numberline {4}Tests}{11}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Test $\phi _{SM}$}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.1}Test $\phi _{Simple}$}{11}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Test $\phi _{R}$}{10}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.2}Test $\phi _{SM}$}{11}{subsection.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}Test $\phi _{R}$}{12}{subsection.4.3}%
