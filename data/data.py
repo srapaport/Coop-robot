@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import axes3d
 import numpy as np
 import pandas as pd
 
-data = pd.read_csv('./data/data-phiSimple24/data-timev2.csv', sep=';')
+data = pd.read_csv('./data/data-phiR24/data-timev2.csv', sep=';')
 
 algov5 = data.loc[(data['algo'] == 5) & ((data['error'] == 0) | (data['error'] == 3) | (data['error'] == 2))]
 algov7 = data.loc[(data['algo'] == 7) & ((data['error'] == 0) | (data['error'] == 3) | (data['error'] == 2))]
@@ -30,46 +30,46 @@ ax.scatter(algov7r2.sort_values(by = 'taille anneau')['taille anneau'], algov7r2
 ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 2 robots')
 ax.grid()
 ax.legend()
-fig.savefig("./data/data-phiSimple24/compar_phiSimple24_2.png")
+fig.savefig("./data/data-phiR24/compar_phiR24_2.png")
 plt.show()
-# ################# 3
-# fig, ax = plt.subplots()
-# ax.plot(algov5r3.sort_values(by = 'taille anneau')['taille anneau'], algov5r3.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
-# ax.scatter(algov5r3.sort_values(by = 'taille anneau')['taille anneau'], algov5r3.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r3')
-# ax.plot(algov7r3.sort_values(by = 'taille anneau')['taille anneau'], algov7r3.sort_values(by = 'taille anneau')['time elapsed'], color='red')
-# ax.scatter(algov7r3.sort_values(by = 'taille anneau')['taille anneau'], algov7r3.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r3')
+################# 3
+fig, ax = plt.subplots()
+ax.plot(algov5r3.sort_values(by = 'taille anneau')['taille anneau'], algov5r3.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
+ax.scatter(algov5r3.sort_values(by = 'taille anneau')['taille anneau'], algov5r3.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r3')
+ax.plot(algov7r3.sort_values(by = 'taille anneau')['taille anneau'], algov7r3.sort_values(by = 'taille anneau')['time elapsed'], color='red')
+ax.scatter(algov7r3.sort_values(by = 'taille anneau')['taille anneau'], algov7r3.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r3')
 
-# ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 3 robots')
-# ax.grid()
-# ax.legend()
-# fig.savefig("./data/data-phiSimple24/compar_phiSimple24_3.png")
-# plt.show()
-# ################# 4
-# fig, ax = plt.subplots()
-# ax.plot(algov5r4.sort_values(by = 'taille anneau')['taille anneau'], algov5r4.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
-# ax.scatter(algov5r4.sort_values(by = 'taille anneau')['taille anneau'], algov5r4.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r4')
-# ax.plot(algov7r4.sort_values(by = 'taille anneau')['taille anneau'], algov7r4.sort_values(by = 'taille anneau')['time elapsed'], color='red')
-# ax.scatter(algov7r4.sort_values(by = 'taille anneau')['taille anneau'], algov7r4.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r4')
+ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 3 robots')
+ax.grid()
+ax.legend()
+fig.savefig("./data/data-phiR24/compar_phiR24_3.png")
+plt.show()
+################# 4
+fig, ax = plt.subplots()
+ax.plot(algov5r4.sort_values(by = 'taille anneau')['taille anneau'], algov5r4.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
+ax.scatter(algov5r4.sort_values(by = 'taille anneau')['taille anneau'], algov5r4.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r4')
+ax.plot(algov7r4.sort_values(by = 'taille anneau')['taille anneau'], algov7r4.sort_values(by = 'taille anneau')['time elapsed'], color='red')
+ax.scatter(algov7r4.sort_values(by = 'taille anneau')['taille anneau'], algov7r4.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r4')
 
-# ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 4 robots')
-# ax.grid()
-# ax.legend()
-# fig.savefig("./data/data-phiSimple24/compar_phiSimple24_4.png")
-# plt.show()
-# ################# 5
-# fig, ax = plt.subplots()
-# ax.plot(algov5r5.sort_values(by = 'taille anneau')['taille anneau'], algov5r5.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
-# ax.scatter(algov5r5.sort_values(by = 'taille anneau')['taille anneau'], algov5r5.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r5')
-# ax.plot(algov7r5.sort_values(by = 'taille anneau')['taille anneau'], algov7r5.sort_values(by = 'taille anneau')['time elapsed'], color='red')
-# ax.scatter(algov7r5.sort_values(by = 'taille anneau')['taille anneau'], algov7r5.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r5')
+ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 4 robots')
+ax.grid()
+ax.legend()
+fig.savefig("./data/data-phiR24/compar_phiR24_4.png")
+plt.show()
+################# 5
+fig, ax = plt.subplots()
+ax.plot(algov5r5.sort_values(by = 'taille anneau')['taille anneau'], algov5r5.sort_values(by = 'taille anneau')['time elapsed'], color='blue')
+ax.scatter(algov5r5.sort_values(by = 'taille anneau')['taille anneau'], algov5r5.sort_values(by = 'taille anneau')['time elapsed'], color='blue', label='algov5r5')
+ax.plot(algov7r5.sort_values(by = 'taille anneau')['taille anneau'], algov7r5.sort_values(by = 'taille anneau')['time elapsed'], color='red')
+ax.scatter(algov7r5.sort_values(by = 'taille anneau')['taille anneau'], algov7r5.sort_values(by = 'taille anneau')['time elapsed'], color='red', label='algov7r5')
 
-# ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 5 robots')
-# ax.grid()
-# ax.legend()
-# fig.savefig("./data/data-phiSimple24/compar_phiSimple24_5.png")
-# plt.show()
+ax.set(xlabel='taille anneau', ylabel='time elapsed', title='Time elapsed per size of the ring for 5 robots')
+ax.grid()
+ax.legend()
+fig.savefig("./data/data-phiR24/compar_phiR24_5.png")
+plt.show()
 
-######################## 3D
+######################################################################################################################## 3D
 
 # algov5err = data.loc[(data['algo'] == 5) & ((data['error'] == 0) | (data['error'] == 3))]
 # algov7err = data.loc[(data['algo'] == 7) & ((data['error'] == 0) | (data['error'] == 3))]
