@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "Cration du csv pour les logs $1"
+echo "Creation du csv pour les logs $1"
 echo "file;algo;taille anneau;nb robots;error;time elapsed" > ../data/data-$1/data-time.csv
 for file in `ls ../logs/log-time-$1 | grep algo`
 do
@@ -28,6 +28,11 @@ do
     if [ `grep -c 'Tiemout reached' ../logs/log-time-$1/$file` == 1 ]
     then
         echo "3;24:00:00" >> ../data/data-$1/data-time.csv
+        let "ctrl+=1"
+    fi
+    if [ `grep -c 'define-fun' ../logs/log-time-$1/$file` == 0 ] && [ $ctrl == 0 ]
+    then
+        echo "4;24:00:00" >> ../data/data-$1/data-time.csv
         let "ctrl+=1"
     fi
     if [ $ctrl == 0 ]
