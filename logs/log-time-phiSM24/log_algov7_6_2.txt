@@ -1,0 +1,88 @@
+taille : 6 | nb robot : 2
+Init + phiSM
+taille_anneau =  6
+nb_robots =  2
+taille_boucle_max =  1176
+boucle pour k =  3
+Post Init
+Post 1
+Post 2
+Construction BouclePerdante, len(pk) =  3
+DEBUT OU
+Post de  [kp20, kp21]  à  [p0, p1]
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+Stratégie perdante
+k =  3
+(define-fun cvdp0!4 () Int
+  2)
+(define-fun ks00 () Int
+  1)
+(define-fun kt11 () Int
+  0)
+(define-fun kt00 () Int
+  1)
+(define-fun cvdp0!19 () Int
+  4)
+(define-fun md0!18 () Int
+  4)
+(define-fun kp10 () Int
+  1)
+(define-fun kt20 () Int
+  1)
+(define-fun t0 () Int
+  0)
+(define-fun mdp0!16 () Int
+  2)
+(define-fun ks10 () Int
+  1)
+(define-fun md1!17 () Int
+  2)
+(define-fun mdp1!15 () Int
+  4)
+(define-fun kp20 () Int
+  1)
+(define-fun ks20 () Int
+  (- 1))
+(define-fun t1 () Int
+  0)
+(define-fun p0 () Int
+  1)
+(define-fun ks11 () Int
+  3)
+(define-fun p1 () Int
+  3)
+(define-fun md0!3 () Int
+  2)
+(define-fun md1!2 () Int
+  4)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun kt21 () Int
+  0)
+(define-fun kt01 () Int
+  0)
+(define-fun ks21 () Int
+  3)
+(define-fun s0 () Int
+  (- 1))
+(define-fun mdp0!1 () Int
+  4)
+(define-fun kp11 () Int
+  3)
+(define-fun s1 () Int
+  (- 1))
+(define-fun kp21 () Int
+  3)
+(define-fun kt10 () Int
+  0)
+(define-fun kp00 () Int
+  1)
+(define-fun kp01 () Int
+  3)
+(define-fun mdp1!0 () Int
+  2)
+python3 algov7.py 6 2 86400
+	Real time elapsed : 0:01.09
+
