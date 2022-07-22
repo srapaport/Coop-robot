@@ -311,6 +311,26 @@ $((s_{i} = -1 \land s'_{i} = -1) \lor (s_{i} \not= -1 \land s'_{i} = s_{i}+s \mo
     $(\bigvee_{i=0}^{k!-1} (\bigwedge_{j=0}^{k-1} (p'_{j} = p_{o_{i_{j}}} \land s'_{j} = s_{o_{i_{j}}} \land t'_{j} = t_{o_{i_{j}}}  ) ) )$
 \end{center}
 
+\noindent Finally we build $SameClass$ which is $true$ if both configuration are in the same equivalence class.
+
+\begin{center}
+    
+    $SameClass(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1}, p'_{0}, \dots,$\\
+    $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
+    %all
+    $\exists pr_{0}, \dots, pr_{k-1}, sr_{0}, \dots, sr_{k-1}, tr_{0}, \dots, tr_{k-1}, pm_{0}, \dots, pm_{k-1}, sm_{0}, \dots, sm_{k-1}, tm_{0}, \dots, tm_{k-1},$\\
+    $(SameClassRot(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1},$\\
+    $pr_{0}, \dots, pr_{k-1}, sr_{0}, \dots, sr_{k-1}, tr_{0}, \dots, tr_{k-1}) \land$\\
+    $SameClassOrder(pr_{0}, \dots, pr_{k-1}, sr_{0}, \dots, sr_{k-1}, tr_{0}, \dots, tr_{k-1},$\\$
+    p'_{0}, \dots, p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}))\bigvee$\\
+    $(SameClassRot(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1},$\\
+    $pr_{0}, \dots, pr_{k-1}, sr_{0}, \dots, sr_{k-1}, tr_{0}, \dots, tr_{k-1}) \land$\\
+    $SameClassMirror(pr_{0}, \dots, pr_{k-1}, sr_{0}, \dots, sr_{k-1}, tr_{0}, \dots, tr_{k-1},$\\
+    $pm_{0}, \dots, pm_{k-1}, sm_{0}, \dots, sm_{k-1}, tm_{0}, \dots, tm_{k-1})\land$\\
+    $SameClassOrder(pm_{0}, \dots, pm_{k-1}, sm_{0}, \dots, sm_{k-1}, tm_{0}, \dots, tm_{k-1},$\\
+    $p'_{0}, \dots,p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}) )$
+\end{center}
+
 \section{Algorithms}
 
 Now that we have done all of our logical formulas, we need to test those in the acceleration algorithm using an interpolant~\cite{algo} and in an alternate version of that same algorithm.
@@ -324,7 +344,8 @@ We needed to create an alternate version because of the way the formula, $Boucle
 The first possibility has been implemented in the acceleration algorithm using an interpolant~\cite{algo}. In order to implement the second possibility we needed to change the algorithm because the winning condition wasn't good anymore.
 
 First we will try to prove that the alternate version of the algorithm works.
-Here is the algorithm :
+
+\subsection{Alternative Version Algorithm}
 
 \SetKwComment{Comment}{/* }{ */}
 \begin{algorithm}
@@ -368,7 +389,7 @@ Here is the algorithm :
 \end{algorithm}
 \newpage
 
-\noindent \textbf{Proof :}\newline
+\subsection{Proof}
 
 \noindent First let's talk about the termination of the algorithm :
 \begin{itemize}
@@ -406,28 +427,35 @@ We will use one graph per number of robots. Each graph will show the time it too
 
 First, we test $\phi_{Simple}$, a simple strategy that moves the robot toward its closest neighbor.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple/compar_phiSimple_2.png}\label{phiSimpler2}}
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple/compar_phiSimple_3.png}\label{phiSimpler3}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple24/compar_phiSimple24_2.png}\label{phiSimpler2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple24/compar_phiSimple24_3.png}\label{phiSimpler3}}
     \caption{Results for 2 (a) \& 3 (b) robots}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple24/compar_phiSimple24_4.png}\label{phiSimpler4}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSimple24/compar_phiSimple24_5.png}\label{phiSimpler5}}
+    \caption{Results for 4 (a) \& 5 (b) robots}
 \end{figure}
 
 \subsection{Test $\phi_{SM}$}
 
 Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant. Here, the timeout is 6h (21600s).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_2.png}\label{phiSMr2}}
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_3.png}\label{phiSMr3}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM24/compar_phiSM24_2.png}\label{phiSMr2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM24/compar_phiSM24_3.png}\label{phiSMr3}}
     \caption{Results for 2 (a) \& 3 (b) robots}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_4.png}\label{phiSMr4}}
-    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM/compar_phiSM_5.png}\label{phiSMr5}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM24/compar_phiSM24_4.png}\label{phiSMr4}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM24/compar_phiSM24_5.png}\label{phiSMr5}}
     \caption{Results for 4 (a) \& 5 (b) robots}
 \end{figure}
 
@@ -435,7 +463,7 @@ Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder t
 
 Finally, we test $\phi_{R}$ the most complex strategy that we have.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
     \centering
     \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiR24/compar_phiR24_2.png}\label{phiR24r2}}
     \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiR24/compar_phiR24_3.png}\label{phiR24r3}}
@@ -447,6 +475,7 @@ Finally, we test $\phi_{R}$ the most complex strategy that we have.
     \includegraphics[width=0.6\textwidth]{../data/data-phiR24/compar_phiR24_4.png}\label{phiR24r4}
     \caption{Results for 4 robots}
 \end{figure}
+
 \newpage
 \printbibliography %Prints bibliography
 \end{document}
