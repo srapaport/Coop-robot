@@ -584,7 +584,7 @@ def BouclePerdante_v4_1(taille_anneau, p_init, s_init, t_init, pk, sk, tk, funct
         p_equi.append([ Int('p_equiInit%s' % (i)) for i in range(len(p_init)) ])
         s_equi.append([ Int('s_equiInit%s' % (i)) for i in range(len(p_init)) ])
         t_equi.append([ Int('t_equiInit%s' % (i)) for i in range(len(p_init)) ])
-        tabAndBis.append(equiAll(p_init, s_init, t_init, p_equi[0], s_equi[0], t_equi[0], taille_anneau))
+        tabAndBis.append(equiOrder(p_init, s_init, t_init, p_equi[0], s_equi[0], t_equi[0]))
         tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_equi[0], s_equi[0], t_equi[0], function_phi))
         tmpOrBis = []
         for m in range(1, len(pk) + 1):
@@ -637,7 +637,7 @@ def BouclePerdante_v5(taille_anneau, pk, sk, tk, taille_boucle, function_phi):
         p_equi = [ Int('p_equiv5%s' % (i)) for i in range(len(pk)) ]
         s_equi = [ Int('s_equiv5%s' % (i)) for i in range(len(pk)) ]
         t_equi = [ Int('t_equiv5%s' % (i)) for i in range(len(pk)) ]
-        superAnd.append(equiAll(pk, sk, tk, p_equi, s_equi, t_equi, taille_anneau))
+        superAnd.append(equiOrder(pk, sk, tk, p_equi, s_equi, t_equi))
 
         for i in range(taille_boucle):
                 cp[i] = [ Int('bpp%s%s' % (i, j)) for j in range(len(pk)) ]
