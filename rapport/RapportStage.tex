@@ -281,17 +281,21 @@ $\phi_{SM}(dist_{0}, \ldots , dist_{k-1})$
 
 \subsection{Equivalence classes}
 
-In order to decrease the time it takes to find a loosing loop we want to be able to detect if two configurations are in the same equivalence class.
+In order to decrease the time it takes to find a loosing loop or to proove that there is none, we want to be able to detect if two configurations are in the same equivalence class.
 
-Three configurations c, c' and c" are in the same equivalence class if and only if :
+Three configurations c, c' and c" are in the same equivalence class if and only if :\newline
+(Reminder : a configuration is a vector $(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1})$)
 \begin{itemize}
     \item c $\sim$ c
     \begin{itemize}
-        \item they have literally the same position, status and equity vectors.
+        \item they have literally the same position, status and equity vectors, meaning : $p_{0} = p'_{0}, \dots, p_{k-1} = p'_{k_1}, s_{0} = s'_{0}, \dots, s_{k-1} = s'_{k-1}, t_{0} = t'_{0}, \dots, t_{k-1} = t'_{k-1}$.
     \end{itemize}
     \item c $\sim$ c' if and only if c' $\sim$ c
     \begin{itemize}
         \item if c is a rotation of c' then c' is a rotation of c
+        \begin{itemize}
+            \item //TODO
+        \end{itemize}
         \item if c is the mirror of c' then c' is the mirror of c
         \item if c is the same configuration than c' with indexs in a different order then c' is the same configuration than c with indexs in a different order
     \end{itemize}
@@ -502,7 +506,7 @@ Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder t
 
 \subsection{Test $\phi_{R}$}
 
-Finally, we test $\phi_{R}$ the most complex strategy that we have.
+We, now, test $\phi_{R}$ the most complex strategy that we have so far.
 
 \begin{figure}[!ht]
     \centering
@@ -516,7 +520,14 @@ Finally, we test $\phi_{R}$ the most complex strategy that we have.
     \includegraphics[width=0.6\textwidth]{../data/data-phiR24/compar_phiR24_4.png}\label{phiR24r4}
     \caption{Results for 4 robots}
 \end{figure}
-\FloatBarrier
+
+\subsection{Test $\phi_{Ultimate}$}
+
+Finally, we test the "Ultimate" strategy, the one that assembles all the strategies above: $\phi_{SM}$, $\phi_{R}$ and $\phi_{ON}$.
+
+\section{Conclusion}
+//TODO
+
 \newpage
 \printbibliography %Prints bibliography
 \end{document}
