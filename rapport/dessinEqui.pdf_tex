@@ -50,45 +50,45 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.92051565)%
+  \begin{picture}(1,0.85129432)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{dessinEqui.pdf}}%
-    \put(-0.00015773,0.80443229){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(-0.00015773,0.73521096){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{dessinEqui.pdf}}%
-    \put(0.13512313,0.90788857){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.13512313,0.83866724){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{dessinEqui.pdf}}%
-    \put(0.21898265,0.63740001){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
+    \put(0.21898265,0.56817868){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{dessinEqui.pdf}}%
-    \put(0.28566118,0.90466108){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 2, 4]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
+    \put(0.28566118,0.83543975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 2, 4]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{dessinEqui.pdf}}%
     \put(0.75234972,0.30475015){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{dessinEqui.pdf}}%
     \put(0.88778598,0.20151859){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{dessinEqui.pdf}}%
-    \put(0.90288782,0.30152268){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [1, 3, 0]\\s = [-1, -1, 1]\\t = [0, 0, 1]\end{tabular}}}}%
+    \put(0.90288782,0.30152262){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [1, 3, 0]\\s = [-1, -1, 1]\\t = [0, 0, 1]\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{dessinEqui.pdf}}%
-    \put(0.27055938,0.21895636){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(0.27055939,0.21895637){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{dessinEqui.pdf}}%
-    \put(0.1351231,0.32218795){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.1351235,0.32218835){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{dessinEqui.pdf}}%
     \put(0.07300109,0.04541175){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{dessinEqui.pdf}}%
     \put(0.6902277,0.02797391){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{dessinEqui.pdf}}%
-    \put(0.28566118,0.31896048){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 2, 4]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
+    \put(0.28566118,0.31896042){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 2, 4]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{dessinEqui.pdf}}%
-    \put(0.6170689,0.80443229){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
+    \put(0.6170689,0.73521096){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{dessinEqui.pdf}}%
-    \put(0.7523498,0.90788857){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.7523498,0.83866724){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{dessinEqui.pdf}}%
-    \put(0.83620936,0.63740002){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(0.83620936,0.56817869){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{dessinEqui.pdf}}%
-    \put(0.90289007,0.90466108){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 4, 2]\\s = [-1, 0, -1]\\t = [0, 1, 0]\end{tabular}}}}%
+    \put(0.90289007,0.83543975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 4, 2]\\s = [-1, 0, -1]\\t = [0, 1, 0]\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{dessinEqui.pdf}}%
-    \put(0.33922733,0.76813457){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Order equivalence\end{tabular}}}}%
-    \put(0.48297385,0.49982489){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Rotation equivalence\end{tabular}}}}%
+    \put(0.33922733,0.69891324){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Order equivalence\end{tabular}}}}%
+    \put(0.48297385,0.43060356){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Rotation equivalence\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=18]{dessinEqui.pdf}}%
-    \put(0.17190738,0.47307569){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Mirror equivalence\end{tabular}}}}%
+    \put(0.17190738,0.40385436){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Mirror equivalence\end{tabular}}}}%
   \end{picture}%
 \endgroup%

@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.044997"
-     inkscape:cx="322.96745"
-     inkscape:cy="456.93913"
+     inkscape:cx="323.92437"
+     inkscape:cy="457.89605"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1044"
+     inkscape:window-height="1116"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="1080"
      inkscape:window-maximized="1"
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
@@ -187,10 +187,10 @@
        d="m 34.920112,260.23764 0.02122,26.86331 -25.5419737,8.3214 -15.8070249,-21.7204 15.7726948,-21.74535 z"
        inkscape:transform-center-x="2.61387"
        inkscape:transform-center-y="0.0063703615"
-       transform="matrix(0,1.2007846,-1.142686,0,466.92896,165.04351)" />
+       transform="matrix(0,1.2007846,-1.142686,0,466.92896,152.34343)" />
     <g
        id="g1309-3"
-       transform="rotate(90,151.61965,276.31418)">
+       transform="rotate(90,157.96957,269.96426)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-7"
@@ -212,7 +212,7 @@
     </g>
     <g
        id="g1304-25"
-       transform="rotate(90,132.67369,295.28865)">
+       transform="rotate(90,139.02361,288.93873)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-5-4"
@@ -233,7 +233,7 @@
     </g>
     <g
        id="g2334"
-       transform="matrix(0,-1,-1,0,321.09091,291.00493)"
+       transform="matrix(0,-1,-1,0,321.09091,278.30485)"
        style="stroke:#ff0000;stroke-opacity:1">
       <path
          style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.264583;stroke-opacity:1"
@@ -252,20 +252,20 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
        x="179.24638"
-       y="154.18102"
+       y="141.48119"
        id="text1423-4"><tspan
          sodipodi:role="line"
          id="tspan2386"
          x="179.24638"
-         y="154.18102">p = [1, 3, 0]</tspan><tspan
+         y="141.48119">p = [1, 3, 0]</tspan><tspan
          sodipodi:role="line"
          id="tspan2388"
          x="179.24638"
-         y="158.14977">s = [-1, -1, 1]</tspan><tspan
+         y="145.44994">s = [-1, -1, 1]</tspan><tspan
          sodipodi:role="line"
          id="tspan2390"
          x="179.24638"
-         y="162.11852">t = [0, 0, 1]</tspan></text>
+         y="149.41869">t = [0, 0, 1]</tspan></text>
     <path
        sodipodi:type="star"
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
@@ -283,10 +283,10 @@
        d="m 34.920112,260.23764 0.02122,26.86331 -25.5419737,8.3214 -15.8070249,-21.7204 15.7726948,-21.74535 z"
        inkscape:transform-center-x="2.61387"
        inkscape:transform-center-y="0.0063703615"
-       transform="matrix(0,1.2007846,-1.142686,0,353.68815,161.84425)" />
+       transform="matrix(0,1.2007846,-1.142686,0,353.68815,149.14417)" />
     <g
        id="g1309-2"
-       transform="rotate(90,99.553128,239.988)">
+       transform="rotate(90,105.90305,233.63808)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-93"
@@ -308,7 +308,7 @@
     </g>
     <g
        id="g1304-7"
-       transform="rotate(90,74.698665,215.17476)">
+       transform="rotate(90,81.048657,208.82484)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-5-8"
@@ -329,7 +329,7 @@
     </g>
     <g
        id="g2339"
-       transform="rotate(90,128.42708,161.44635)">
+       transform="rotate(90,134.777,155.09643)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-9-3"
@@ -350,7 +350,7 @@
     </g>
     <g
        id="g2339-9"
-       transform="rotate(90,183.44785,219.66639)">
+       transform="rotate(90,189.79777,213.31647)">
       <circle
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.276008"
          id="path455-9-3-2"
@@ -371,7 +371,7 @@
     </g>
     <g
        id="g1925"
-       transform="matrix(0,1,1,0,-210.53734,34.585954)"
+       transform="matrix(0,1,1,0,-210.53734,21.885946)"
        style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-opacity:1">
       <path
          style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.264583;stroke-opacity:1"
@@ -390,20 +390,20 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
        x="66.005569"
-       y="150.98175"
+       y="138.28192"
        id="text1423-2"><tspan
          sodipodi:role="line"
          id="tspan1425-0"
          x="66.005569"
-         y="150.98175">p = [0, 2, 4]</tspan><tspan
+         y="138.28192">p = [0, 2, 4]</tspan><tspan
          sodipodi:role="line"
          id="tspan1427-6"
          x="66.005569"
-         y="154.9505">s = [-1, -1, 0]</tspan><tspan
+         y="142.25067">s = [-1, -1, 0]</tspan><tspan
          sodipodi:role="line"
          id="tspan1429-1"
          x="66.005569"
-         y="158.91925">t = [0, 0, 1]</tspan></text>
+         y="146.21942">t = [0, 0, 1]</tspan></text>
     <path
        sodipodi:type="star"
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
@@ -565,18 +565,22 @@
          d="m 100.27905,173.09622 2.21284,4.89802"
          id="path1637-4" />
     </g>
-    <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
-       d="m 40.15639,104.02836 v 35.60477"
-       id="path1572-8" />
-    <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
-       d="m 40.15639,139.63313 3.72353,-2.79525"
-       id="path1635-9" />
-    <path
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
-       d="M 40.15639,139.63313 35.7781,136.51578"
-       id="path1637-7" />
+    <g
+       id="g336"
+       transform="matrix(1.0009632,0,0,0.88209213,-0.03836289,8.565329)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
+         d="m 40.15639,104.02836 v 35.60477"
+         id="path1572-8" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
+         d="m 40.15639,139.63313 3.72353,-2.79525"
+         id="path1635-9" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
+         d="M 40.15639,139.63313 35.7781,136.51578"
+         id="path1637-7" />
+    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.264583"

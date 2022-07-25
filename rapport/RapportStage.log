@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  22 JUL 2022 18:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.6.9)  25 JUL 2022 15:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -203,6 +203,8 @@ Package caption Info: listings package is loaded.
 \c@lotdepth=\count275
 \sf@top=\skip60
 \sf@bottom=\skip61
+) (/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
 ) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks26
 \pgfutil@tempdima=\dimen170
@@ -762,22 +764,22 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 ) (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.aux)
 \openout1 = `RapportStage.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -851,10 +853,10 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'RapportStage.bbl' found.
  (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.bbl)
-Package biblatex Info: Reference section=0 on input line 28.
-Package biblatex Info: Reference segment=0 on input line 28.
+Package biblatex Info: Reference section=0 on input line 29.
+Package biblatex Info: Reference segment=0 on input line 29.
 \AtBeginShipoutBox=\box72
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 29.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -864,18 +866,18 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count448
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
  (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.out) (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.out)
 \@outlinefile=\write5
 \openout5 = `RapportStage.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.toc)
@@ -907,7 +909,7 @@ pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rappo
 
 pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinSM.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
@@ -982,103 +984,108 @@ pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rappo
 > </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinOdd.pdf
 
 pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinOdd.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf_tex
-<dessinEqui.pdf, id=140, page=1, 522.01463pt x 480.52261pt>
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
+
+ []
+
+[6] (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf_tex
+<dessinEqui.pdf, id=146, page=1, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 1>
 Package pdftex.def Info: dessinEqui.pdf , page1 used on input line 56.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=141, page=2, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=147, page=2, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 2>
 Package pdftex.def Info: dessinEqui.pdf , page2 used on input line 58.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=142, page=3, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=148, page=3, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 3>
 Package pdftex.def Info: dessinEqui.pdf , page3 used on input line 60.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=143, page=4, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=149, page=4, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 4>
 Package pdftex.def Info: dessinEqui.pdf , page4 used on input line 62.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=144, page=5, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=150, page=5, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 5>
 Package pdftex.def Info: dessinEqui.pdf , page5 used on input line 64.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=145, page=6, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=151, page=6, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 6>
 Package pdftex.def Info: dessinEqui.pdf , page6 used on input line 66.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=146, page=7, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=152, page=7, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 7>
 Package pdftex.def Info: dessinEqui.pdf , page7 used on input line 68.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=147, page=8, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=153, page=8, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 8>
 Package pdftex.def Info: dessinEqui.pdf , page8 used on input line 70.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=148, page=9, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=154, page=9, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 9>
 Package pdftex.def Info: dessinEqui.pdf , page9 used on input line 72.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=149, page=10, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=155, page=10, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 10>
 Package pdftex.def Info: dessinEqui.pdf , page10 used on input line 74.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=150, page=11, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=156, page=11, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 11>
 Package pdftex.def Info: dessinEqui.pdf , page11 used on input line 76.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=151, page=12, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=157, page=12, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 12>
 Package pdftex.def Info: dessinEqui.pdf , page12 used on input line 78.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=152, page=13, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=158, page=13, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 13>
 Package pdftex.def Info: dessinEqui.pdf , page13 used on input line 80.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=153, page=14, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=159, page=14, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 14>
 Package pdftex.def Info: dessinEqui.pdf , page14 used on input line 82.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=154, page=15, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=160, page=15, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 15>
 Package pdftex.def Info: dessinEqui.pdf , page15 used on input line 84.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=155, page=16, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=161, page=16, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 16>
 Package pdftex.def Info: dessinEqui.pdf , page16 used on input line 86.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=156, page=17, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=162, page=17, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 17>
 Package pdftex.def Info: dessinEqui.pdf , page17 used on input line 88.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
-<dessinEqui.pdf, id=157, page=18, 522.01463pt x 480.52261pt>
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
+<dessinEqui.pdf, id=163, page=18, 522.01463pt x 444.38808pt>
 File: dessinEqui.pdf Graphic file (type pdf)
 <use dessinEqui.pdf, page 18>
 Package pdftex.def Info: dessinEqui.pdf , page18 used on input line 91.
-(pdftex.def)             Requested size: 417.61328pt x 384.42593pt.
+(pdftex.def)             Requested size: 417.61328pt x 355.51772pt.
 )
-Overfull \hbox (2.48756pt too wide) in paragraph at lines 93--350
+Overfull \hbox (2.48756pt too wide) in paragraph at lines 93--371
  [][] 
  []
 
-[6] [7 </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf> </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf
+[7 </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf> </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf
 
 pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > </home/solal/Documents/Stage_lip6/Coop-robot/rapport/dessinEqui.pdf
@@ -1132,118 +1139,118 @@ pdfTeX warning: pdflatex (file /home/solal/Documents/Stage_lip6/Coop-robot/rappo
 >] [8] [9] [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 448.
+(hyperref)                removing `math shift' on input line 467.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 448.
+(hyperref)                removing `\phi' on input line 467.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 448.
+(hyperref)                removing `subscript' on input line 467.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 448.
+(hyperref)                removing `math shift' on input line 467.
 
 <../data/data-phiSimple24/compar_phiSimple24_2.png, id=232, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple24/compar_phiSimple24_2.png Graphic file (type png)
 <use ../data/data-phiSimple24/compar_phiSimple24_2.png>
-Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_2.png  used on input line 454.
+Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_2.png  used on input line 473.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSimple24/compar_phiSimple24_3.png, id=234, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple24/compar_phiSimple24_3.png Graphic file (type png)
 <use ../data/data-phiSimple24/compar_phiSimple24_3.png>
-Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_3.png  used on input line 455.
+Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_3.png  used on input line 474.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSimple24/compar_phiSimple24_4.png, id=235, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple24/compar_phiSimple24_4.png Graphic file (type png)
 <use ../data/data-phiSimple24/compar_phiSimple24_4.png>
-Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_4.png  used on input line 461.
+Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_4.png  used on input line 480.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSimple24/compar_phiSimple24_5.png, id=236, 462.528pt x 346.896pt>
 File: ../data/data-phiSimple24/compar_phiSimple24_5.png Graphic file (type png)
 <use ../data/data-phiSimple24/compar_phiSimple24_5.png>
-Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_5.png  used on input line 462.
+Package pdftex.def Info: ../data/data-phiSimple24/compar_phiSimple24_5.png  used on input line 481.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 466.
+(hyperref)                removing `math shift' on input line 485.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 466.
+(hyperref)                removing `\phi' on input line 485.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 466.
+(hyperref)                removing `subscript' on input line 485.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 466.
+(hyperref)                removing `math shift' on input line 485.
 
 <../data/data-phiSM24/compar_phiSM24_2.png, id=237, 462.528pt x 346.896pt>
 File: ../data/data-phiSM24/compar_phiSM24_2.png Graphic file (type png)
 <use ../data/data-phiSM24/compar_phiSM24_2.png>
-Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_2.png  used on input line 472.
+Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_2.png  used on input line 491.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSM24/compar_phiSM24_3.png, id=238, 462.528pt x 346.896pt>
 File: ../data/data-phiSM24/compar_phiSM24_3.png Graphic file (type png)
 <use ../data/data-phiSM24/compar_phiSM24_3.png>
-Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_3.png  used on input line 473.
+Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_3.png  used on input line 492.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSM24/compar_phiSM24_4.png, id=239, 462.528pt x 346.896pt>
 File: ../data/data-phiSM24/compar_phiSM24_4.png Graphic file (type png)
 <use ../data/data-phiSM24/compar_phiSM24_4.png>
-Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_4.png  used on input line 479.
+Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_4.png  used on input line 498.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiSM24/compar_phiSM24_5.png, id=240, 462.528pt x 346.896pt>
 File: ../data/data-phiSM24/compar_phiSM24_5.png Graphic file (type png)
 <use ../data/data-phiSM24/compar_phiSM24_5.png>
-Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_5.png  used on input line 480.
+Package pdftex.def Info: ../data/data-phiSM24/compar_phiSM24_5.png  used on input line 499.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 484.
+(hyperref)                removing `math shift' on input line 503.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\phi' on input line 484.
+(hyperref)                removing `\phi' on input line 503.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 484.
+(hyperref)                removing `subscript' on input line 503.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 484.
+(hyperref)                removing `math shift' on input line 503.
 
 <../data/data-phiR24/compar_phiR24_2.png, id=241, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_2.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_2.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_2.png  used on input line 490.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_2.png  used on input line 509.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 <../data/data-phiR24/compar_phiR24_3.png, id=242, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_3.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_3.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_3.png  used on input line 491.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_3.png  used on input line 510.
 (pdftex.def)             Requested size: 207.56285pt x 155.673pt.
 [11 <../data/data-phiSimple24/compar_phiSimple24_2.png> <../data/data-phiSimple24/compar_phiSimple24_3.png> <../data/data-phiSimple24/compar_phiSimple24_4.png> <../data/data-phiSimple24/compar_phiSimple24_5.png>]
 <../data/data-phiR24/compar_phiR24_4.png, id=260, 462.528pt x 346.896pt>
 File: ../data/data-phiR24/compar_phiR24_4.png Graphic file (type png)
 <use ../data/data-phiR24/compar_phiR24_4.png>
-Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_4.png  used on input line 497.
+Package pdftex.def Info: ../data/data-phiR24/compar_phiR24_4.png  used on input line 516.
 (pdftex.def)             Requested size: 249.07796pt x 186.8129pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [12 <../data/data-phiSM24/compar_phiSM24_2.png> <../data/data-phiSM24/compar_phiSM24_3.png> <../data/data-phiSM24/compar_phiSM24_4.png> <../data/data-phiSM24/compar_phiSM24_5.png> <../data/data-phiR24/compar_phiR24_2.png> <../data/data-phiR24/compar_phiR24_3.png>] [13 <../data/data-phiR24/compar_phiR24_4.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 503.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 503.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 522.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 522.
  (/home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 503.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 503.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 522.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 522.
 Package rerunfilecheck Info: File `RapportStage.out' has not changed.
 (rerunfilecheck)             Checksum: 371AABBE9FAC787BD77E4247BEC862AF;875.
 Package logreq Info: Writing requests to 'RapportStage.run.xml'.
@@ -1251,15 +1258,15 @@ Package logreq Info: Writing requests to 'RapportStage.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27822 strings out of 481239
- 517950 string characters out of 5920378
- 1161661 words of memory out of 5000000
- 42531 multiletter control sequences out of 15000+600000
+ 27839 strings out of 481239
+ 518286 string characters out of 5920378
+ 1155772 words of memory out of 5000000
+ 42544 multiletter control sequences out of 15000+600000
  541360 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,27n,60p,907b,1129s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (13 pages, 594146 bytes).
+Output written on /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.pdf (13 pages, 595169 bytes).
 PDF statistics:
  378 PDF objects out of 1000 (max. 8388607)
  287 compressed objects within 3 object streams
