@@ -9,7 +9,7 @@ do
     do
         echo "taille : $taille | nb robot : $robot" > ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt
         echo "Init + phiUltimate" >> ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt
-        /usr/bin/time -a -o ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt python3 algov5.py $taille $robot >> ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt &
+        /usr/bin/time -a -o ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt python3 main.py $taille $robot 5 >> ../log/log-time-phiUltimate24/log_algov5_${taille}_${robot}.txt &
     done
     jobs -l >> tmpComparv5.txt
     if [ $toKill -gt 0 ]

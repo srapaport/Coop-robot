@@ -608,7 +608,7 @@ def BouclePerdante_v4_1(taille_anneau, p_init, s_init, t_init, pk, sk, tk, funct
                         t_equi.append([ Int('t_equi%s%s' % (i, j)) for j in range(len(p_init)) ])
                         print("Post de ", pk[-1], " à ", pk[i], " ou configuration équivalente")
                         tabAndBis = []  # Construction du tabOrPost
-                        tabAndBis.append(equiAll(pk[i], sk[i], tk[i], p_equi[-1], s_equi[-1], t_equi[-1]))
+                        tabAndBis.append(equiOrder(pk[i], sk[i], tk[i], p_equi[-1], s_equi[-1], t_equi[-1]))
                         tabAndBis.append(AsyncPost(taille_anneau, len(pk[0]), pk[-1], sk[-1], tk[-1], p_equi[-1], s_equi[-1], t_equi[-1], function_phi))
                         tmpOrBis = []   # Construction de tmpAnd
                         for m in range(1, taille_boucle + 1):
