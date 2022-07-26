@@ -281,38 +281,64 @@ $\phi_{SM}(dist_{0}, \ldots , dist_{k-1})$
 
 \subsection{Equivalence classes}
 
-In order to decrease the time it takes to find a loosing loop or to proove that there is none, we want to be able to detect if two configurations are in the same equivalence class.
+In order to decrease the time it takes to find a loosing loop or to prove that there is none, we want to be able to detect if two configurations are in the same equivalence class.
 
-Three configurations c, c' and c" are in the same equivalence class if and only if :\newline
-(Reminder : a configuration is a vector $(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1})$)
+First, we establish the properties that will define the relation $\mathbb{R}$ between two configurations. We will use the following notation to refer to this relation : with $c$ and $c'$, two configurations, $c$ is related to $c'$ through the relation $\mathbb{R}$, we write it $c \sim_{\mathbb{R}} c'$.
+
+Little reminder : a configuration $c$ is a vector $(p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-1})$, or it can be subdivided in three vectors : the position one $(p_{0}, \dots, p_{k-1})$, the status one $(s_{0}, \dots, s_{k-1})$ and the equity one $(t_{0}, \dots, t_{k-1})$.
+
+Let's now established some properties of the $\mathbb{R}$ relation, $c \sim_{\mathbb{R}} c'$ if :
+\begin{enumerate}
+    \item $\forall i \in [0;k-1], p_{i} = p'_{i} \land s_{i} = s'_{i} \land t_{i} = t'_{i}$\newline Here, both configuration are equal.
+    \item $\forall i \in [0;k-1], \exists s \in [0; size_{ring}-1], p_{i} = p'_{i} + s \mod{size_{ring}} \land t_{i} = t'_{i} + s \mod{size_{ring}} \land ((s_{i} = -1 \land s'_{i} = -1) \lor (s'_{i} \not= -1 \land s_{i} = s'_{i} + s \mod{size_{ring}}))$\newline It is related here because positions have no name, we only give them a number in order to know the distance between 2 robots on different position. What matters is the view vector. If we do a rotation (i.e all robots keep the same status and equity bit and go right) then it is the same configuration than before. Likewise, status shouldn't have the number of the targetted position, it should have : left, right, same place and RLC. But because it has the number of the targetted position, if the configuration rotates then we update the status accordingly.
+    \item $\forall i \in [0; k-1], p'_{i} = (size_{ring} - p_{i})\mod{size_{ring}} \land t'_{i} = t_{i} \land ((s_{i} = -1 \land s'_{i} = -1) \lor (s_{i} \not= -1 \land s'_{i} = (size_{ring} - s_{i})\mod{size_{ring}}))$\newline Here, we are translating all robots in the mirror configuration. We built the symmetric configuration. Both configurations are related, because the view vector stays the same. Meaning the environment is identical, and robots will still move toward the same robot that kept the same distance.
+    \item For a given number of robots $k$ there are $k!$ combinations of the configuration vector (i.e the position of a robot could be at the index 0 on the position vector or it could be somewhere else, neither robots or positions have a id).\newline $\forall i \in [0;k-1], \exists o_{0},\dots, o_{k-1}, p_{i} = p'_{o_{i}} \land s_{i} = s'_{o_{i}} \land t_{i} = t'_{o_{i}} $
+\end{enumerate}
+
+We are now demonstrating that $\sim_{\mathbb{R}}$ is an equivalence relation. Two configurations related with $\sim_{\mathbb{R}}$ are in the same equivalence class if and only if the relation is reflexive, symmetric and transitive. In order to demonstrate that, we're defining three configurations : $\exists c, c', c'' \in \mathbb{A} $, $\mathbb{A}$ being the set of all possible configurations.
 \begin{itemize}
-    \item c $\sim$ c
+    \item Reflexivity $c\sim_{\mathbb{R}}c$\newline Let's demonstrate this property with the firt property established above. When two configurations are equal then they're related with $\sim_{\mathbb{R}}$. Here $c = c$.
+    \item Symmetric $c\sim_{\mathbb{R}}c'$ if and only if $c'\sim_{\mathbb{R}}c$\newline Let's assume that $c\sim_{\mathbb{R}}c'$ and that $c'\nsim_{\mathbb{R}}c$.
     \begin{itemize}
-        \item they have literally the same position, status and equity vectors, meaning : $p_{0} = p'_{0}, \dots, p_{k-1} = p'_{k_1}, s_{0} = s'_{0}, \dots, s_{k-1} = s'_{k-1}, t_{0} = t'_{0}, \dots, t_{k-1} = t'_{k-1}$.
+        \item if $c\sim_{\mathbb{R}}c'$ through the first property\newline Because $c\sim_{\mathbb{R}}c'$ then $\forall i \in [0;k-1], p_{i} = p'_{i} \land s_{i} = s'_{i} \land t_{i} = t'_{i}$, and $c'\nsim_{\mathbb{R}}c$ implies that there must be : $\exists i \in [0; k-1], p'_{i} \not= p_{i} \lor s'_{i} \not= s_{i} \lor t'_{i} \not= t_{i}$. Now, we reach a point where, no matter what vector we use (position, status or equity) : $\forall i \in [0;k-1], \exists j \in [0; k-1],  p_{i} = p'_{i} \land p_{j} \not= p'_{j}$. We face a contradiction.
+        \item if $c\sim_{\mathbb{R}}c'$ through the second property\newline Because $c\sim_{\mathbb{R}}c'$ then $\forall i \in [0;k-1], \exists s \in [0; size_{ring}-1], p_{i} = p'_{i} + s \mod{size_{ring}} \land t_{i} = t'_{i} + s \mod{size_{ring}} \land ((s_{i} = -1 \land s'_{i} = -1) \lor (s'_{i} \not= -1 \land s_{i} = s'_{i} + s \mod{size_{ring}}))$, and $c'\nsim_{\mathbb{R}}c$ implies that there must be : $\exists j \in [0;k-1], p_{j} \not= p'_{j} + s \mod{size_{ring}} \lor t_{j} = t'_{j} + s \mod{size_{ring}} \lor ((s_{j} \not= -1 \lor s'_{j} \not= -1) \land (s'_{j} = -1 \lor s_{j} \not= s'_{j} + s \mod{size_{ring}}))$
+        //TODO montrer la contradiction
+        \item if $c\sim_{\mathbb{R}}c'$ through the third property
+        \item if $c\sim_{\mathbb{R}}c'$ through the fourth property
     \end{itemize}
-    \item c $\sim$ c' if and only if c' $\sim$ c
-    \begin{itemize}
-        \item if c is a rotation of c' then c' is a rotation of c
-        \begin{itemize}
-            \item //TODO
-        \end{itemize}
-        \item if c is the mirror of c' then c' is the mirror of c
-        \item if c is the same configuration than c' with indexs in a different order then c' is the same configuration than c with indexs in a different order
-    \end{itemize}
-    \item if c $\sim$ c' and c' $\sim$ c" then c $\sim$ c"
-    \begin{itemize}
-        \item if c' is a rotation of c and c" is the mirror of c' then c" is equivalente to c through a rotation and a reverse mirror.
-    \end{itemize}
+    \item Transitivity If $c\sim_{\mathbb{R}}c'$ and $c'\sim_{\mathbb{R}}c''$ then $c\sim_{\mathbb{R}}c''$
 \end{itemize}
 
-\noindent Exemple :\newline
+% Three configurations c, c' and c" are in the same equivalence class if and only if :\newline
 
-Two configurations are in the same equivalence class if :
-\begin{itemize}
-    \item one is a rotation of the other
-    \item one is the mirror configuration of the other
-    \item one is the same configuration but with different index position (i.e position vector:\newline (0, 3, 1) is the same that position vector: (0, 1, 3) and it is the same configuration if the status vector and the equity vector have the same value for a given position).
-\end{itemize}
+% \begin{itemize}
+%     \item c $\sim$ c
+%     \begin{itemize}
+%         \item they have literally the same position, status and equity vectors, meaning : $p_{0} = p'_{0}, \dots, p_{k-1} = p'_{k_1}, s_{0} = s'_{0}, \dots, s_{k-1} = s'_{k-1}, t_{0} = t'_{0}, \dots, t_{k-1} = t'_{k-1}$.
+%     \end{itemize}
+%     \item c $\sim$ c' if and only if c' $\sim$ c
+%     \begin{itemize}
+%         \item if c is a rotation of c' then c' is a rotation of c
+%         \begin{itemize}
+%             \item //TODO
+%         \end{itemize}
+%         \item if c is the mirror of c' then c' is the mirror of c
+%         \item if c is the same configuration than c' with indexs in a different order then c' is the same configuration than c with indexs in a different order
+%     \end{itemize}
+%     \item if c $\sim$ c' and c' $\sim$ c" then c $\sim$ c"
+%     \begin{itemize}
+%         \item if c' is a rotation of c and c" is the mirror of c' then c" is equivalente to c through a rotation and a reverse mirror.
+%     \end{itemize}
+% \end{itemize}
+
+% \noindent Exemple :\newline
+
+% Two configurations are in the same equivalence class if :
+% \begin{itemize}
+%     \item one is a rotation of the other
+%     \item one is the mirror configuration of the other
+%     \item one is the same configuration but with different index position (i.e position vector:\newline (0, 3, 1) is the same that position vector: (0, 1, 3) and it is the same configuration if the status vector and the equity vector have the same value for a given position).
+% \end{itemize}
 
 \noindent The formula $SameClassRot$ is $true$ if one configuration is a rotation of the other.
 
@@ -486,9 +512,11 @@ First, we test $\phi_{Simple}$, a simple strategy that moves the robot toward it
     \caption{Results for 4 (a) \& 5 (b) robots}
 \end{figure}
 
+\FloatBarrier
+
 \subsection{Test $\phi_{SM}$}
 
-Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant. Here, the timeout is 6h (21600s).
+Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder to solve and more relevant.
 
 \begin{figure}[!ht]
     \centering
@@ -503,6 +531,8 @@ Now we test $\phi_{SM}$, a strategy a bit more elaborate that should be harder t
     \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiSM24/compar_phiSM24_5.png}\label{phiSMr5}}
     \caption{Results for 4 (a) \& 5 (b) robots}
 \end{figure}
+
+\FloatBarrier
 
 \subsection{Test $\phi_{R}$}
 
@@ -521,9 +551,26 @@ We, now, test $\phi_{R}$ the most complex strategy that we have so far.
     \caption{Results for 4 robots}
 \end{figure}
 
+\FloatBarrier
+
 \subsection{Test $\phi_{Ultimate}$}
 
 Finally, we test the "Ultimate" strategy, the one that assembles all the strategies above: $\phi_{SM}$, $\phi_{R}$ and $\phi_{ON}$.
+
+\begin{figure}[!ht]
+    \centering
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiUltimate24/compar_phiUltimate24_2.png}\label{phiUlt24r2}}
+    \subfloat[][]{\includegraphics[width=0.5\textwidth]{../data/data-phiUltimate24/compar_phiUltimate24_3.png}\label{phiUlt24r3}}
+    \caption{Results for 2 (a) \& 3 (b) robots}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../data/data-phiUltimate24/compar_phiUltimate24_4.png}\label{phiUltr4}
+    \caption{Results for 4 robots}
+\end{figure}
+
+\FloatBarrier
 
 \section{Conclusion}
 //TODO

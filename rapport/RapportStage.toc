@@ -14,7 +14,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5}Equivalence classes}{6}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Algorithms}{8}{section.3}%
+\contentsline {section}{\numberline {3}Algorithms}{7}{section.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}Alternative Version Algorithm}{8}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
@@ -30,4 +30,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4}Test $\phi _{Ultimate}$}{13}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Conclusion}{13}{section.5}%
+\contentsline {section}{\numberline {5}Conclusion}{14}{section.5}%

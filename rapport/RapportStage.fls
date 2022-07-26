@@ -440,6 +440,15 @@ INPUT ../data/data-phiR24/compar_phiR24_3.png
 INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/../data/data-phiR24/compar_phiR24_4.png
 INPUT ../data/data-phiR24/compar_phiR24_4.png
 INPUT ../data/data-phiR24/compar_phiR24_4.png
+INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/../data/data-phiUltimate24/compar_phiUltimate24_2.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_2.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_2.png
+INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/../data/data-phiUltimate24/compar_phiUltimate24_3.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_3.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_3.png
+INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/../data/data-phiUltimate24/compar_phiUltimate24_4.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_4.png
+INPUT ../data/data-phiUltimate24/compar_phiUltimate24_4.png
 INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.aux
 INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.out
 INPUT /home/solal/Documents/Stage_lip6/Coop-robot/rapport/RapportStage.out
@@ -466,4 +475,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb
