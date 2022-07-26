@@ -15,7 +15,7 @@ do
     echo -n "`sed -r -n 's/^taille : (.*) \| nb robot : (.*)$/\2/p' ../logs/log-time-$1/$file`;" >> ../data/data-$1/data-time.csv
     if [ `grep -c 'Command exited with non-zero status 1' ../logs/log-time-$1/$file` == 1 ]
     then
-        echo -n "1;;" >> ../data/data-$1/data-time.csv
+        echo -n "1;" >> ../data/data-$1/data-time.csv
         echo "`sed -r -n 's/^.*elapsed : (.*)$/\1/p' ../logs/log-time-$1/$file`" >> ../data/data-$1/data-time.csv
         let "ctrl+=1"
         echo "Error with $file"
