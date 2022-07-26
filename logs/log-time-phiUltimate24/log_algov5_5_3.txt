@@ -1,0 +1,57 @@
+taille : 5 | nb robot : 3
+Init + phiUltimate
+taille_anneau =  5
+nb_robots =  3
+taille_boucle_max =  11480
+boucle pour k = 1
+
+Test pour taille_boucle =  5
+Construction de la boucle de taille :  1  | pour une taille totale de :  5
+1er Post : cp départ :  [kp00, kp01, kp02]  | cp arrivé :  [bpp00, bpp01, bpp02] 
+
+Dernier Post : cp départ :  [bpp00, bpp01, bpp02]  | cp arrivé :  [p_equiv50, p_equiv51, p_equiv52] 
+
+Construction de la boucle de taille :  2  | pour une taille totale de :  5
+1er Post : cp départ :  [kp00, kp01, kp02]  | cp arrivé :  [bpp00, bpp01, bpp02] 
+
+Boucle Post :  0  cp départ :  [bpp00, bpp01, bpp02]  | cp arrivé :  [bpp10, bpp11, bpp12] 
+
+Dernier Post : cp départ :  [bpp10, bpp11, bpp12]  | cp arrivé :  [p_equiv50, p_equiv51, p_equiv52] 
+
+Construction de la boucle de taille :  3  | pour une taille totale de :  5
+1er Post : cp départ :  [kp00, kp01, kp02]  | cp arrivé :  [bpp00, bpp01, bpp02] 
+
+Boucle Post :  0  cp départ :  [bpp00, bpp01, bpp02]  | cp arrivé :  [bpp10, bpp11, bpp12] 
+
+Boucle Post :  1  cp départ :  [bpp10, bpp11, bpp12]  | cp arrivé :  [bpp20, bpp21, bpp22] 
+
+Dernier Post : cp départ :  [bpp20, bpp21, bpp22]  | cp arrivé :  [p_equiv50, p_equiv51, p_equiv52] 
+
+Construction de la boucle de taille :  4  | pour une taille totale de :  5
+1er Post : cp départ :  [kp00, kp01, kp02]  | cp arrivé :  [bpp00, bpp01, bpp02] 
+
+Boucle Post :  0  cp départ :  [bpp00, bpp01, bpp02]  | cp arrivé :  [bpp10, bpp11, bpp12] 
+
+Boucle Post :  1  cp départ :  [bpp10, bpp11, bpp12]  | cp arrivé :  [bpp20, bpp21, bpp22] 
+
+Boucle Post :  2  cp départ :  [bpp20, bpp21, bpp22]  | cp arrivé :  [bpp30, bpp31, bpp32] 
+
+Dernier Post : cp départ :  [bpp30, bpp31, bpp32]  | cp arrivé :  [p_equiv50, p_equiv51, p_equiv52] 
+
+Construction de la boucle de taille :  5  | pour une taille totale de :  5
+1er Post : cp départ :  [kp00, kp01, kp02]  | cp arrivé :  [bpp00, bpp01, bpp02] 
+
+Boucle Post :  0  cp départ :  [bpp00, bpp01, bpp02]  | cp arrivé :  [bpp10, bpp11, bpp12] 
+
+Boucle Post :  1  cp départ :  [bpp10, bpp11, bpp12]  | cp arrivé :  [bpp20, bpp21, bpp22] 
+
+Boucle Post :  2  cp départ :  [bpp20, bpp21, bpp22]  | cp arrivé :  [bpp30, bpp31, bpp32] 
+
+Boucle Post :  3  cp départ :  [bpp30, bpp31, bpp32]  | cp arrivé :  [bpp40, bpp41, bpp42] 
+
+Dernier Post : cp départ :  [bpp40, bpp41, bpp42]  | cp arrivé :  [p_equiv50, p_equiv51, p_equiv52] 
+
+Command exited with non-zero status 1
+python3 algov5.py 5 3
+	Real time elapsed : 8:51:00
+
