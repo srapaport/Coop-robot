@@ -14,20 +14,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.5}Equivalence classes}{6}{subsection.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Algorithms}{7}{section.3}%
+\contentsline {subsubsection}{\numberline {2.5.1}Proof}{6}{subsubsection.2.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Alternative Version Algorithm}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Formulas}{8}{subsubsection.2.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Proof}{10}{subsection.3.2}%
+\contentsline {section}{\numberline {3}Algorithms}{8}{section.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Tests}{11}{section.4}%
+\contentsline {subsection}{\numberline {3.1}Alternative Version Algorithm}{9}{subsection.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Test $\phi _{Simple}$}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {3.2}Proof}{11}{subsection.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Test $\phi _{SM}$}{11}{subsection.4.2}%
+\contentsline {section}{\numberline {4}Tests}{12}{section.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Test $\phi _{R}$}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.1}Test $\phi _{Simple}$}{12}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4}Test $\phi _{Ultimate}$}{13}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.2}Test $\phi _{SM}$}{12}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Conclusion}{14}{section.5}%
+\contentsline {subsection}{\numberline {4.3}Test $\phi _{R}$}{13}{subsection.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Test $\phi _{Ultimate}$}{14}{subsection.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Conclusion}{15}{section.5}%

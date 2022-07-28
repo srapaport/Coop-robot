@@ -76,7 +76,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=11]{dessinEqui.pdf}}%
     \put(0.6902277,0.02797391){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{dessinEqui.pdf}}%
-    \put(0.28566118,0.31896042){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 2, 4]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
+    \put(0.28566118,0.31896042){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}p = [0, 1, 3]\\s = [-1, -1, 0]\\t = [0, 0, 1]\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{dessinEqui.pdf}}%
     \put(0.6170689,0.73521096){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{dessinEqui.pdf}}%
