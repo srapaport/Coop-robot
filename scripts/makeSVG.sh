@@ -1,5 +1,5 @@
 #§ /bin/bash
-for file in `ls ../rapport/`
+for file in `ls`
 do
     if [ `echo $file | grep -c -E '^.*\.svg$'` == 1 ]
     then
