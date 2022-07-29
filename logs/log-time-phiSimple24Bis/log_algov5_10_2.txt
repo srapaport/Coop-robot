@@ -1,0 +1,119 @@
+taille : 10 | nb robot : 2
+Init + phiSimple
+taille_anneau =  10
+nb_robots =  2
+taille_boucle_max =  3240
+boucle pour k = 1
+
+Test pour taille_boucle =  3
+Construction de la boucle de taille :  1  | pour une taille totale de :  3
+Construction de la boucle de taille :  2  | pour une taille totale de :  3
+Construction de la boucle de taille :  3  | pour une taille totale de :  3
+Sat --> Boucle perdante pour taille_boucle =  3
+Stratégie perdante
+k =  1  | taille_boucle =  3
+(define-fun mdp0!40 () Int
+  5)
+(define-fun ks00 () Int
+  1)
+(define-fun s_equiv50!13 () Int
+  1)
+(define-fun cvdp0!43 () Int
+  5)
+(define-fun md1!41 () Int
+  5)
+(define-fun bpt11!18 () Int
+  0)
+(define-fun bpp20!29 () Int
+  1)
+(define-fun kt00 () Int
+  1)
+(define-fun bpt20!17 () Int
+  0)
+(define-fun bps01!26 () Int
+  6)
+(define-fun t0 () Int
+  0)
+(define-fun t_equiv50!11 () Int
+  1)
+(define-fun s_equiv51!12 () Int
+  (- 1))
+(define-fun p_equiv51!14 () Int
+  6)
+(define-fun p1 () Int
+  6)
+(define-fun bpp11!30 () Int
+  6)
+(define-fun md1!2 () Int
+  5)
+(define-fun bpp21!28 () Int
+  6)
+(define-fun bps00!27 () Int
+  1)
+(define-fun s0 () Int
+  (- 1))
+(define-fun mdp1!84 () Int
+  5)
+(define-fun kp00 () Int
+  1)
+(define-fun kp01 () Int
+  6)
+(define-fun md1!86 () Int
+  5)
+(define-fun mdp1!0 () Int
+  5)
+(define-fun cvdp0!4 () Int
+  5)
+(define-fun bpp00!33 () Int
+  1)
+(define-fun bps21!22 () Int
+  (- 1))
+(define-fun bpt01!20 () Int
+  0)
+(define-fun bps11!24 () Int
+  6)
+(define-fun bpt21!16 () Int
+  0)
+(define-fun bps20!23 () Int
+  (- 1))
+(define-fun md0!42 () Int
+  5)
+(define-fun t_equiv51!10 () Int
+  0)
+(define-fun md0!87 () Int
+  5)
+(define-fun mdp0!85 () Int
+  5)
+(define-fun bpp10!31 () Int
+  1)
+(define-fun t1 () Int
+  0)
+(define-fun p0 () Int
+  1)
+(define-fun bpt00!21 () Int
+  0)
+(define-fun mdp1!39 () Int
+  5)
+(define-fun cvdp0!88 () Int
+  5)
+(define-fun bps10!25 () Int
+  (- 1))
+(define-fun md0!3 () Int
+  5)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun p_equiv50!15 () Int
+  1)
+(define-fun kt01 () Int
+  0)
+(define-fun mdp0!1 () Int
+  5)
+(define-fun bpp01!32 () Int
+  6)
+(define-fun s1 () Int
+  (- 1))
+(define-fun bpt10!19 () Int
+  1)
+python3 main.py 10 2 5
+	Real time elapsed : 0:01.08
+
