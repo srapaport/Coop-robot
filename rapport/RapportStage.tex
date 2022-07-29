@@ -294,7 +294,7 @@ Let's now established the property of each $\mathbb{R}_{i}$ relation:
     
     \item $c \sim_{\mathbb{R}_{2}} c'$ if:\newline $\forall i \in [0; k-1],  (p'_{i} =  (size_{ring} - p_{i})\mod{size_{ring}} \land t'_{i} = t_{i} \land  ( (s_{i} = -1 \land s'_{i} = s_{i}) \lor  (s_{i} \not= -1 \land s'_{i} =  (size_{ring} - s_{i})\mod{size_{ring}})) \bigvee  (p'_{i} = p_{i} \land s'_{i} = s_{i} \land t'_{i} = t_{i}))$\newline Here, we are translating all robots in the mirror configuration. We built the symmetric configuration. Both configurations are related, because the view vector stays the same. Meaning the environment is identical, and robots will still move toward the same robot that kept the same distance.
     
-    \item $c \sim_{\mathbb{R}_{3}} c'$ if:\newline For a given number of robots $k$ there are $k!$ combinations of the configuration vector  (i.e the position of a robot could be at the index 0 on the position vector or it could be somewhere else, neither robots or positions have an id). We define the vector $o$ as the vector of index  (exemple: with 3 robots $o$ can be $ (0, 1, 2)$ or $ (0, 2, 1)$ or $ (1, 0, 2)$ etc\ldots )\newline $\forall i \in [0;k-1], \exists  (o_{0},\dots, o_{k-1}), p'_{i} = p_{o_{i}} \land s'_{i} = s_{o_{i}} \land t'_{i} = t_{o_{i}} $
+    \item $c \sim_{\mathbb{R}_{3}} c'$ if:\newline For a given number of robots $k$ there are $k!$ combinations of the configuration vector  (i.e the position of a robot could be at the index 0 on the position vector or it could be somewhere else, neither robots or positions have an id). We define the vector $o$ as the vector of index  (exemple: with 3 robots $o$ can be $ (0, 1, 2)$ or $ (0, 2, 1)$ or $ (1, 0, 2)$ etc\ldots)\newline $\forall i \in [0;k-1], \exists  (o_{0},\dots, o_{k-1}), p'_{i} = p_{o_{i}} \land s'_{i} = s_{o_{i}} \land t'_{i} = t_{o_{i}} $
 \end{enumerate}
 
 We are now demonstrating that each $\sim_{\mathbb{R}_{i}}$ is an equivalence relation. Two configurations related with $\sim_{\mathbb{R}_{i}}$ are in the same equivalence class if and only if the relation is reflexive, symmetric and transitive. In order to demonstrate that, we're defining three configurations: $\exists c, c', c'' \in \mathbb{A} $, $\mathbb{A}$ being the set of all possible configurations.
@@ -349,14 +349,29 @@ We are now demonstrating that each $\sim_{\mathbb{R}_{i}}$ is an equivalence rel
         \item \begin{center} If $c\sim_{\mathbb{R}_{2}}c'$ and $c'\sim_{\mathbb{R}_{2}}c''$ then $c\sim_{\mathbb{R}_{2}}c''$\end{center}
         Because $c\sim_{\mathbb{R}_{2}}c'$ then wa have $\forall i \in [0; k-1],  (p'_{i} =  (size_{ring} - p_{i})\mod{size_{ring}} \land t'_{i} = t_{i} \land  ( (s_{i} = -1 \land s'_{i} = s_{i}) \lor  (s_{i} \not= -1 \land s'_{i} =  (size_{ring} - s_{i})\mod{size_{ring}})) \bigvee  (p'_{i} = p_{i} \land s'_{i} = s_{i} \land t'_{i} = t_{i}))$.\newline
         Because $c'\sim_{\mathbb{R}_{2}}c''$ then we have $\forall i \in [0; k-1],  (p''_{i} =  (size_{ring} - p'_{i})\mod{size_{ring}} \land t''_{i} = t'_{i} \land  ( (s'_{i} = -1 \land s''_{i} = s_{i}) \lor  (s'_{i} \not= -1 \land s''_{i} =  (size_{ring} - s'_{i})\mod{size_{ring}})) \bigvee  (p''_{i} = p'_{i} \land s''_{i} = s'_{i} \land t''_{i} = t'_{i}))$.\newline
-        If we substitute all $c'$ values from $c\sim_{\mathbb{R}_{1}}c'$ in $c'\sim_{\mathbb{R}_{1}}c''$ we find:\newline
-        blabla //TODO (montrer que avec la substitution on trouve c equi c'')
+        If we substitute all $c'$ values from $c\sim_{\mathbb{R}_{2}}c'$ in $c'\sim_{\mathbb{R}_{2}}c''$ we find:\newline
+        $\forall i \in [0; k-1],  (p''_{i} =  (size_{ring} - size_{ring} + p_{i})\mod{size_{ring}} \land t''_{i} = t_{i} \land  ( (s_{i} = -1 \land s''_{i} = s_{i}) \lor  (s_{i} \not= -1 \land s''_{i} =  (size_{ring} - size_{ring} + s_{i})\mod{size_{ring}})) \bigvee  (p''_{i} = p_{i} \land s''_{i} = s_{i} \land t''_{i} = t_{i}))$\newline
+        With that, we can establish that $c = c''$, $c$ is equivalent to $c''$, $c\sim_{\mathbb{R}_{2}}c''$.
 
         \item \begin{center} If $c\sim_{\mathbb{R}_{3}}c'$ and $c'\sim_{\mathbb{R}_{3}}c''$ then $c\sim_{\mathbb{R}_{3}}c''$\end{center}
-        blabla
+        Because $c\sim_{\mathbb{R}_{3}}c'$ then we have $\forall i \in [0;k-1], \exists  (o_{0},\dots, o_{k-1}), p'_{i} = p_{o_{i}} \land s'_{i} = s_{o_{i}} \land t'_{i} = t_{o_{i}} $\newline
+        Because $c'\sim_{\mathbb{R}_{3}}c''$ then we have $\forall i \in [0;k-1], \exists  (o'_{0},\dots, o'_{k-1}), p''_{i} = p'_{o'_{i}} \land s''_{i} = s'_{o'_{i}} \land t''_{i} = t'_{o'_{i}} $\newline
+        By simply substituing $c'$ in $c'\sim_{\mathbb{R}_{3}}c''$ with its values from $c\sim_{\mathbb{R}_{3}}c'$ we find :\newline
+        $\forall i \in [0;k-1], \exists  (o_{0},\dots, o_{k-1}), p''_{i} = p_{o_{i}} \land s''_{i} = s_{o_{i}} \land t''_{i} = t_{o_{i}} $\newline
+        And just like that we've shown that $c\sim_{\mathbb{R}_{3}}c''$ because substituing $c'$ makes it fit the $\sim_{\mathbb{R}_{3}}$ property.
     
     \end{itemize}
 \end{itemize}
+
+Now we show the bisimulation property of our set of configurations. We show that, for a given configuration, its successor will have, in his equivalence class, a successor of an equivalent configuration that the given one.
+
+A configuration is a successor from another configuration if the status vector or the position vector has changed. Obviously the equity vector always changes from a configuration to its successor.
+
+A successor can't be in the equivalence class of its parent, because we either modify the status or the position and the status vector (status get back to RLC), and it would require to modify only position, or, status and position but without setting status to RLC, in order to, maybe, have an equivalent configuration.
+
+Let's assume that we have four configurations $c_{1}$, $c'_{1}$, $c_{2}$ and $c'_{2}$, such as $c_{1}\sim_{\mathbb{R}}c'_{1}$, $c_{2}$ is a successor of $c_{1}$ and $c'_{2}$ is a successor of $c'_{1}$. We now demonstrate that $c_{2}\sim_{\mathbb{R}}c'_{2}$.
+
+%$R = (\sim_{\mathbb{R}_{1}}\cup \sim_{\mathbb{R}_{2}}\cup \sim_{\mathbb{R}_{3}})$
 
 \subsubsection{Formulas}
 
@@ -368,7 +383,7 @@ $SameClassRot (p_{0}, \dots, p_{k-1}, s_{0}, \dots, s_{k-1}, t_{0}, \dots, t_{k-
 $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
 %rotation
 $ (\bigvee_{s=0}^{size_{ring}-1}  ( \bigwedge_{i=0}^{k-1}  (p'_{i} = p_{i}+s \mod{size_{ring}} \land t'_{i} = t_{i}+s \mod{size_{ring}} \land$\\
-$ ( (s_{i} = -1 \land s'_{i} = -1) \lor  (s_{i} \not= -1 \land s'_{i} = s_{i}+s \mod{size_{ring}}) ) ) ))$
+$ ( (s_{i} = -1 \land s'_{i} = s_{i}) \lor  (s_{i} \not= -1 \land s'_{i} = s_{i}+s \mod{size_{ring}}) ) ) ))$
 \end{center}
 
 \noindent The formula $SameClassMirror$ is $true$ if one configuration is the mirror of the other.
@@ -379,7 +394,7 @@ $ ( (s_{i} = -1 \land s'_{i} = -1) \lor  (s_{i} \not= -1 \land s'_{i} = s_{i}+s 
     $p'_{k-1}, s'_{0}, \dots, s'_{k-1}, t'_{0}, \dots, t'_{k-1}, size_{ring}):=$\\
     %mirror
     $\bigwedge_{i=0}^{k-1} ( p'_{i} =  (size_{ring} - p_{i})\mod{size_{ring}} \land t'_{i} = t_{i} \land$ \\
-    $ ( (s_{i} = -1 \land s'_{i} = -1) \lor  (s_{i} \not= -1 \land s'_{i} =  (size_{ring} - s_{i})\mod{size_{ring}}))) $
+    $ ( (s_{i} = -1 \land s'_{i} = s_{i}) \lor  (s_{i} \not= -1 \land s'_{i} =  (size_{ring} - s_{i})\mod{size_{ring}}))) $
 \end{center}
 
 \noindent The formula $SameClassOrder$ is $true$ if one configuration is the same with different index on the configuration vectors than the other configuration.

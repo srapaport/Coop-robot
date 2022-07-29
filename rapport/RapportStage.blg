@@ -1,17 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'RapportStage.blg'
-[75] biber:322> INFO - === mer. juil. 27, 2022, 18:22:12
-[87] Biber.pm:415> INFO - Reading 'RapportStage.bcf'
-[138] Biber.pm:943> INFO - Found 2 citekeys in bib section 0
-[150] Biber.pm:4256> INFO - Processing section 0
-[150] Utils.pm:75> INFO - Globbing data source 'ref.bib'
-[150] Utils.pm:91> INFO - Globbed data source 'ref.bib' to ref.bib
-[159] Biber.pm:4455> INFO - Looking for bibtex format file 'ref.bib' for section 0
-[160] bibtex.pm:1653> INFO - LaTeX decoding ...
-[163] bibtex.pm:1471> INFO - Found BibTeX data source 'ref.bib'
-[194] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[194] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[194] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[194] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[197] bbl.pm:652> INFO - Writing 'RapportStage.bbl' with encoding 'UTF-8'
-[198] bbl.pm:755> INFO - Output to RapportStage.bbl
+[76] biber:322> INFO - === ven. juil. 29, 2022, 12:18:51
+[90] Biber.pm:415> INFO - Reading 'RapportStage.bcf'
+[142] Biber.pm:943> INFO - Found 2 citekeys in bib section 0
+[153] Biber.pm:4256> INFO - Processing section 0
+[154] Utils.pm:75> INFO - Globbing data source 'ref.bib'
+[154] Utils.pm:91> INFO - Globbed data source 'ref.bib' to ref.bib
+[164] Biber.pm:4455> INFO - Looking for bibtex format file 'ref.bib' for section 0
+[165] bibtex.pm:1653> INFO - LaTeX decoding ...
+[168] bibtex.pm:1471> INFO - Found BibTeX data source 'ref.bib'
+[200] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[200] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[200] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[200] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[203] bbl.pm:652> INFO - Writing 'RapportStage.bbl' with encoding 'UTF-8'
+[204] bbl.pm:755> INFO - Output to RapportStage.bbl
