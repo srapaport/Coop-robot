@@ -1,3 +1,4 @@
 # On ignore le cache python
 src/__pycache__
 logs/
+test/
