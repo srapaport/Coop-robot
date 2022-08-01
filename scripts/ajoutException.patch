@@ -1,0 +1,11 @@
+--- z3.py	2022-06-09 11:44:38.648898101 +0200
++++ z3.py	2022-05-22 18:11:02.235723462 +0200
+@@ -5624,7 +5624,7 @@
+     def __repr__(self):
+         return obj_to_string(self)
+ 
+-class ModelRef(Z3PPObject):
++class ModelRef(Z3PPObject, Exception):
+     """Model/Solution of a satisfiability problem (aka system of constraints)."""
+ 
+     def __init__(self, m, ctx):
