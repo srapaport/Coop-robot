@@ -1,0 +1,262 @@
+taille : 6 | nb robot : 3
+Init + phiUltimate
+taille_anneau =  6
+nb_robots =  3
+taille_boucle_max =  19600
+boucle pour k =  5
+Post Init
+Post 1
+Post 2
+Post 3
+Post 4
+Construction BouclePerdante, len(pk) =  5
+DEBUT OU
+Post de  [kp40, kp41, kp42]  à  [p0, p1, p2]
+On ne cherche pas de boucle de taille :  4
+On ne cherche pas de boucle de taille :  3
+On ne cherche pas de boucle de taille :  2
+On ne cherche pas de boucle de taille :  1
+FIN OU
+Stratégie perdante
+k =  5
+(define-fun kp32 () Int
+  0)
+(define-fun kt00 () Int
+  1)
+(define-fun p_equiInitv72!2256 () Int
+  0)
+(define-fun t_equiInitv71!2251 () Int
+  0)
+(define-fun kt22 () Int
+  0)
+(define-fun md2!303 () Int
+  (- 53))
+(define-fun ks11 () Int
+  (- 1))
+(define-fun kp12 () Int
+  0)
+(define-fun kp40 () Int
+  4)
+(define-fun kt02 () Int
+  0)
+(define-fun mdp0!1052 () Int
+  2)
+(define-fun p1 () Int
+  2)
+(define-fun kt32 () Int
+  0)
+(define-fun ks41 () Int
+  (- 1))
+(define-fun cvdp1!156 () Int
+  (- 7))
+(define-fun s0 () Int
+  (- 1))
+(define-fun cvdp1!306 () Int
+  59)
+(define-fun kp31 () Int
+  2)
+(define-fun kp30 () Int
+  4)
+(define-fun IsOdd_d_prime10!1199 () Int
+  2)
+(define-fun IsOdd_d_prime10!148 () Int
+  2)
+(define-fun kt42 () Int
+  1)
+(define-fun md1!4 () Int
+  2)
+(define-fun trot1!2269 () Int
+  0)
+(define-fun cvdp1!606 () Int
+  64)
+(define-fun kt12 () Int
+  1)
+(define-fun ks40 () Int
+  4)
+(define-fun kt31 () Int
+  1)
+(define-fun cvdp1!1056 () Int
+  4)
+(define-fun mdp2!1050 () Int
+  2)
+(define-fun t_equiInitv70!2252 () Int
+  0)
+(define-fun md0!1205 () Int
+  24)
+(define-fun ks30 () Int
+  4)
+(define-fun ks32 () Int
+  0)
+(define-fun p0 () Int
+  4)
+(define-fun cvdp0!1207 () Int
+  23)
+(define-fun trot0!2270 () Int
+  0)
+(define-fun ks02 () Int
+  (- 1))
+(define-fun p_equiInitv70!2258 () Int
+  4)
+(define-fun IsOdd_d_prime10!899 () Int
+  2)
+(define-fun md2!1053 () Int
+  2)
+(define-fun srot0!2273 () Int
+  (- 1))
+(define-fun md1!304 () Int
+  4)
+(define-fun kp22 () Int
+  0)
+(define-fun kp11 () Int
+  2)
+(define-fun mdp1!751 () Int
+  2)
+(define-fun kp21 () Int
+  2)
+(define-fun md1!754 () Int
+  2)
+(define-fun mdp2!750 () Int
+  2)
+(define-fun md0!305 () Int
+  (- 1))
+(define-fun ks00 () Int
+  4)
+(define-fun kt11 () Int
+  0)
+(define-fun t_equiInitv72!2250 () Int
+  0)
+(define-fun cvdp0!157 () Int
+  50)
+(define-fun kp42 () Int
+  0)
+(define-fun md2!753 () Int
+  2)
+(define-fun kp10 () Int
+  4)
+(define-fun md0!5 () Int
+  2)
+(define-fun md1!1054 () Int
+  2)
+(define-fun md2!1203 () Int
+  (- 11))
+(define-fun cvdp0!607 () Int
+  62)
+(define-fun kt20 () Int
+  0)
+(define-fun ks31 () Int
+  (- 1))
+(define-fun t0 () Int
+  0)
+(define-fun s2 () Int
+  (- 1))
+(define-fun prot1!2275 () Int
+  0)
+(define-fun p2 () Int
+  0)
+(define-fun kp41 () Int
+  2)
+(define-fun s_equiInitv72!2253 () Int
+  (- 1))
+(define-fun prot0!2276 () Int
+  2)
+(define-fun IsOdd_d_prime10!1198 () Int
+  2)
+(define-fun prot2!2274 () Int
+  4)
+(define-fun kp20 () Int
+  4)
+(define-fun cvdp1!6 () Int
+  4)
+(define-fun cvdp0!457 () Int
+  45)
+(define-fun s_equiInitv71!2254 () Int
+  (- 1))
+(define-fun t2 () Int
+  0)
+(define-fun cvdp1!906 () Int
+  (- 2))
+(define-fun mdp2!0 () Int
+  2)
+(define-fun ks22 () Int
+  0)
+(define-fun srot1!2272 () Int
+  (- 1))
+(define-fun cvdp0!307 () Int
+  51)
+(define-fun cvdp0!1057 () Int
+  2)
+(define-fun cvdp0!757 () Int
+  2)
+(define-fun kt10 () Int
+  1)
+(define-fun kp00 () Int
+  4)
+(define-fun trot2!2268 () Int
+  0)
+(define-fun kp01 () Int
+  2)
+(define-fun mdp0!752 () Int
+  2)
+(define-fun md2!3 () Int
+  2)
+(define-fun kt40 () Int
+  0)
+(define-fun IsOdd_d_prime10!898 () Int
+  2)
+(define-fun cvdp0!7 () Int
+  2)
+(define-fun mdp1!1051 () Int
+  2)
+(define-fun cvdp1!1206 () Int
+  17)
+(define-fun mdp0!2 () Int
+  2)
+(define-fun kp02 () Int
+  0)
+(define-fun kt41 () Int
+  1)
+(define-fun kt30 () Int
+  0)
+(define-fun ks12 () Int
+  0)
+(define-fun ks10 () Int
+  4)
+(define-fun cvdp1!456 () Int
+  19)
+(define-fun ks20 () Int
+  4)
+(define-fun t1 () Int
+  0)
+(define-fun srot2!2271 () Int
+  (- 1))
+(define-fun cvdp1!756 () Int
+  4)
+(define-fun cvdp0!907 () Int
+  (- 23))
+(define-fun md0!1055 () Int
+  2)
+(define-fun ks01 () Int
+  (- 1))
+(define-fun mdp1!1 () Int
+  2)
+(define-fun md0!755 () Int
+  2)
+(define-fun kt21 () Int
+  0)
+(define-fun ks42 () Int
+  (- 1))
+(define-fun kt01 () Int
+  0)
+(define-fun ks21 () Int
+  2)
+(define-fun s1 () Int
+  (- 1))
+(define-fun s_equiInitv70!2255 () Int
+  (- 1))
+(define-fun p_equiInitv71!2257 () Int
+  2)
+(define-fun IsOdd_d_prime10!149 () Int
+  2)
+python3 main.py 6 3 7
+	Real time elapsed : 1:13:55
+

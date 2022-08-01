@@ -1,0 +1,6 @@
+taille : 8 | nb robot : 4
+Init + phiUltimate
+Command terminated by signal 9
+python3 main.py 8 4 7
+	Real time elapsed : 17:23:42
+

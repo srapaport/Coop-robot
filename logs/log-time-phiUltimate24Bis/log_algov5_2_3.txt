@@ -1,0 +1,17 @@
+taille : 2 | nb robot : 3
+Init + phiUltimate
+taille_anneau =  2
+nb_robots =  3
+taille_boucle_max =  816
+boucle pour k = 1
+
+Test pour taille_boucle =  5
+Construction de la boucle de taille :  1  | pour une taille totale de :  5
+Construction de la boucle de taille :  2  | pour une taille totale de :  5
+Construction de la boucle de taille :  3  | pour une taille totale de :  5
+Construction de la boucle de taille :  4  | pour une taille totale de :  5
+Construction de la boucle de taille :  5  | pour une taille totale de :  5
+Command exited with non-zero status 1
+python3 main.py 2 3 5
+	Real time elapsed : 27:30.21
+
