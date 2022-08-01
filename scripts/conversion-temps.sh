@@ -18,8 +18,7 @@ do
             milli=0
         fi
         timeRes=$(((60*60*$hour) + (60*$min) + $sec))
-        echo -n $data
-        echo " $hour h: $min min: $sec s. $milli"
+        #echo " $hour h: $min min: $sec s. $milli"
         echo $timeRes.$milli >> ../data/data-$1/data-timev2.csv
     fi
 done
