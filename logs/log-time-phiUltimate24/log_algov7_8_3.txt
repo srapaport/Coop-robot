@@ -1,6 +1,0 @@
-taille : 8 | nb robot : 3
-Init + phiUltimate
-Command terminated by signal 9
-python3 algov7.py 8 3
-	Real time elapsed : 24:00:00
-

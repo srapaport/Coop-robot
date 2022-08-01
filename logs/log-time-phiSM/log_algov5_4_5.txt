@@ -1,6 +1,0 @@
-taille : 4 | nb robot : 5
-Init + phiSM
-Command terminated by signal 9
-python3 algov5.py 4 5 21600
-	Real time elapsed : 8:38:47
-
