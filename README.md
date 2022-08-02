@@ -10,7 +10,7 @@ What we wanted to do was to test this strategy in the algorithm.
 You will find 2 algorithms : 
 
 - One is the *algov5*, it comes from the 4 months course and is related to the *algorithme_bounded_MC.pdf*. We are increasing the size of the loop we are testing as long as we haven't find one.
-- The other one, *algov7*, comes from the 2 months intership and has been created by me with the idea that we needed to decrease the time it takes to find a loosing loop and, hopefully one day, the time it takes to find that there is no loosing loop. We are looking if a way back to a previous configuration is possible or not. If it is then we have found a loosing loop. If it's not, then we increase the number of posts until we reach the size of the graphe, meaning, we have gone through all possibilities.
+- The other one, *algov7*, comes from the 2 months intership and has been created by me with the idea that we needed to decrease the time it takes to find a loosing loop and, hopefully one day, the time it takes to find that there is no loosing loop. We are looking if a way back to a previous configuration is possible or not. If it is then we have found a loosing loop. If it's not, then we increase the number of posts until we reach the size of the graph, meaning, we have gone through all possibilities.
 
 ## Installation
 
@@ -52,7 +52,7 @@ Once you've done all that, restart your shell and you are ready to use the z3 AP
 
 ## Use
 
-In order to test an algorithm with a strategy you will need to replace, in the algorithm you want to test, all the iteration of the strategy *phi¤* by the one you want.
+In order to test an algorithm with a strategy you will need to replace, in the algorithm you want to test, all the occurence of the strategy *phi¤* by the one you want.
 
 Then you can use this command :
 ```bash
@@ -71,6 +71,45 @@ cd scripts
 ./log.sh phi¤
 ./conversion-temps.sh phi¤
 ```
-After doing that, you can execute the ./data/data.py file that will generate graphes, showing you the difference between the two algorithms. The same way than before, be carefull to replace all iteration of the strategy *phi¤* in the data.py file.
+After doing that, you can execute the ./data/data.py file that will generate graphs, showing you the difference between the two algorithms. The same way than before, be carefull to replace all occurence of the strategy *phi¤* in the data.py file.
 
 ## Exemple
+
+I want to run a comparison test between *algov5* and *algov7* with the *phiSimple* strategy.
+
+I change every occurence of *phi¤* to *phiSimple* in *algov5.py*, in *algov7.py*, in *comparv5.sh* and in *comparv7.sh*.
+
+In *algov5*
+```py
+tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiUltimate))
+```
+into
+```py
+tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+```
+etc...
+
+I run my scripts on different shells and i wait.
+```bash
+screen
+./comparv5.sh &
+```
+
+My results will appear in the logs/log-time-phiSimple directory.
+
+I run my scripts in order to have my csv files.
+```bash
+./log.sh phiSimple
+./conversion-temps.sh phiSimple
+```
+
+I, now, change all occurence of *phi¤* in *data.py* and I run it.
+```py
+data = pd.read_csv('./data/data-phiUltimate24Bis/data-timev2.csv', sep=';')
+```
+into
+```py
+data = pd.read_csv('./data/data-phiSimple/data-timev2.csv', sep=';')
+```
+
+All my graphs will be in the data/data-phiSimple
