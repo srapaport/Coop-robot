@@ -2,4 +2,5 @@
 src/__pycache__
 logs/
 test/
-rapport/
+rapport/*
+!rapport/RapportStage.pdf
