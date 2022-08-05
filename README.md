@@ -19,9 +19,13 @@ In order to run and test this algorithm, you will need to install z3 on your com
 You will find it there : https://github.com/Z3Prover/z3/releases
 The version you need was released on May 23th 2018.
 
-Once you have unziped the .tar.gz file, you can install z3 with the python API on your computer. **You need to know your current version of python**. For the following example, I'll use a "python3.5", and the directory "/usr/lib/python3.5/site-packages/" already exists. If it doesn't then create it (cd /usr/lib/python3.5/; mkdir site-packages).
+Once you have unziped the .tar.gz file, you can install z3 with the python API on your computer. **You need to know your current version of python**. For the following example, I'll use a "python3.5", and the directory "/usr/lib/python3.5/site-packages/" already exists. If it doesn't, then create it :
 
-To install z3, from the z3 root directory, execute the following commands :
+```bash
+cd /usr/lib/python3.5/
+mkdir site-packages
+```
+To install z3, from the z3 root directory, execute the following commands on a bash shell:
 
 ```bash
 python3 scripts/mk_make.py --prefix=/usr --python --pypkgdir=/usr/lib/python3.5/site-packages
