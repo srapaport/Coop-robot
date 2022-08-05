@@ -2,8 +2,18 @@ from z3 import *
 from utilZ3v7 import *
 
 def mainv7(taille_anneau, nb_robots):
-        taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
-        print("taille_anneau = ", taille_anneau)
+        n = taille_anneau*4*2
+        if nb_robots%2 == 0:
+                disoriented = (factorial(n+(nb_robots/2)-1)//(factorial((nb_robots/2))*factorial(n-1)))*8
+        else:
+                disoriented = (factorial(n+((nb_robots-1)/2)-1)//(factorial(((nb_robots-1)/2))*factorial(n-1)))*8
+        oriented = (factorial(n+(nb_robots-1)-1)//(factorial(nb_robots-1)*factorial(n-1))) - disoriented
+        taille_boucle_max_old = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
+        taille_boucle_max = (oriented//2) + disoriented
+        print("taille_anneau = ", taille_anneau, " old = ", taille_boucle_max_old)
+        # taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
+        # print("taille_anneau = ", taille_anneau)
+
         print("nb_robots = ", nb_robots)
         print("taille_boucle_max = ", taille_boucle_max)
 
