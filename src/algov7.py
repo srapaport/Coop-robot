@@ -1,23 +1,27 @@
 from z3 import *
 from utilZ3v7 import *
 
-def mainv7(taille_anneau, nb_robots):
-        n = taille_anneau*4*2
+def mainv7(loop_size, nb_robots):
+        """
+        Calcul of the size of the graph
+        """
+        n = loop_size*4*2
         if nb_robots%2 == 0:
                 disoriented = (factorial(n+(nb_robots//2)-1)//(factorial((nb_robots//2))*factorial(n-1)))*8
         else:
                 disoriented = (factorial(n+((nb_robots-1)//2)-1)//(factorial(((nb_robots-1)//2))*factorial(n-1)))*8
         oriented = (factorial(n+(nb_robots-1)-1)//(factorial(nb_robots-1)*factorial(n-1))) - disoriented
-        taille_boucle_max_old = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
-        taille_boucle_max = (oriented//2) + disoriented
-        print("taille_anneau = ", taille_anneau, " old = ", taille_boucle_max_old)
-        # taille_boucle_max = (factorial(8 * taille_anneau + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * taille_anneau - 1))
-        # print("taille_anneau = ", taille_anneau)
+        max_loop_size_old = (factorial(8 * loop_size + nb_robots -1)) // (factorial(nb_robots) * factorial(8 * loop_size - 1))
+        max_loop_size = (oriented//2) + disoriented
+        print("loop_size = ", loop_size, " old = ", max_loop_size_old)
 
         print("nb_robots = ", nb_robots)
-        print("taille_boucle_max = ", taille_boucle_max)
-
-        k = (2*nb_robots) - 1 # On considère qu'initialement tous les s sont à -1 et tous les t à 0
+        print("max_loop_size = ", max_loop_size)
+        #########################################################################################################################
+        """
+        k is //TODO
+        """
+        k = 1
         NotThisSize = [i for i in range(k)]
         MaybeThisSize = []
 
@@ -26,9 +30,9 @@ def mainv7(taille_anneau, nb_robots):
         t = [ Int('t%s' % i) for i in range(nb_robots) ]
         while True:
 
-                I = Init(p, s, t, taille_anneau)
+                I = Init(p, s, t, loop_size)
 
-                constI = Init(p, s, t, taille_anneau)
+                constI = Init(p, s, t, loop_size)
                 continuer = True
                 pk = []
                 sk = []
@@ -46,11 +50,11 @@ def mainv7(taille_anneau, nb_robots):
                                         NotThisSizeBis.remove(elem)
                                 tabAnd = []
                                 tabAnd.append(I)
-                                tabAnd.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+                                tabAnd.append(AsyncPost(loop_size, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
                                 for i in range(k-1):
                                         print("Post %s" % (i+1))
-                                        tabAnd.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
-                                tabAnd.append(BouclePerdante_v4_1(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSizeBis))
+                                        tabAnd.append(AsyncPost(loop_size, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
+                                tabAnd.append(BouclePerdante_v4_1(loop_size, p, s, t, pk, sk, tk, phiSimple, NotThisSizeBis))
                                 solBis = Solver()
                                 solBis.add(And(tabAnd))
                                 if solBis.check() == sat:
@@ -67,11 +71,11 @@ def mainv7(taille_anneau, nb_robots):
 
                         tmpAndInterpolant.append(I)
                         print("Post Init")
-                        tmpAndInterpolant.append(AsyncPost(taille_anneau, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
+                        tmpAndInterpolant.append(AsyncPost(loop_size, nb_robots, p, s, t, pk[0], sk[0], tk[0], phiSimple))
                         for i in range(k-1):
                                 print("Post %s" % (i+1))
-                                tmpAndContext.append(AsyncPost(taille_anneau, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
-                        tmpAndContext.append(BouclePerdante_v4_1(taille_anneau, p, s, t, pk, sk, tk, phiSimple, NotThisSize))
+                                tmpAndContext.append(AsyncPost(loop_size, nb_robots, pk[i], sk[i], tk[i], pk[i+1], sk[i+1], tk[i+1], phiSimple))
+                        tmpAndContext.append(BouclePerdante_v4_1(loop_size, p, s, t, pk, sk, tk, phiSimple, NotThisSize))
                         try:
                                 Ip = tree_interpolant(And(Interpolant(And(tmpAndInterpolant)), And(tmpAndContext)))
                         except ModelRef as m:
@@ -88,7 +92,7 @@ def mainv7(taille_anneau, nb_robots):
                                 sol.add(And(And(Ip), Not(I)))
                                 if sol.check() == unsat:
                                         print("And(And(Ip), Not(I)) UNSAT")
-                                        if k == taille_boucle_max:
+                                        if k == max_loop_size:
                                                 print("Stratégie gagnante\n")
                                                 exit()
                                         else:
