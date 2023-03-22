@@ -1,6 +1,6 @@
 # On ignore le cache python
 src/__pycache__
 logs/
-test/
+# test/
 rapport/*
 !rapport/RapportStage.pdf

@@ -1,0 +1,8 @@
+(id robot, next moove, equity bit)
+Configuration initiale :
+p0 :
+p1 :
+p2 :
+p3 :
+p4 :
+p5 :
