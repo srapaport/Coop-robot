@@ -1,0 +1,12 @@
+Configuration 0 du robot 0 :   0   	(bit d'équité=0)
+Configuration 0 du robot 1 : 1     	(bit d'équité=0)
+
+Configuration 1 du robot 0 :   0   	(bit d'équité=0)
+Configuration 1 du robot 1 : 1   = 	(bit d'équité=1)
+
+Configuration 2 du robot 0 :   0  = 	(bit d'équité=0)
+Configuration 2 du robot 1 : 1   = 	(bit d'équité=0)
+
+Configuration 3 du robot 0 :   0  = 	(bit d'équité=0)
+Configuration 3 du robot 1 : 1     	(bit d'équité=1)
+

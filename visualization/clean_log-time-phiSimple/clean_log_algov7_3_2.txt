@@ -1,0 +1,1 @@
+usage : python3 visualization.py <log_file> <ring_size> <nb_robots> <loop_size>
