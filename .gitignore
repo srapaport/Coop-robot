@@ -4,3 +4,4 @@ logs/
 # test/
 rapport/*
 !rapport/RapportStage.pdf
+tmp_src/*

@@ -1,4 +1,5 @@
 import sys
+import os
 import re
 import numpy as np
 
@@ -23,7 +24,7 @@ def clean_log(path):
     with open(path, 'r') as f:
         logs = f.read()
 
-    regex = r"define-fun ([^! ]+) \(\) Int\n  \(?([ \-\d]+)\]?\)"
+    regex = r"define-fun ([^! _]+) \(\) Int\n  \(?([ \-\d]+)\]?\)"
     matches = re.findall(regex, logs)
 
     # Display the extracted values
@@ -40,9 +41,9 @@ def arrays_initialization(path, nb_robots):
         lines = f.readlines()
 
     # Initialiser les tableaux p, s et t
-    p = np.zeros((loop_size, nb_robots), int)
-    s = np.zeros((loop_size, nb_robots), int)
-    t = np.zeros((loop_size, nb_robots), int)
+    p = np.zeros((loop_size + 1, nb_robots), int)
+    s = np.zeros((loop_size + 1, nb_robots), int)
+    t = np.zeros((loop_size + 1, nb_robots), int)
 
     # Parcourir les lignes du fichier
     for line in lines:
@@ -66,14 +67,14 @@ def arrays_initialization(path, nb_robots):
                 t[0][int(matches[0][1])] = int(matches[0][2])
     return p, s, t
 
-def config_visualization(ring_size, p, s, t):
-	for i in range(nb_robots):
+def config_visualization(id_config, ring_size, p, s, t):
+	for i in range(len(p)):
 		position = p[i]
 		direction = s[i]
 		bit_equite = t[i]
 
 		# Création de la chaîne de caractères représentant la configuration
-		config_str = " " * ring_size
+		config_str = " " * (ring_size + 1)
 		config_str = config_str[:position] + str(i) + config_str[position+1:]
 		if direction != -1:
 			if direction > position:
@@ -87,10 +88,12 @@ def config_visualization(ring_size, p, s, t):
 			config_str = config_str[:arrow_pos] + arrow_char + config_str[arrow_pos+1:]
 
 		# Affichage de la configuration
-		print(f"Configuration du robot {i} : {config_str} \t(bit d'équité={bit_equite})")
+		print(f"Configuration {id_config} du robot {i} : {config_str} \t(bit d'équité={bit_equite})")
 
 new_path = clean_log(PATH)
 p, s, t = arrays_initialization(new_path, nb_robots)
-for nb_configs in range(loop_size - 1):
-	config_visualization(ring_size, p[nb_configs], s[nb_configs], t[nb_configs])
-	print("\n")
+for nb_configs in range(loop_size + 1):
+	config_visualization(nb_configs, ring_size, p[nb_configs], s[nb_configs], t[nb_configs])
+	print("")
+if os.path.exists(new_path):
+    os.remove(new_path)
