@@ -5,3 +5,4 @@ logs/
 rapport/*
 !rapport/RapportStage.pdf
 tmp_src/*
+visualization/*log*/*
