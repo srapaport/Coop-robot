@@ -1,13 +1,14 @@
 import algov5
 import algov7
+import algov7_v2
 import sys
 
-if len(sys.argv) != 4:
+if len(sys.argv) != 5:
     """
     Control check on the number of arguments
     """
     print("Not enough arguments !")
-    print("Usage : main.py <algorithm> <number of robots> <ring size>")
+    print("Usage : python3 main.py <algorithm> <number of robots> <ring size>")
     exit(1)
 
 """
@@ -44,6 +45,8 @@ if algo == 5:
     algov5.mainv5(taille_anneau, nb_robots)
 elif algo == 7:
     algov7.mainv7(taille_anneau, nb_robots)
+elif algo == 8:
+    algov7_v2.mainv7(taille_anneau, nb_robots, sys.argv[4])
 else:
     print("Unknown algorithm, try 5 or 7")
     exit(1)
